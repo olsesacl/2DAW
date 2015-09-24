@@ -6,12 +6,12 @@
         <title></title>
     </head>
     <body>
-        <form action="index.php" method="POST">
-            Numero a comprobar:<input type="text" name="num" value="" />   
-        </form>
-        <br />
-        
         <?php
+        print "<form action='index.php' method='POST'>
+            Numero a comprobar:<input type='text' name='num' value='".$_POST['num']."'/>  
+                 <input type='submit' value='Enviar'>
+        </form>
+        <br />";
         
         if(!empty($_POST['num'])){
             parimpar($_POST['num']);

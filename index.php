@@ -26,4 +26,4 @@ function listar_directorios_ruta($ruta){
       }
    }else
       echo "<br>No es ruta valida";
-} 
+}

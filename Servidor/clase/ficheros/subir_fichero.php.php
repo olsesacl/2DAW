@@ -6,8 +6,10 @@ $description = $_POST['description'];
 $canal = fopen("datos.txt", a) or die("Problemas en la creacion del fichero");
 
 fputs($canal, $nombre);
+fputs($canal,"\n");
 
 fputs($canal, $description);
+fputs($canal,"\n");
 
 fputs($canal, "--------------------------------------\n");
 

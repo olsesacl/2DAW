@@ -8,42 +8,51 @@
     <body>
         
         <?php
-        $nombre = "Sergio";
-        $apellidos = "Sanchis Climent";
+        $nombre = $_POST['nombre'];
+        $apellidos = $_POST['apellidos'];
+        $num1 = $_POST['num1'];
+        $num2 = $_POST['num2'];
         
-        print "El nombre del alumno es $nombre $apellidos"; 
         
-        ?>
-        <form action="index.php" method="POST">
-            X:<input type="text" name="x" value="" />
-            Y:<input type="text" name="y" value="" />
+        print "<form action='index.php' method='POST'>
+            Nombre: <input type='text' name='nombre' value='$nombre' />
+                <br /><br />
+            Apellidos: <input type='text' name='apellidos' value='$apellidos' />
+                <br /><br />
+            Num_1: <input type='text' name='num1' value='$num1' />
+                <br /><br />
+            Num_2: <input type='text' name='num2' value='$num2' />
+            <br />
+            <input type='submit' value'Enviar' />
         </form>
-        <br />
+        <br /><br />";
         
-        <?php
-        
-        if(!empty($_POST['x'])){
-            $x = $_POST['x'];
-        }
-        
-        if(!empty($_POST['y'])){
-            $y = $_POST['y'];
-        }
-        
-        if((empty($x) || empty($y))){
+        if(isset($num1) && $num1 != "" && isset($num2) && $num2 != "" && isset($nombre) && $nombre != "" && isset($apellidos) && $apellidos != "")          
+        { 
+            $message = 'Resultado: ';
             
-            print "Has de rellenar los dos datos<br />";            
-        } else {
-            
-            print "Resultado: ";
-            
-            if($x > 0 && $y < $x){
+            if($num1 > 0 && $num2 < $num1){
                 
-                print $nombre;
+                $message .= $nombre;
                 
+            } else if($num1 > 0 && $num2 >= $num1){
+                
+                $message .= $apellidos;
+                
+            } else if($num1 < 0){
+                
+                $message .= $nombre." ".$apellidos;
+                
+            } else {
+                $message = "No entra en ningun apartado";
             }
             
+            print "$message";
+            
+        } else {
+            print "Has de rellenar todos los datos<br />";
         }
+        
         
     
         ?>
