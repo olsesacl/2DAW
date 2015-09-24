@@ -6,11 +6,17 @@
         <title></title>
     </head>
     <body>
+        <form action="index.php" method="POST">
+            Numero a comprobar:<input type="text" name="num" value="" />   
+        </form>
+        <br />
+        
         <?php
-        $x = 5;
-        $y = 4;
-        parimpar($x);
-        parimpar($y);
+        
+        if(!empty($_POST['num'])){
+            parimpar($_POST['num']);
+        }
+        
         
         function parimpar($x){
             
