@@ -1,0 +1,4 @@
+
+var nom = prompt("Escriu el teu nom:");
+var cognom1 = prompt("Escriu el primer cognom:");
+var cognom2 = prompt("Escriu el segon cognom:");

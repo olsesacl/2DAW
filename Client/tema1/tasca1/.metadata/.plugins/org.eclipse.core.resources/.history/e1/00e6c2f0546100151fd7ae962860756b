@@ -1,0 +1,6 @@
+
+var frase = prompt("Escriu una frase:");
+
+if(frase.length < 100){
+	
+}

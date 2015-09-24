@@ -1,0 +1,15 @@
+
+var frase = prompt("Escriu una frase:");
+
+var num = 0;
+var espacios = 0;
+
+for(c in frase){
+	if(c ==" " ){
+		espacios++;
+	} else {
+		num++;
+	}
+}
+
+alert("Has escrito un total de " + num + " caracteres y " + espacios);

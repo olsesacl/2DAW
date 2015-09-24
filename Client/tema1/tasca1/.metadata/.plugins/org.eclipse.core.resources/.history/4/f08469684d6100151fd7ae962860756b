@@ -1,0 +1,11 @@
+
+var pos = [1,3,6,9,12,13,15,19,25];
+
+var frase = prompt("Escriu una frase:");
+
+
+for(var i = 0; i < pos.length ;i++ ){
+	
+	alert(frase.charAt(pos[i]));
+	
+}

@@ -1,0 +1,10 @@
+
+var frase = prompt("Escriu una frase:");
+
+var message;
+
+for(var i = 0; i < frase.length; i++){
+	if(frase.charAt(i) !=" " && frase.charAt(i-1) == " " ){
+		num++;
+	}
+}

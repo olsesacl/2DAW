@@ -1,0 +1,13 @@
+
+var nom = prompt("Escriu el teu nom:");
+var cognom1 = prompt("Escriu el primer cognom:");
+var cognom2 = prompt("Escriu el segon cognom:");
+
+nom = nom.toUpperCase;
+cognom1 = cognom1.toUpperCase;
+cognom2 = cognom2.toUpperCase;
+
+
+var message = "Hola " + nom + " " + cognom1 + " " + cognom2 + ". Benvingut a la meua webs!";
+
+alert(message);

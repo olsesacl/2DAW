@@ -1,0 +1,18 @@
+
+var frase = prompt("Escriu una frase:");
+
+var num = 0;
+var espacios = 0;
+
+if(frase.lenght > 0)
+	num =1;
+
+for(var i = 0; i < frase.length; i++){
+	if(frase.charAt(i) ==" " ){
+		espacios++;
+	} else {
+		num++;
+	}
+}
+
+alert("Has escrito un total de " + num + " palabras");

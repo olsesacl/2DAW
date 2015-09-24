@@ -1,0 +1,20 @@
+
+var frase = prompt("Escriu una frase:");
+
+var message;
+var paraula = '';
+
+for(var i = 0; i < frase.length; i++){
+	
+	if(frase.charAt(i) ==" "){
+		
+		message += paraula + " -> " + paraula.length + " lletres";
+		
+		paraula = '';
+		
+	} else {
+		paraula+=frase.charAt(i);
+	} 
+}
+
+alert(message);

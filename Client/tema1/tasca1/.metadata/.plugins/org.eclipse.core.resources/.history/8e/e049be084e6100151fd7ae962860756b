@@ -1,0 +1,3 @@
+
+var frase = prompt("Escriu una frase:");
+
