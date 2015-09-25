@@ -8,7 +8,7 @@ if ($root = opendir("../")) {
 listar_directorios_ruta("./"); 
 
 function listar_directorios_ruta($ruta){
-   // abrir un directorio y listarlo recursivo
+   // abrir un directorio y listarlo recursivo 
    if (is_dir($ruta)) {
       if ($dh = opendir($ruta)) {
          while (($file = readdir($dh)) !== false) {
