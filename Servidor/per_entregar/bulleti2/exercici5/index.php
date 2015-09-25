@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <!--
-Elaborar una página PHP que contenga una función cuadrado que recibe 2 parámetros,
+Elaborar una página PHP que contenga una función pirámide que recibe 2 parámetros,
 un carácter (que puede ser cualquiera) y un número , la función debe mostrar por
-pantalla un cuadrado con el carácter recibido ( tantas filas y columnas como indique el número).
-a) Ejemplo: cuadrado(“#”,3)
-###
-###
-###
+pantalla una pirámide invertida con el carácter recibido ( tantas filas y columnas
+como indique el número y de ahí descendiendo hasta 1).
+a) Ejemplo: piramide(“@”,4)
+@@@@
+@@@
+@@
+@
 -->
 <html>
     <head>
@@ -30,16 +32,16 @@ a) Ejemplo: cuadrado(“#”,3)
         
         if(isset($num) && $num!='' && isset($caracter) && $caracter !=''){
             
-           cuadrado($caracter, $num);
+           piramide($caracter, $num);
             
         }
         
-        function cuadrado($c, $n){
+        function piramide($c, $n){
             $m ='';
         
-            for($i = 0; $i < $n; $i++){
+            for($i = $n; $i > 0; $i--){
                 
-                for($j = 0; $j < $n; $j++){
+                for($j = $i; $j > 0; $j--){
                     
                     $m .= $c;
                 }
