@@ -41,7 +41,7 @@ http://www.carreraspopulares.com/calculadora/V5-calculadora.asp
             
             
             //pasamos el resultado en formato hh:mm:ss
-            $h = $result/
+           // $h = $result/;
         }
         ?>
         <form action="index.php" method="POST">
