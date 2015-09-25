@@ -1,4 +1,3 @@
-
 setInterval(reloj,1000);
 
 function reloj(){
@@ -14,8 +13,6 @@ function setreloj(now){
 	
 	
 }
-
-
 
 function getdate(){
 	
