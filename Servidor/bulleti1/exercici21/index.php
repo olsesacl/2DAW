@@ -23,13 +23,13 @@ Mostrar los divisores de los numeros
         $divisores=array();
         
         if(isset($num) && $num !=''){
-            $i = 1;
-            while( $i <= $num){
+            
+            for($i = 1; $i <= $num; $i++){
                 
                 if($num%$i == 0){
                     $divisores[]=$i;
                 }
-                $i++;                
+                
             }
             
             $message = "Los divisores de $num son:";

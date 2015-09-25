@@ -12,15 +12,13 @@ and open the template in the editor.
     <body>
         <?php
         $tamaño = 6;
-        $i = 0;
-        while($i < $tamaño){
+        for($i = 0 ; $i < $tamaño; $i++){
             
             for($j = $i; $j >=0; $j--){
                 
                 print "*";
             }
             print "<br />";
-            $i++;
         }
         ?>
     </body>

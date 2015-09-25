@@ -11,17 +11,18 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        $tamaño = 6;
-        $i = 0;
-        while($i < $tamaño){
+         $message = '';
+        
+        for ($i = 100; $i >= 0; $i = $i-2) {
             
-            for($j = $i; $j >=0; $j--){
-                
-                print "*";
+            if($i != 100){
+                $message .= ", ";
             }
-            print "<br />";
-            $i++;
+            
+            $message .= $i;
         }
+        
+        print $message;
         ?>
     </body>
 </html>

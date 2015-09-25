@@ -13,14 +13,15 @@ and open the template in the editor.
         <?php
         
         $message = '';
-        
-        for ($i = 1; $i <= 100; $i++) {
+        $i = 1;
+        while($i <=100){
             
             if($i != 1){
                 $message .= ", ";
             }
             
             $message .= $i;
+            $i++;
         }
         
         print $message;

@@ -18,10 +18,9 @@
 
 
             $message = "Tabla de multiplicar del $num<br />";
-            $i = 1;
-            while ($i <= 10) {
+
+            for ($i = 1; $i <= 10; $i++) {
                 $message .= "$i x $num = ".($i * $num)."<br />";
-                $i++;
             }
             
             print $message;
