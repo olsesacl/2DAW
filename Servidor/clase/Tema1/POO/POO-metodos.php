@@ -15,11 +15,11 @@ class Tabla{
     }
     
     private function inicioTabla(){        
-        print "<tabla border='1'>";        
+        print "<table border='1'>";        
     }
     
     private function finTabla(){
-        print "</tabla>";        
+        print "</table>";        
     }
     
     private function inicioFila(){
@@ -32,13 +32,13 @@ class Tabla{
     
     public function cargarDatos($fila, $columna, $valor){
         
-        $this->mat[$fila] [$columna] = $valor;
+        $this->mat[$fila-1][$columna-1] = $valor;
         
     }
     
     private function mostrar($fil, $col){
         
-        print "<td>".$this->mat[$fil][$col]."</td>";
+            print "<td>".$this->mat[$fil][$col]."</td>";
         
     }
     
@@ -69,12 +69,13 @@ class Tabla{
 
 //utilizando la clase
 
-$tabla = new Tabla(2, 3);
+$tabla1 = new Tabla(2, 3);
 
-$tabla->cargarDatos(1, 1, "abc");
-$tabla->cargarDatos(1, 2, "2");
-$tabla->cargarDatos(1, 3, "3");
-$tabla->cargarDatos(1, 1, "4");
+$tabla1->cargarDatos(1, 1, 1);
+$tabla1->cargarDatos(1, 2, 2);
+$tabla1->cargarDatos(1, 3, 3);
+$tabla1->cargarDatos(2, 1, 4);
+$tabla1->cargarDatos(2, 2, 5);
+$tabla1->cargarDatos(2, 3, 6);
 
-
-$tabla->dibujar();
+$tabla1->dibujar();

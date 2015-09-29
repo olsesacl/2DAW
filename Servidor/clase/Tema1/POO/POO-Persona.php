@@ -1,6 +1,6 @@
 <?php
 
-class persona{
+class Persona{
     
     private $nom;
     
@@ -17,12 +17,12 @@ class persona{
 
 //utilizar la clase
 
-$per1 = new persona();
+$per1 = new Persona();
 
 $per1->inicializar("Juan");
 $per1->imprimir();
 
-$per2 = new persona();
+$per2 = new Persona();
 
 $per2->inicializar("Pepe");
 $per2->imprimir();
