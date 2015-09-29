@@ -24,7 +24,9 @@ http://www.carreraspopulares.com/calculadora/V5-calculadora.asp
             
         }
         
-        function mediakm($t, $d){
+        //la variable km es para aprovechar la funcion y que devuelva en caso de ser necesario
+        //el tiempo cada x km
+        function mediakm($t, $d , $km =''){
             
             if(check_hora($t)){
             
@@ -32,7 +34,14 @@ http://www.carreraspopulares.com/calculadora/V5-calculadora.asp
 
                 //ahora dividimos el tiepmo entre la distancia(metros) para saber al metro cuanto tarda
                 $result = $s/$d;
+                
                 $result = $result * 1000; //porque queremos saber cuanto tarda por Km
+                
+                $result = round($result);
+                
+                if($km != ''){
+                    $result = $result * $km;
+                }
                 
                 $result = second2hora($result);
                 
@@ -70,7 +79,7 @@ http://www.carreraspopulares.com/calculadora/V5-calculadora.asp
                 $m = $m + ($h * 60);
                 $s = $s + ($m * 60);
                 
-                return $s;
+                return ceil($s);
         }
         
         function formato_hora($h, $m, $s){
@@ -92,6 +101,36 @@ http://www.carreraspopulares.com/calculadora/V5-calculadora.asp
             }
             return $num;
         }
+        
+        
+        function mostrar_plan($medKm, $distancia, $tiempo){
+            
+            print "<br /><br /><div>Plan de carrera a $medKm Kilometro</div>"
+                . "<table border='1'>";
+            print "<tr><td>Distancia (Kilometros)</td><td>Distancia(m)</td><td>Tiempo de paso</td>";
+
+            for($i = 1; $i <= $distancia/1000; $i++){
+
+                $t = mediakm($tiempo, $distancia, $i);
+
+                 print "<tr><td>$i</td><td>".($i * 1000)."</td><td>$t</td>";
+            }
+            
+            //per a comprobar el ultim km que s'ha escrit, pasem a metres
+            $i = ($i - 1) *1000;
+            
+            //comparem si $distancia es major, per si no fora km exactes y aixina mostrar el dato corresponent
+            if($i < $distancia){
+                
+                $km = $distancia/1000;                
+                 
+                print "<tr><td>$km</td><td>$distancia</td><td>$tiempo</td>";
+            }
+
+            print "</table>";
+        }
+        
+        
         ?>
         <form action="index.php" method="POST">
             <div>Distancia: <input type="text" name="distancia" value="<?php print $distancia?>"/> metros</div> 
@@ -105,23 +144,13 @@ http://www.carreraspopulares.com/calculadora/V5-calculadora.asp
         </form>
 
         <?php
-        print "<br /><br /><div>Plan de carrera a $medKm Kilometro</div>"
-                . "<table border='1'>";
-        print "<tr><td>Distancia (Kilometros)</td><td>Distancia(m)</td><td>Tiempo de paso</td>";
         
-        for($i = 1; $i <= floor($distancia/1000); $i++){
+        if(isset($medKm) && $medKm != ''){
+           
+            mostrar_plan($medKm, $distancia, $tiempo);
             
-            //pasamos el tiempo medio a segundos
-            $s = pasar_segundos($medKm);
-            
-            $s = $s * $i;
-            $result = second2hora($s);
-            $t = formato_hora($result[0],$result[1], $result[2]);
-            
-             print "<tr><td>$i</td><td>".($i * 1000)."</td><td>".$t."</td>";
         }
         
-        print "</table>";
             
         ?>
     </body>
