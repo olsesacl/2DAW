@@ -1,5 +1,4 @@
 <?php
-
 //para subir una carpeta mas arriba
 /*if ($root = opendir("../")) {
      echo "<br>Directorio padre: <a href='../'>../</a>";
