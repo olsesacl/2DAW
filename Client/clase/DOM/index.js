@@ -45,3 +45,19 @@ function changerandom(){
 function random(){
 	return Math.floor((Math.random() * 16));
 }
+
+function cambiar_image(){
+    var images = new Array("image_1.jpg", "image_2.jpg", "image_3.jpg");
+    
+    var img = images[Math.floor(random2(0,images.length))];
+   
+    
+    var p = document.getElementById("image1");
+    p.src = "./img/"+img;
+    
+}
+
+function random2(min, max) {
+    
+  return Math.random() * (max - min) + min;
+}
