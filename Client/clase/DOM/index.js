@@ -47,7 +47,7 @@ function random(){
 }
 
 function cambiar_image(){
-    var images = new Array("image_1.jpg", "image_2.jpg", "image_3.jpg");
+    var images = new Array("image_1.jpg", "image_2.jpg", "image_3.jpg", "image_4.jpg", "image_5.jpg");
     
     var img = images[Math.floor(random2(0,images.length))];
    

@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="iesmariaenriquez" uploadOnCheckin="1b6bf71a-9358-4c72-90df-ff8501d4055f">
+  <component name="PublishConfigData" autoUpload="Always" uploadOnCheckin="1b6bf71a-9358-4c72-90df-ff8501d4055f">
     <serverData>
       <paths name="2DAW">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/2DAW//" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="2DAW (1)">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/2DAW//" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="iesmariaenriquez">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/2daw/sergio/" />
           </mappings>
         </serverdata>
       </paths>
