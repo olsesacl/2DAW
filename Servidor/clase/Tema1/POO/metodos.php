@@ -1,66 +1,71 @@
-<?php
+<?php 
+	/**
+	* 
+	*/
+	class Tabla
+	{
+		private $filas;
+		private $columnas;
+		private $mat = array();
 
-/**
- * 
- */
-class Tabla {
+		public function __construct($fis, $cols)
+		{
+			$this->filas = $fis;
+			$this->columnas = $cols;
+		}
 
-    private $filas;
-    private $columnas;
-    private $mat = array();
+		private function inicioTabla ()
+		{
+			echo '<table border="1">';
+		}
 
-    public function __construct($fis, $cols) {
-        $this->filas = $fis;
-        $this->columnas = $cols;
-    }
+		private function fiTabla()
+		{
+			echo "</table>";
+		}
 
-    private function inicioTabla() {
-        echo '<table border="1">';
-    }
+		private function inicioFila()
+		{
+			echo "<tr>";
+		}
 
-    private function fiTabla() {
-        echo "</table>";
-    }
+		private function finFila()
+		{
+			echo "</tr>";
+		}
 
-    private function inicioFila() {
-        echo "<tr>";
-    }
+		public function cargarDatos($fila, $columna, $valor)
+		{
+			$this->mat[$fila-1][$columna-1] = $valor;
 
-    private function finFila() {
-        echo "</tr>";
-    }
+		}
 
-    public function cargarDatos($fila, $columna, $valor) {
-        $this->mat[$fila - 1][$columna - 1] = $valor;
-    }
+		private function mostrar($fi, $col)
+		{
+			echo "<td>".$this->mat[$fi][$col]."</td>";
+		}
 
-    private function mostrar($fi, $col) {
-        echo "<td>" . $this->mat[$fi][$col] . "</td>";
-    }
+		public function dibujar()
+		{
+			$this->inicioTabla();
+			for ($i=0; $i < $this->filas; $i++) { 
+				$this->inicioFila();
 
-    public function dibujar() {
-        $this->inicioTabla();
-        for ($i = 0; $i < $this->filas; $i++) {
+				for ($j=0; $j < $this->columnas; $j++) { 
+					$this->mostrar($i, $j);
+				}
+				$this->finFila();
+			}
+			$this->fiTabla();
+		}
+	}
 
-            $this->inicioFila();
-
-            for ($j = 0; $j < $this->columnas; $j++) {
-                $this->mostrar($i, $j);
-            }
-
-            $this->finFila();
-        }
-        $this->fiTabla();
-    }
-
-}
-
-$tabla1 = new Tabla(2, 3);
-$tabla1->cargarDatos(1, 1, 1);
-$tabla1->cargarDatos(1, 2, 2);
-$tabla1->cargarDatos(1, 3, 3);
-$tabla1->cargarDatos(2, 1, 4);
-$tabla1->cargarDatos(2, 2, 5);
-$tabla1->cargarDatos(2, 3, 6);
-$tabla1->dibujar();
-?>
+	$tabla1 = new Tabla(2, 3);
+	$tabla1->cargarDatos(1, 1, 1);
+	$tabla1->cargarDatos(1, 2, 2);
+	$tabla1->cargarDatos(1, 3, 3);
+	$tabla1->cargarDatos(2, 1, 4);
+	$tabla1->cargarDatos(2, 2, 5);
+	$tabla1->cargarDatos(2, 3, 6);
+	$tabla1->dibujar();
+ ?>
