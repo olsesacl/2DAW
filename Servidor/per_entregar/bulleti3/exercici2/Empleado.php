@@ -22,7 +22,7 @@ class Empleado
     }
 
     function print_values(){
-        print $this->name.": ";
+        print $this->name.": sueldo ". $this->sueldo." ";
 
         if($this->sueldo > $this->IMPUESTOS){
             print "Ha de pagar impuestos";

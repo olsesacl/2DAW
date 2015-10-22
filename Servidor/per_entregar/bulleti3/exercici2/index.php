@@ -2,15 +2,13 @@
 /*
  * Confeccionar una clase Empleado, definir como atributos su nombre y
  * sueldo.
- * Definir un método inicializar que lleguen como dato el nombre y sueldo.
- * Plantear un segundo método que imprima el nombre y un mensaje si
+ * Definir un mï¿½todo inicializar que lleguen como dato el nombre y sueldo.
+ * Plantear un segundo mï¿½todo que imprima el nombre y un mensaje si
  * debe o no pagar impuestos (si el sueldo supera a 3000 paga impuestos)
  */
 include("Empleado.php");
 
 ?>
-
-
 
 <html>
     <head>
@@ -23,7 +21,7 @@ include("Empleado.php");
     $empleado1->print_values();
 
     $empleado2 = new Empleado();
-    $empleado2->inicializar("Pepe", 3500);
+    $empleado2->inicializar("Manolo", 3500);
     $empleado2->print_values();
     ?>
 
