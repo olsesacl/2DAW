@@ -20,6 +20,12 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$datos['titulo'] = "Este es el titol de la nostra pagina";
+		$datos['cuerpo'] = "Este es el cuerpo de la pagina web";
+		$this->load->view('vista', $datos);
+	}
+
+	public function prova(){
+		print "Este es el metodo prova";
 	}
 }
