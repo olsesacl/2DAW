@@ -15,6 +15,10 @@ class Tabla
 
         for($i = 0; $i < $filas; $i++){
 
+            for($j = 0; $j < $columnas; $j++){
+
+                $this->tabla[$i][$j] = new Informacion();
+            }
         }
     }
 
@@ -26,18 +30,19 @@ class Tabla
     }
 
     function mostrar(){
-        print "<table>";
+
+        print "<table border='2' width='100%' style='text-align: center'>";
 
         for($i = 0; $i < count($this->tabla); $i++){
 
             print "<tr>";
             for($j = 0; $j < count($this->tabla[$i]); $j++){
 
-                $this->tabla[$i][$j]->mostrar();
-               /* $dato = $this->tabla[$i][$j];
-                $dato->mostrar();*/
+               // $this->tabla[$i][$j]->mostrar();
+                $dato = $this->tabla[$i][$j];
+                $dato->mostrar();
             }
-            print "</tr";
+            print "</tr>";
         }
 
         print "</table";
@@ -54,7 +59,7 @@ class Informacion
     private $color;
     private $fondo;
 
-    public function __construct($dato = "", $color="", $fondo=""){
+    public function __construct($dato = "&nbsp;", $color="", $fondo=""){
         $this->dato = $dato;
         $this->color = $color;
         $this->fondo = $fondo;
@@ -62,7 +67,10 @@ class Informacion
 
     function mostrar(){
 
-        print "<tr style='color:".$this->color.";background-color:".$this->fondo."'>".$this->dato."</tr>";
+        print "<td style='";
+        if(!empty($this->color)) print "color:".$this->color.";";
+        if(!empty($this->fondo)) print "background-color:".$this->fondo;
+        print "'>".$this->dato."</td>";
     }
 
 
