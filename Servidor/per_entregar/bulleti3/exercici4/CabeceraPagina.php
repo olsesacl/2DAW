@@ -1,9 +1,9 @@
 <?php
 
 /**
-Confeccionar una clase CabeceraPagina que permita mostrar un título,
+Confeccionar una clase CabeceraPagina que permita mostrar un tï¿½tulo,
  * indicarle si queremos que aparezca centrado, a derecha o izquierda,
- * además permitir definir el color de fondo y de la fuente.
+ * ademï¿½s permitir definir el color de fondo y de la fuente.
  */
 class CabeceraPagina
 {
