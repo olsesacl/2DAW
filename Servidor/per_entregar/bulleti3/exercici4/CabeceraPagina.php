@@ -34,6 +34,72 @@ class CabeceraPagina
         print $cabecera;
     }
 
+    /**
+     * @return string
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    /**
+     * @param string $titulo
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlign()
+    {
+        return $this->align;
+    }
+
+    /**
+     * @param string $align
+     */
+    public function setAlign($align)
+    {
+        $this->align = $align;
+    }
+
+    /**
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBackgroundColor()
+    {
+        return $this->background_color;
+    }
+
+    /**
+     * @param string $background_color
+     */
+    public function setBackgroundColor($background_color)
+    {
+        $this->background_color = $background_color;
+    }
+
+
+
 
 
 }
