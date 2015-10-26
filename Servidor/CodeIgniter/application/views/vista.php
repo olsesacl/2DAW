@@ -72,6 +72,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="body">
 		<p><?php print $cuerpo ?></p>
+
+		<?php
+		print "<table border='1'>";
+		print "<tr>";
+		print "<th>Nombre</th>";
+		print "<th>Direccion</th>";
+		print "<th>Ciudad</th>";
+		print "<th>Provincia</th>";
+		print "<th>Email</th>";
+		print "<th>Imagen</th>";
+
+		print "</tr>";
+
+		foreach ($stores as $store) {
+			print "<tr>";
+				print "<td>".$store->store_name ."</td>";
+				print "<td>".$store->store_address ."</td>";
+				print "<td>".$store->store_city ."</td>";
+				print "<td>".$store->store_state ."</td>";
+				print "<td>".$store->store_email ."</td>";
+				print "<td>";
+				if(!empty($store->store_image_1)){
+
+					print "Image1: <img src='http://comerciodegandia.es/assets/uploads/files/stores/".$store->store_image_1 ."' width='300px' /><br>";
+				}
+				print "</td>";
+				//if(!empty($store->store_image_2)) print "Image2: <img src='http://comerciodegandia.es/assets/uploads/files/stores/".$store->store_image_2 ."' width='300px' /><br>";
+				//if(!empty($store->store_image_3)) print "Image3: <img src='http://comerciodegandia.es/assets/uploads/files/stores/".$store->store_image_3 ."' width='300px' /><br>";
+
+			print "</tr>";
+		}
+		print "</table>";
+
+
+		?>
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
