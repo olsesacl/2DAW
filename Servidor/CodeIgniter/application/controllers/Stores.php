@@ -26,4 +26,8 @@ class Stores extends CI_Controller {
 		$this->load->view("vista", $datos);
 	}
 
+	public function prova(){
+		print "Funcion  prova";
+	}
+
 }
