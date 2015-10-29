@@ -5,6 +5,7 @@ class Backoffice extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
+        $this->load->database();
         $this->load->helper("url");
     }
 
@@ -20,10 +21,14 @@ class Backoffice extends CI_Controller {
         $password = $this->input->post('password', TRUE);
 
 
-        $sql =
+        $sql = "SELECT * FROM cg_user WHERE user_name = '".$user."' AND user_password = '".$password."'";
 
+        $query = $this->db->query($sql);
 
-        print "usuario: ". $user . " pass:".$password;
+        if($query->num_rows() == 1){
+            $view = "/backoffice/pages/index.html";
+            $this->load->view("$view");
+        }
 
     }
 
