@@ -7,29 +7,47 @@ window.onload = function() {
         titulo[i].firstChild.onmouseout = normal;
     }
 
+    var avisos = cambios.getElementsByClassName("avis");
+    for(var i = 0 ; i < avisos.length; i++){
+        avisos[i].onclick = avis;
+    }
+
 }
 
 
 function destacar(){
     this.setAttribute("class", "destacar");
 
+    var num = this.parentNode.id
+    num = num.replace("titulo_", "");
 
-    var cambios = document.getElementById("content");
-    var titulo = cambios.getElementsByTagName("h2");
+    var texto = document.getElementById("texto_"+num);
+    texto.firstElementChild.setAttribute("class","");
 
-    var num = 0;
+    var risc = document.getElementById("risc_"+num);
+    risc.setAttribute("class", texto.previousElementSibling.classList + " hidden");
 
-    for(var i = 0 ; i < titulo.length; i++){
-        if(titulo[i].firstChild == this){
-            num = i;
-        }
-    }
+    var text_risc = document.getElementById("text_risc_"+num);
+    if(text_risc != null)text_risc.setAttribute("class", "risc");
 
-    mostrar_foto(num);
+    mostrar_foto(num-1);
 
 }
 function normal(){
     this.setAttribute("class","");
+    var num = this.parentNode.id
+    num = num.replace("titulo_", "");
+
+    var texto = document.getElementById("texto_"+num);
+    texto.firstElementChild.setAttribute("class","hidden");
+
+    var risc = document.getElementById("risc_"+num);
+    risc.setAttribute("class", "meta");
+
+    var text_risc = document.getElementById("text_risc_"+num);
+    if(text_risc != null) text_risc.setAttribute("class", "hidden");
+
+
 }
 
 function mostrar_foto(id){
@@ -53,5 +71,11 @@ function mostrar_foto(id){
 function avis(){
     var avisos = ["Precaucio per tormenta", "nou avis", "blabla"]
 
-    alert(avisos[1]);
+    var cambios = document.getElementById("content");
+    var avis = cambios.getElementsByClassName("avis");
+    for(var i = 0 ; i < avis.length; i++){
+        if(avis[i] == this){
+            alert(avisos[i]);
+        }
+    }
 }
