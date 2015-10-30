@@ -11,8 +11,9 @@ include("./Trabajador.php");
     <body>
     <?php
 
-   $trabajador = new Trabajador();
-    $trabajador->setNombre("Pepe");
+   $trabajador = new Trabajador("Pepe", 1200);
+    $trabajador->show();
+
 
     ?>
 

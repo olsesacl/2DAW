@@ -14,6 +14,7 @@ class Trabajador
 
         $this->nombre = $nombre;
         $this->sueldo = $sueldo;
+        print "Se esta ejecutando el constructor<br>";
     }
 
     public function __destruct(){
