@@ -80,7 +80,7 @@ $db['default'] = array(
 	'password' => 'servidor',
 	'database' => 'tiendas',
 	'dbdriver' => 'mysqli',
-	'dbprefix' => 'cg_',
+	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
