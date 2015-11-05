@@ -20,12 +20,14 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$datos['titulo'] = "Este es el titol de la nostra pagina";
-		$datos['cuerpo'] = "Este es el cuerpo de la pagina web";
-		$this->load->view('vista', $datos);
+            $data = array(
+                'titulo'=>'Este es el titulo de nuestra pagina',
+                'cuerpo' => 'Este es el cuerpo de nuestra pagina'
+                );
+            $this->load->view('vista', $data);
+            echo "HOLA :)";
 	}
-
-	public function prova(){
-		print "Este es el metodo prova";
-	}
+        public function prueba() {
+            echo "Este es el metodo prueba.";
+        }
 }
