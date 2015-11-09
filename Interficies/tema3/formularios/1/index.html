@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+</head>
+<body>
+
+<h2>Pedido de Pizza</h2>
+<form enctype="application/x-www-form-urlencoded" action="">
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" id="nombre" />
+    <label for="direccion">Dirección:</label>
+    <input type="text" name="direccion" id="direccion" />
+
+    <div class="left">
+        <h2>Ingredientes</h2>
+        <input type="checkbox" name="queso" id="queso" />
+        <label for="queso">Queso</label>
+        <input type="checkbox" name="pimiento" id="pimiento" />
+        <label for="pimiento">Pimiento</label>
+        <input type="checkbox" name="cebolla" id="cebolla" />
+        <label for="cebolla">Cebolla</label>
+    </div>
+    <div class="left">
+        <h2>Tamaño</h2>
+        <input type="radio" name="tamano" value="pequena" id="pequena"><label for="pequena">Pequeña</label>
+        <input type="radio" name="tamano" value="mediana" id="mediana"><label for="mediana">Mediana</label>
+
+    </div>
+</form>
+
+</body>
+</html>
