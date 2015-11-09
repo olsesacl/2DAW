@@ -10,6 +10,8 @@ class Stores_model extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->load->database();
+        $this->load->helper("url");
+
     }
     function getAllStores(){
         $sql = "SELECT * FROM cg_store ORDER BY store_name";

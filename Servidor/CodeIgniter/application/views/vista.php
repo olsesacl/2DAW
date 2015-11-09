@@ -83,6 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <th>Imagen 1</th>
                         <th>Imagen 2</th>
                         <th>Imagen 3</th>
+                        <th>Logo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -109,6 +110,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         echo "<td>";
                         if (!empty($store->store_image_3)) {
                             echo "<img src='http://comerciodegandia.es/assets/uploads/files/stores/" . $store->store_image_3 . "' width='120' />";
+                        }
+                        echo "</td>";
+                        echo "<td>";
+                        if (!empty($store->store_logo)) {
+                            echo "<img src='" . base_url() . "/assets/uploads/files" . $store->store_logo . "' width='120' />";
                         }
                         echo "</td>";
                         echo "</tr>";
