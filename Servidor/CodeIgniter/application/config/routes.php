@@ -50,6 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['email'] = 'Email_controllers';
+$route['upload'] = 'Upload_controller';
+$route['upload/(:any)']='Stores/$1';
 $route['backoffice'] = 'Backoffice';
 $route['default_controller'] = 'Stores';
 $route['(:any)']='Stores/$1';

@@ -27,11 +27,10 @@ class Email_controllers extends CI_Controller {
             $name = $_FILES["adjunto"]["name"];
             $tname = $_FILES["adjunto"]["tmp_name"];
             
-            $directorio = base_url() . "assets/uploads/files/".$name;
+            $directorio = FCPATH . "assets/uploads/files/".$name;
             move_uploaded_file($tname, $directorio);
         }
         
         $this->Email_model->sendMail("Lucia",$emails,$subject,$message,$adjunto);
-        
     }
 }
