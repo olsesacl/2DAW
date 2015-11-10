@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f1bcdc2d-46a5-412a-9e67-7ef421e4d212" name="iesmariaenriquez" url="http://iesmariaenriquez.es">
+        <fileTransfer host="iesmariaenriquez.es" port="21" password="dff9dfcfdfd8dfcddfc3dfc5dff5df9bdf98" username="u70627397-sergio">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
