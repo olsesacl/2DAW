@@ -77,12 +77,12 @@ h1 a
 }
 
 
-img
+/*img
 {
 	behavior:url(css/iepngfix.htc);
 	border:none;
 }
-
+*/
 
 /**** Form Section ****/
 .appnitro
@@ -326,7 +326,7 @@ span.symbol
 	line-height:130%;
 }
 
-input.text
+input[type="text"]
 {
 	background:#fff url(./shadow.gif) repeat-x top;
 	border-bottom:1px solid #ddd;
@@ -863,3 +863,9 @@ background: #dedede;
 font-weight: bold;
 }
 
+.ok{
+    border: 2px solid #529214 !important;
+}
+.validate_ko{
+    color: red;
+}
