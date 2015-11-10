@@ -23,11 +23,11 @@ function validar(){
     //eliminamos div de error anteriores
     var err_anterior = document.getElementsByClassName('validate_ko');
 
-    for(var i = 0; i < err_anterior.length; i++){
-        document.removeChild(err_anterior[i]);
+    //tiene 0 porque al eliminar ese elmento siempre esta en la posicion 0
+    while(err_anterior.length > 0){
+        err_anterior[0].parentNode.removeChild(err_anterior[0]);
     }
 
-    alert(err_anterior.length);
 
     var errors = 0;
 
@@ -37,7 +37,10 @@ function validar(){
    this.disabled=false;
     this.value='Submit';
 
-  if(errors == 0) return true;
+  if(errors == 0){
+      alert('El formulario se va a enviar');
+      return true;
+  }
   else return false;
 
 }

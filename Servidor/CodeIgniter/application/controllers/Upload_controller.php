@@ -23,8 +23,33 @@ class Upload_controller extends CI_Controller
         } else {
 
 			$data = array('upload_data' => $this->upload->data());
+			$this->load->view('upload_success', $data);
 
 		}
     }
+
+	function descargar(){
+		$this->load->helper('download');
+		$name = 'mitexto.txt';
+
+		$data = file_get_contents('./assets/uploads/files/FileZilla.xml');
+		force_download($name, $data);
+	}
+
+	function backup(){
+
+		$this->load->dbutil();
+
+		$backup =& $this->dbutil->backup();
+		$file_backup = 'backup'.date("YmdHi");
+
+
+		$this->load->helper('file');
+		write_file('/path/to/mybackup.gz', $backup);
+
+		$this->load->helper('download');
+
+		force_download('mybackup.gz', $backup);
+	}
 
 }
