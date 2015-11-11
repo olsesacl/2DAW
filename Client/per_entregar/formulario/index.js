@@ -88,15 +88,15 @@ function validar_time(){
 
     var message = '';
 
-    if(horas > 12 || horas < 1 || isNaN(horas)){
+    if(!(horas <= 12 && horas >= 1)){
         error = 1;
         message += 'La hora ha de ser un numero entre 1 y 12<br>'
     }
-    if(minutos > 59 || minutos < 0 || isNaN(minutos)){
+    if(!(minutos <= 59 && minutos >= 0)){
         error = 1;
         message += 'Los minutos han de ser un numero entre 0 y 59<br>'
     }
-    if(segundos > 59 || segundos < 0 || isNaN(segundos)){
+    if(!(segundos <= 59 && segundos >= 0)){
         error = 1;
         message += 'Los segundos han de ser un numero entre 0 y 59<br>'
     }
