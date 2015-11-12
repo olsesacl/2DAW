@@ -3,13 +3,13 @@ include('Conexion.php');
 
 class Tenda
 {
-	var $id;
-	var $name;
-	var	$zone_name;
-	var $address;
-	var $city;
-	var $phone;
-	var $email;
+	private $id;
+	private $name;
+	private	$zone_name;
+	private $address;
+	private $city;
+	private $phone;
+	private $email;
 
 	function __construct($id=''){
 		$this->conex = conexion();
@@ -94,8 +94,9 @@ class Tenda
 	 * @param string $inici
 	 * @param string $tamany
 	 */
-	function show_all_store($inici='', $tamany = ''){
-		print "<table border='1'>
+	function show_all_store($inici='0', $tamany = '15', $activa = '1'){
+		print "<table id='tiendas' border='1'>
+				<thead>
 				<tr>
 					<th>Nombre</th>
 					<th>Zona</th>
@@ -103,11 +104,13 @@ class Tenda
 					<th>Ciudad</th>
 					<th>Telefono</th>
 					<th>Email</th>
-					</tr>";
+				</tr>
+				</thead>";
 
 		$tendes = new Tenda();
 		$tendes = $tendes->fetch_all_store($inici, $tamany);
 
+		print "<tbody>";
 		foreach($tendes as $tenda){
 			print "<tr>
 					<td>".$tenda->name."</td>
@@ -118,15 +121,18 @@ class Tenda
 					<td>".$tenda->email."</td>
 					</tr>";
 		}
+		print "</tbody>";
 
 		print "</table>";
-		print "<div id='paginador'>".$this->paginador($tamany)."</div>";
+		print "<div id='paginador' class='pagination'>";
+		print "<footer>".$this->paginador($tamany, $activa)."</footer>";
+		print "</div>";
 	}
 
 	/**
 	 * @param $tamany
 	 */
-	function paginador($tamany){
+	function paginador($tamany, $activa){
 
 		$sql = "SELECT COUNT(*) as total FROM cg_store";
 		$stmt = $this->conex->prepare($sql);
@@ -136,9 +142,15 @@ class Tenda
 
 		$paginas = ceil($total / $tamany);
 
+		print "<a class='page' href='index.php?pag=1'>Primera</a>";
+
 		for ($i = 1; $i <= $paginas; $i++){
-			echo "<span></span><a href='index.php?pag=$i'>$i</a><span>";
+			print "<a class='page";
+			if($i == $activa) print " active";
+			print "' href='index.php?pag=$i'>$i</a>";
 		}
+
+		print "<a class='page' href='index.php?pag=$paginas'>Ultima</a>";
 
 	}
 }
