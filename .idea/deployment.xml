@@ -2,11 +2,32 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always" serverName="iesmariaenriquez">
     <serverData>
+      <paths name="2DAW">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="iesmariaenriquez">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="iesmariaenriquez (project level)">
         <serverdata>
           <mappings>
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
             <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="prestashop">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
