@@ -1,4 +1,11 @@
-<?php include('Tenda.php'); ?>
+<?php
+session_start();
+if(!empty($_POST['linees'])){
+	$_SESSION['linees'] = $_POST['linees'];
+} elseif(empty($_SESSION['linees'])) {
+	$_SESSION['linees'] = 20;
+}
+include('Tenda.php'); ?>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -7,16 +14,48 @@
 <body>
 
 <section>
-<header></header>
+<header>
+</header>
 	<article>
 		<?php
 		$tenda = new Tenda();
 
 		$pagina = (isset($_GET['pag']))? $_GET['pag'] : 1;
-		$tamany = !empty($_GET['tamany']) ? $_GET['tamany'] : 15;
-		$inicio = ($pagina-1) * $tamany;
+		$inicio = ($pagina-1) * $_SESSION['linees'];
 
-		$tenda->show_all_store($inicio, $tamany, $pagina);
+		//Comprovem quin valor te action, com pot vindre per metodo post i per get comprobe de les dos formes
+		$action = !empty($_GET['action'])?$_GET['action']:'';
+		if($action==''){
+			$action = !empty($_POST['action'])?$_POST['action']:'';
+		}
+		//Comprovem quin valor te id, com pot vindre per metodo post i per get comprobe de les dos formes
+		$id = !empty($_GET['id'])?$_GET['id']:'';
+		if($id==''){
+			$id = !empty($_POST['id'])?$_POST['id']:'';
+		}
+
+		if($action == 'edit'){
+			$tenda->fetch($id);
+			$tenda->editar();
+
+		}elseif($action == 'update'){
+
+			$tenda->fetch($id);
+			$name = $_POST['name'];
+			$zone_id = $_POST['zone_id'];
+			$address = $_POST['address'];
+			$city = $_POST['city'];
+			$phone = $_POST['phone'];
+			$email = $_POST['email'];
+
+			$tenda->update($name, $zone_id, $address, $city, $phone, $email);
+			$tenda->show();
+		}
+		else {
+			$tenda->show_all_store($inicio, $_SESSION['linees'], $pagina);
+		}
+
+
 		?>
 	</article>
 </section>

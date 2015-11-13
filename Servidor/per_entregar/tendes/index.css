@@ -4,6 +4,15 @@
 #paginador span{
     margin: 3px;
 }
+.submits{
+    margin-top:5px;
+    text-align: center;
+}
+.submits button{
+    min-width: 100px;
+    min-height: 32px;
+    font-size: 18px;
+}
 
 
 /*tabla*/
