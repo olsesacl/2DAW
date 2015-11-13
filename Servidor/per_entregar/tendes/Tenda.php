@@ -98,7 +98,7 @@ class Tenda
 	 */
 	function show_all_store($inici='0', $tamany = '15', $activa = '1'){
 
-	print "<form action=\"./index.php\" method=\"post\" enctype=\"application/x-www-form-urlencoded\">
+	print "<form class='linees' action=\"./index.php\" method=\"post\" enctype=\"application/x-www-form-urlencoded\">
 		Numero de tiendas por pagina: <select name = \"linees\">";
 
 		$opciones = array(10, 20, 50, 75, 100);

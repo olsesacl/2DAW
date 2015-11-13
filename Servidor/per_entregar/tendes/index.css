@@ -13,6 +13,13 @@
     min-height: 32px;
     font-size: 18px;
 }
+.linees{
+    background: #EEE;
+    padding: 6px;
+    color: #333;
+    border: 1px solid #999;
+    width:350px;
+}
 
 
 /*tabla*/
