@@ -23,6 +23,7 @@ abstract class Trabajador
     }
 
     abstract function calcularSueldo();
+
     function show(){
         print "Nombre: ".$this->nombre." Sueldo: ".$this->sueldo."</br>";
     }
@@ -89,7 +90,7 @@ class Gerente extends Trabajador{
     }
 
     function calcularSueldo(){
-
+//no entendi bien a que se referia y puse un 10% de los sueldos totales
         $this->sueldo = parent::$todos_sueldos * 0.10;
 
     }
