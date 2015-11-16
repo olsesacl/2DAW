@@ -56,11 +56,40 @@ class Tenda
 	 *
 	 * @return array
 	 */
-	private function fetch_all_store($inici='', $tamany = ''){
+	private function fetch_all_store($inici='', $tamany = '', $orderby = 'Nombre', $order = 'ASC'){
 
 		$sql = "SELECT store_id, store_name, area_store_name, store_address, store_city, store_phone, store_email
  				FROM cg_store s, cg_area_store astore
  				WHERE store_area_id = area_store_id";
+
+		if($orderby!=''){
+			switch($orderby){
+				case 'Nombre':
+					$orderby = 'store_name';
+					break;
+				case 'Zona':
+					$orderby = 'area_store_name';
+					break;
+				case 'Direccion':
+					$orderby = 'store_address';
+					break;
+				case 'Ciudad':
+					$orderby = 'store_city';
+					break;
+				case 'Telefono':
+					$orderby = 'store_phone';
+					break;
+				case 'Email':
+					$orderby = 'store_email';
+					break;
+			}
+
+			if(empty($order)) $order = 'ASC';
+
+			$sql .= " ORDER BY ".$orderby." ".$order;
+
+		}
+
 		if(!empty($tamany)){
 			$inici = $inici=='' ? 0:$inici;
 
@@ -96,32 +125,17 @@ class Tenda
 	 * @param string $inici
 	 * @param string $tamany
 	 */
-	function show_all_store($inici='0', $tamany = '15', $activa = '1'){
+	function show_all_store($inici='0', $tamany = '15', $activa = '1', $orderby='Nombre', $order = 'ASC'){
 
-	print "<form class='linees' action=\"./index.php\" method=\"post\" enctype=\"application/x-www-form-urlencoded\">
-		Numero de tiendas por pagina: <select name = \"linees\">";
-
-		$opciones = array(10, 20, 50, 75, 100);
-
-		foreach($opciones as $opcion){
-			print "<option value='".$opcion."'";
-			if($opcion == $_SESSION['linees']){
-				print " selected='selected'";
-			}
-			print ">".$opcion."</option>";
-		}
-
-		print "</select>
-				<button type='submit'>Seleccionar</button>
-			</form>";
-		$this->cabecera();
+		$this->cabecera(null, 1 , $orderby, $order);
 
 		$tendes = new Tenda();
-		$tendes = $tendes->fetch_all_store($inici, $tamany);
+		$tendes = $tendes->fetch_all_store($inici, $tamany, $orderby, $order);
 
 		print "<tbody>";
+
 		foreach($tendes as $tenda){
-			$this->tr_tienda($tenda, 1);
+			$tenda->tr_tienda(1);
 		}
 		print "</tbody>";
 		print "</table>";
@@ -134,24 +148,20 @@ class Tenda
 	 * @param object|string $object	Se le pasa el objeto a crear la linea tr de la tabla, si no se le envia coge $this
 	 * @param int|void           $actions	es para seleccionar si se quiere un td con acciones como modificar o eliminar
 	 */
-	function tr_tienda($object='', $actions = 0){
-		if($object==''){
-			$tenda = $this;
-		} else {
-			$tenda = $object;
-		}
+	function tr_tienda($actions = 0){
+
 		print "<tr>
-					<td>".$tenda->name."</td>
-					<td>".$tenda->zone_name."</td>
-					<td>".$tenda->address."</td>
-					<td>".$tenda->city."</td>
-					<td>".$tenda->phone."</td>
-					<td>".$tenda->email."</td>";
+					<td>".$this->name."</td>
+					<td>".$this->zone_name."</td>
+					<td>".$this->address."</td>
+					<td>".$this->city."</td>
+					<td>".$this->phone."</td>
+					<td>".$this->email."</td>";
 
 		if($actions ==1){
 			print "<td>
-						<a href='./index.php?action=edit&id=".$tenda->id."'><img alt='Editar' title='Editar' src='./img/32x32/edit_item.png'></a>
-						<a href='./index.php?action=delete&id=".$tenda->id."'><img alt='Eliminar' title='Eliminar' src='./img/32x32/delete_item.png'></a>
+						<a href='./index.php?action=edit&id=".$this->id."'><img alt='Editar' title='Editar' src='./img/32x32/edit_item.png'></a>
+						<a href='./index.php?action=delete&id=".$this->id."'><img alt='Eliminar' title='Eliminar' src='./img/32x32/delete_item.png'></a>
 
 					</td>";
 		}
@@ -162,19 +172,50 @@ class Tenda
 
 
 	/**
-	 * @param string $id use any number for no show actions
+	 * @param string $actions
+	 * @param        $links
+	 *
 	 */
-	private function cabecera($id = ''){
+	private function cabecera($actions = '', $links='', $orderby='Nombre', $order = 'ASC'){
 		print "<table id='tiendas' border='1'>
 				<thead>
-				<tr>
-					<th>Nombre</th>
-					<th>Zona</th>
-					<th>Dirección</th>
-					<th>Ciudad</th>
-					<th>Telefono</th>
-					<th>Email</th>";
-		if($id == ''){
+				<tr>";
+
+		$campos = array("Nombre", "Zona", "Direccion", "Ciudad", "Telefono", "Email");
+		foreach($campos as $campo){
+			print "<th>";
+			if($links==''){
+				print $campo;
+			} else {
+				print "<a href='./index.php?orderby=".$campo;
+
+
+				if($order=='ASC' && $orderby == $campo) print "&order=DESC";
+				else{ print "&order=ASC";}
+
+				print "'><span>".$campo."</span>";
+
+
+				if($orderby == $campo){
+					if($order=='ASC'){
+						print "<img src='./img/16x16/down_arrow.png'>";
+					} else {
+						print "<img src='./img/16x16/up_arrow.png'>";
+					}
+				} else {
+					print "<img src='./img/16x16/down_arrow.png'>";
+					print "<img src='./img/16x16/up_arrow.png'>";
+				}
+
+				print "</a>";
+
+			}
+
+			print "</th>";
+
+		}
+
+		if($actions == ''){
 			print "<th>Acciones</th>";
 		}
 		print "</tr>
@@ -320,6 +361,35 @@ class Tenda
 		print "</tbody>";
 		print "</table>";
 		print "<div class='submits'><a href='./index.php'><button type='button' value='Mostrar Todas'>Mostrar Todas</button></a></div>";
+	}
+
+	/**
+	 *Show a form for select line for page
+	 */
+	static function select_number_linees(){
+		print "<form class='linees' action='./index.php' method='post' enctype='application/x-www-form-urlencoded'>
+		Numero de tiendas por pagina: <select name = 'linees'>";
+
+		$opciones = array(10, 20, 50, 75, 100);
+
+		foreach($opciones as $opcion){
+			print "<option value='".$opcion."'";
+			if($opcion == $_SESSION['linees']){
+				print " selected='selected'";
+			}
+			print ">".$opcion."</option>";
+		}
+
+		print "</select>
+				<button type='submit'>Seleccionar</button>
+			</form>";
+	}
+
+	static function buscador(){
+		print "<form id='buscador'>";
+		print "<label for='nombre'>Nombre</label><input type='text' name='nombre'>";
+		print "</form>";
+
 	}
 
 

@@ -19,6 +19,14 @@
     color: #333;
     border: 1px solid #999;
     width:350px;
+    float: left;
+}
+a{
+    color: inherit;
+    text-decoration: inherit;
+}
+th img{
+    vertical-align: sub;
 }
 
 

@@ -52,7 +52,23 @@ include('Tenda.php'); ?>
 			$tenda->show();
 		}
 		else {
-			$tenda->show_all_store($inicio, $_SESSION['linees'], $pagina);
+			$order = '';
+			$orderby = '';
+
+			if(!empty($_GET['order'])){
+				$order = $_GET['order'];
+			} else {
+				$order = 'ASC';
+			}
+
+			if(!empty($_GET['orderby'])){
+				$orderby = $_GET['orderby'];
+			} else {
+				$orderby = 'Nombre';
+			}
+			Tenda::select_number_linees();
+			Tenda::buscador();
+			$tenda->show_all_store($inicio, $_SESSION['linees'], $pagina, $orderby, $order);
 		}
 
 
