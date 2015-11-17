@@ -9,7 +9,11 @@ include('Tenda.php'); ?>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="./css/index.css">
+	<link rel="stylesheet" href="./css/form.css">
+	<link rel="stylesheet" href="./css/tabla.css">
+	<link rel="stylesheet" href="./css/paginador.css">
+	<script type="text/javascript" src="index.js"></script>
 </head>
 <body>
 
@@ -66,9 +70,13 @@ include('Tenda.php'); ?>
 			} else {
 				$orderby = 'Nombre';
 			}
+
 			Tenda::select_number_linees();
-			Tenda::buscador();
-			$tenda->show_all_store($inicio, $_SESSION['linees'], $pagina, $orderby, $order);
+
+			$nombre = !empty($_POST['nombre'])?$_POST['nombre']:'';
+			$zona = !empty($_POST['zone_id'])?$_POST['zone_id']:'';
+			Tenda::buscador($nombre, $zona);
+			$tenda->show_all_store($inicio, $_SESSION['linees'], $pagina, $orderby, $order,$nombre, $zona);
 		}
 
 

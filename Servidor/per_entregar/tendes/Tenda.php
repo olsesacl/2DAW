@@ -51,16 +51,27 @@ class Tenda
 	}
 
 	/**
-	 * @param string $inici
-	 * @param string $tamany
+	 * @param string     $inici
+	 * @param string     $tamany
+	 * @param string     $orderby
+	 * @param string     $order
+	 * @param string     $nombre
+	 * @param int|string $zona
 	 *
 	 * @return array
 	 */
-	private function fetch_all_store($inici='', $tamany = '', $orderby = 'Nombre', $order = 'ASC'){
+	private function fetch_all_store($inici='', $tamany = '', $orderby = 'Nombre', $order = 'ASC', $nombre='', $zona=''){
 
 		$sql = "SELECT store_id, store_name, area_store_name, store_address, store_city, store_phone, store_email
  				FROM cg_store s, cg_area_store astore
  				WHERE store_area_id = area_store_id";
+
+		if($nombre!=''){
+			$sql.=" AND store_name LIKE '%".$nombre."%'";
+		}
+		if($zona!=''){
+			$sql.= " AND store_area_id=".$zona;
+		}
 
 		if($orderby!=''){
 			switch($orderby){
@@ -124,13 +135,18 @@ class Tenda
 	/**
 	 * @param string $inici
 	 * @param string $tamany
+	 * @param string $activa
+	 * @param string $orderby
+	 * @param string $order
+	 * @param string $nombre
+	 * @param string $zona
 	 */
-	function show_all_store($inici='0', $tamany = '15', $activa = '1', $orderby='Nombre', $order = 'ASC'){
+	function show_all_store($inici='0', $tamany = '15', $activa = '1', $orderby='Nombre', $order = 'ASC', $nombre='', $zona=''){
 
 		$this->cabecera(null, 1 , $orderby, $order);
 
 		$tendes = new Tenda();
-		$tendes = $tendes->fetch_all_store($inici, $tamany, $orderby, $order);
+		$tendes = $tendes->fetch_all_store($inici, $tamany, $orderby, $order, $nombre, $zona);
 
 		print "<tbody>";
 
@@ -145,8 +161,7 @@ class Tenda
 	}
 
 	/**
-	 * @param object|string $object	Se le pasa el objeto a crear la linea tr de la tabla, si no se le envia coge $this
-	 * @param int|void           $actions	es para seleccionar si se quiere un td con acciones como modificar o eliminar
+	 * @param int $actions
 	 */
 	function tr_tienda($actions = 0){
 
@@ -173,8 +188,9 @@ class Tenda
 
 	/**
 	 * @param string $actions
-	 * @param        $links
-	 *
+	 * @param string $links
+	 * @param string $orderby
+	 * @param string $order
 	 */
 	private function cabecera($actions = '', $links='', $orderby='Nombre', $order = 'ASC'){
 		print "<table id='tiendas' border='1'>
@@ -225,6 +241,7 @@ class Tenda
 
 	/**
 	 * @param $tamany
+	 * @param $activa
 	 */
 	private function paginador($tamany, $activa){
 
@@ -248,6 +265,9 @@ class Tenda
 
 	}
 
+	/**
+	 *
+	 */
 	function editar(){
 		print "<form action='./index.php' method='post' enctype='application/x-www-form-urlencoded'>";
 		$this->cabecera(1);
@@ -258,7 +278,7 @@ class Tenda
 		".$this->input_edit('action', 'update', 'hidden')."
 		".$this->input_edit('id', $this->id, 'hidden')."
 		<td>".$this->input_edit('name', $this->name)."</td>
-		<td>".$this->select_zone()."</td>
+		<td>".$this->select_zone($this->zone_id)."</td>
 		<td>".$this->input_edit('address', $this->address)."</td>
 		<td>".$this->select_city()."</td>
 		<td>".$this->input_edit('phone', $this->phone)."</td>
@@ -276,21 +296,24 @@ class Tenda
 
 	/**
 	 * Generate select for select zone
+	 * @param $zone_id
+	 *
 	 * @return string
 	 */
-	private function select_zone(){
+	static function select_zone($zone_id){
 		$sql = 'SELECT area_store_id AS "id", area_store_name AS "name" FROM cg_area_store';
-
-		$stmt = $this->conex->prepare($sql);
+		$con = conexion();
+		$stmt = $con->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->fetchAll();
 
 		$data = "<select name='zone_id'>";
+		$data.= "<option value=''></option>";
 
 		foreach($result as $zona){
 			$data .= "<option value='".$zona['id']."'";
 
-			if($this->zone_id == $zona['id']){
+			if($zone_id == $zona['id']){
 				$data .= " selected='selected'";
 			}
 
@@ -385,10 +408,21 @@ class Tenda
 			</form>";
 	}
 
-	static function buscador(){
-		print "<form id='buscador'>";
-		print "<label for='nombre'>Nombre</label><input type='text' name='nombre'>";
+	/**
+	 * @param string $nombre
+	 * @param string $zona
+	 */
+	static function buscador($nombre='', $zona=''){
+		print "<div class='form-style-8'>";
+		print "<h2 name='buscador'>Buscador</h2>";
+		print "<form id='buscador' method='post' action='".$_SERVER['PHP_SELF']."'>";
+		print "<input type='text' name='nombre' value='".$nombre."' placeholder='Nombre'>";
+		print "<label>Zona</label>";
+		print Tenda::select_zone($zona);
+		print "<button type='submit'>Buscar</button>";
+		print "<button type='reset'>Reset</button>";
 		print "</form>";
+		print "</div>";
 
 	}
 
