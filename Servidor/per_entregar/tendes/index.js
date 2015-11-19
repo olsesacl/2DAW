@@ -1,7 +1,6 @@
 window.onload=function(){
     var buscador = document.getElementsByName('buscador');
     buscador.onclick = mostrar_ocultar;
-    alert('test');
 }
 function mostrar_ocultar(){
     var buscador = document.getElementById('buscador');
