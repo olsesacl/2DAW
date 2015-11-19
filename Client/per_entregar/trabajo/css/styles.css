@@ -2,7 +2,17 @@
 Design by Free Responsive Templates
 http://www.free-responsive-templates.com
 Released for free under a Creative Commons Attribution 3.0 Unported License (CC BY 3.0)
-*/ 
+*/
+#mostrar_ocultar span{
+	display: none;
+}
+#mostrar_ocultar ~ div{
+	cursor: pointer;
+	color:#3B85CA;
+}
+#carrusel_random{
+	text-align: center;
+}
 * {
 	margin:0;
 	padding:0;
