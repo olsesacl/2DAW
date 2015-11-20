@@ -1,3 +1,10 @@
+#mostrar_form{
+    float: right;
+    background: #FFF;
+    border: 0 solid #333333;
+    border-radius: 9px 9px 9px 9px;
+    cursor: hand;
+}
 #paginador{
     text-align: center;
 }

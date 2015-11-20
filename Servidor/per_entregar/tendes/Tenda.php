@@ -50,17 +50,16 @@ class Tenda
 		$this->email = null;
 	}
 
-	/**
-	 * @param string     $inici
-	 * @param string     $tamany
-	 * @param string     $orderby
-	 * @param string     $order
-	 * @param string     $nombre
-	 * @param int|string $zona
-	 *
-	 * @return array
-	 */
-	private function fetch_all_store($inici='', $tamany = '', $orderby = 'Nombre', $order = 'ASC', $nombre='', $zona=''){
+    /**
+     * @param string $orderby
+     * @param string $order
+     * @param string $nombre
+     * @param int|string $zona
+     * @return array
+     * @internal param string $inici
+     * @internal param string $tamany
+     */
+	private function fetch_all_store($orderby = 'Nombre', $order = 'ASC', $nombre='', $zona=''){
 
 		$sql = "SELECT store_id, store_name, area_store_name, store_address, store_city, store_phone, store_email
  				FROM cg_store s, cg_area_store astore
@@ -99,12 +98,6 @@ class Tenda
 
 			$sql .= " ORDER BY ".$orderby." ".$order;
 
-		}
-
-		if(!empty($tamany)){
-			$inici = $inici=='' ? 0:$inici;
-
-			$sql .=" LIMIT ".$inici.",".$tamany;
 		}
 
 		$stmt = $this->conex->prepare($sql);
@@ -146,17 +139,21 @@ class Tenda
 		$this->cabecera(null, 1 , $orderby, $order);
 
 		$tendes = new Tenda();
-		$tendes = $tendes->fetch_all_store($inici, $tamany, $orderby, $order, $nombre, $zona);
+		$tendes = $tendes->fetch_all_store($orderby, $order, $nombre, $zona);
 
 		print "<tbody>";
 
-		foreach($tendes as $tenda){
-			$tenda->tr_tienda(1);
+		for($i =0; $i < $tamany; $i++){
+            if( ($i+$inici) < count($tendes))
+			    $tendes[($i+$inici)]->tr_tienda(1);
 		}
 		print "</tbody>";
 		print "</table>";
 		print "<div id='paginador' class='pagination'>";
-		print "<footer>".$this->paginador($tamany, $activa)."</footer>";
+
+        $paginas = ceil(count($tendes) / $tamany);
+
+		print "<footer>".$this->paginador($paginas, $activa)."</footer>";
 		print "</div>";
 	}
 
@@ -239,19 +236,12 @@ class Tenda
 
 	}
 
-	/**
-	 * @param $tamany
-	 * @param $activa
-	 */
-	private function paginador($tamany, $activa){
-
-		$sql = "SELECT COUNT(*) as total FROM cg_store";
-		$stmt = $this->conex->prepare($sql);
-		$stmt->execute();
-		$total=$stmt->fetch();
-		$total = $total['total'];
-
-		$paginas = ceil($total / $tamany);
+    /**
+     * @param $paginas
+     * @param $activa
+     * @internal param $tamany
+     */
+	private function paginador($paginas, $activa){
 
 		print "<a class='page' href='index.php?pag=1'>Primera</a>";
 
@@ -308,7 +298,7 @@ class Tenda
 		$result = $stmt->fetchAll();
 
 		$data = "<select name='zone_id'>";
-		$data.= "<option value=''></option>";
+		$data.= "<option value='' style='color:#999'>Zona</option>";
 
 		foreach($result as $zona){
 			$data .= "<option value='".$zona['id']."'";
@@ -414,10 +404,9 @@ class Tenda
 	 */
 	static function buscador($nombre='', $zona=''){
 		print "<div class='form-style-8'>";
-		print "<h2 name='buscador'>Buscador</h2>";
-		print "<form id='buscador' method='post' action='".$_SERVER['PHP_SELF']."'>";
+		print "<h2>Buscador<div id='mostrar_form'><img src='img/16x16/add_item.png'> </div></h2>";
+		print "<form id='buscador' method='post' action='".$_SERVER['PHP_SELF']."' style='display:none'>";
 		print "<input type='text' name='nombre' value='".$nombre."' placeholder='Nombre'>";
-		print "<label>Zona</label>";
 		print Tenda::select_zone($zona);
 		print "<button type='submit'>Buscar</button>";
 		print "<button type='reset'>Reset</button>";

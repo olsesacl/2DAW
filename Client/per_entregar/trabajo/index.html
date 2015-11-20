@@ -30,7 +30,7 @@ Released for free under a Creative Commons Attribution 3.0 Unported License (CC 
     </header>
     <section id="carrusel_random">
         <div class="horSeparator"></div>
-        <img data-now=""/>
+        <img data-now="" src=""/>
     </section>
     <section>
     	<div class="horSeparator"></div>
@@ -52,18 +52,21 @@ Released for free under a Creative Commons Attribution 3.0 Unported License (CC 
     <section class="sectionFooter">
     	<div class="footerBox">
         	<h2>Proximos eventos</h2>
-            <ul>
-                <li>Giro – Comença el 30/04/2016</li>
-                <li>Tour – Comença el 02/07/2016</li>
-                <li>Volta – Comença el 03/09/2016</li>
+            <ul id="cuenta_atras">
+                <li data-day="30" data-month="4" data-year="2016" data-volta="0">Giro de Italia comienza el
+                    30/04/2016<div
+                        class="reloj"></div></li>
+                <li data-day="2" data-month="7" data-year="2016" data-volta="1">Tour de Francia comienza el
+                    02/07/2016<div
+                        class="reloj"></div></li>
+                <li data-day="3" data-month="9" data-year="2016" data-volta="2">Vuelta a España comienza el
+                    03/09/2016<div
+                        class="reloj"></div></li>
             </ul>
         </div>
-        <div class="footerBox">
-        	<h2>The industry's standard dummy text ever since the 1500s</h2>
-            <p>
-            	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard <strong>dummy text ever since the 1500s</strong>, when an unknown printer took a galley of type and scrambled
-            </p>
-            <a href="">read more...</a>
+        <div class="footerBox" id="ganador">
+        	<h2></h2>
+
         </div>
         <div class="clearfloat"></div>
     </section>

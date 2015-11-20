@@ -1,10 +1,16 @@
 <?php
 session_start();
-if(!empty($_POST['linees'])){
-	$_SESSION['linees'] = $_POST['linees'];
-} elseif(empty($_SESSION['linees'])) {
-	$_SESSION['linees'] = 20;
-}
+$_SESSION['linees'] = !empty($_POST['linees'])?$_POST['linees']:$_SESSION['linees'];
+
+//si no existen las variables se declaran
+if(empty($_SESSION['nombre'])) $_SESSION['nombre'] = '';
+if(empty($_SESSION['zone_id'])) $_SESSION['zone_id'] = '';
+
+//comprovamos si se ha enviado por post los datos, y si es asi los cogemos
+if(isset($_POST['nombre'])) $_SESSION['nombre'] = $_POST['nombre'];
+if(isset($_POST['zone_id'])) $_SESSION['zone_id'] = $_POST['zone_id'];
+
+
 include('Tenda.php'); ?>
 <html>
 <head>
@@ -39,10 +45,14 @@ include('Tenda.php'); ?>
 		}
 
 		if($action == 'edit'){
+            unset($_SESSION['nombre']);
+            unset($_SESSION['zone_id']);
 			$tenda->fetch($id);
 			$tenda->editar();
 
 		}elseif($action == 'update'){
+            unset($_SESSION['nombre']);
+            unset($_SESSION['zone_id']);
 
 			$tenda->fetch($id);
 			$name = $_POST['name'];
@@ -73,10 +83,9 @@ include('Tenda.php'); ?>
 
 			Tenda::select_number_linees();
 
-			$nombre = !empty($_POST['nombre'])?$_POST['nombre']:'';
-			$zona = !empty($_POST['zone_id'])?$_POST['zone_id']:'';
-			Tenda::buscador($nombre, $zona);
-			$tenda->show_all_store($inicio, $_SESSION['linees'], $pagina, $orderby, $order,$nombre, $zona);
+			Tenda::buscador($_SESSION['nombre'], $_SESSION['zone_id']);
+			$tenda->show_all_store($inicio, $_SESSION['linees'], $pagina, $orderby, $order,$_SESSION['nombre'],
+                $_SESSION['zone_id']);
 		}
 
 

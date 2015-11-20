@@ -3,15 +3,18 @@ Design by Free Responsive Templates
 http://www.free-responsive-templates.com
 Released for free under a Creative Commons Attribution 3.0 Unported License (CC BY 3.0)
 */
-#mostrar_ocultar span{
-	display: none;
-}
+#mostrar_ocultar span{display: none;}
 #mostrar_ocultar ~ div{
 	cursor: pointer;
 	color:#3B85CA;
 }
-#carrusel_random{
-	text-align: center;
+#carrusel_random{text-align: center;}
+#carrusel_random img{ border-radius: 40px 40px 40px 40px;}
+.reloj{margin-bottom: 20px;}
+#ganador{
+    height: 200px;
+    background-size: cover !important;
+    border-radius: 10px 10px 10px 10px;
 }
 * {
 	margin:0;
@@ -51,7 +54,7 @@ h2 {
 	color:#ffffff;
 	font-family: 'Lobster', sans-serif;
 	padding: 0 0 10px 0;
-	text-shadow: 0px 0px, 1px 3px #b8bec0;
+	text-shadow: 0 0, 1px 3px #677A83;
 }
 h3 {
 	font-size:30px;
@@ -77,10 +80,10 @@ header {
 	background: url(../images/logoBackground.png) no-repeat;
 	width: 122px;
 	height: 110px;
-	padding: 14px 0px 0px 13px;
+	padding: 14px 0 0 13px;
 }
 .logo h1 a {
-	text-shadow: 0px 0px, 1px 2px #5b9e11;
+	text-shadow: 0 0, 1px 2px #5b9e11;
 	font-size:34px;
 	color: #ffffff;
 	text-decoration:none;
@@ -130,13 +133,13 @@ section {
 }
 .footerBox p {
 	font-style:italic;
-	padding:0 0px 10px 0px;
+	padding:0 0 10px 0;
 }
 .clearfloat { 
 	clear:both;
 	height:0;
 	font-size: 1px;
-	line-height: 0px;
+	line-height: 0;
 }
 /**************************/
 /*********************************Begin main menu****************************************/
@@ -189,7 +192,7 @@ ul#navlist {
 		font-size:24px;
 	}
 	header {
-		padding:20px 50px 0px 50px;
+		padding:20px 50px 0 50px;
 	}
 	.post {
 		padding:20px 0;
@@ -217,7 +220,7 @@ ul#navlist {
 		margin-top:10px;
 	}
 	header {
-		padding:10px 10px 0px 10px;
+		padding:10px 10px 0 10px;
 	}
 	.logo {
 		float:none;
