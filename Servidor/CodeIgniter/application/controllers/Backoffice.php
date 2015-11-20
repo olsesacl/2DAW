@@ -46,11 +46,11 @@ class Backoffice extends CI_Controller {
                 $description = $row->user_description;
                 $email = $row->user_email;
 
-                $vars_sessions = [
+                $vars_sessions = array(
                     "user_name" => $user,
                     "user_description" => $description,
                     "user_email" => $email
-                ];
+                );
 
 
                 $this->session->set_userdata($vars_sessions);
