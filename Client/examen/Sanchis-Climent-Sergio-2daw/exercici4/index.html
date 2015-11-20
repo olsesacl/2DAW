@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        function funcio(element){
+            var message = "Se va a acceder a una url externa\n";
+            message += element.href;
+            alert(message);
+        }
+
+    </script>
+</head>
+<body>
+<div><a href="http://www.abc.com" onclick="funcio(this);">ABC</a></div>
+<div><a href="http://www.libertaddigital.com/" onclick="funcio(this);">Libertad Digital</a></div>
+<div><a href="http://www.elplural.com/" onclick="funcio(this);">El Plural</a></div>
+<div><a href="http://www.levante-emv.com/" onclick="funcio(this);">Levante</a></div>
+
+</body>
+</html>

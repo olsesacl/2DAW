@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>formulari</title>
+    <meta name="author" content="administrador"/>
+    <link href="formulario.css" rel="stylesheet" type="text/css"/>
+    <script src="formulario.js"></script>
+    <!-- Date: 2015-11-17 -->
+</head>
+<body>
+
+<form action="" method="post" enctype="text/plain" id="formulari">
+    <div>Nombre: <input type="text" class="text" name="nombre" size="25" maxlength="50">
+
+        <p class="hidden">Error: no puede estar vacio</p></div>
+    <div>Apellidos: <input type="text" class="text" name="apellidos" size="35" maxlength="100">
+
+        <p class="hidden">Error: no puede estar vacio</p></div>
+    <div>Correo electrónico: <input type="text" id="email" class="text" value="@" name="correo" size="40" maxlength="100">
+
+        <p class="hidden">Error: No es un email valido</p></div>
+    <div>Población: <input type="text" class="text" name="poblacion" size="15" maxlength="50">
+
+        <p class="hidden">Error: no puede estar vacio</p></div>
+    <div>Provincia: <input type="text" class="text" name="provincia" size="15" maxlength="50">
+
+        <p class="hidden">Error: no puede estar vacio</p></div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="10">
+        <tr>
+            <td>Edad:
+                <br>
+                <input type="radio" name="edad" value="020"> 0-20
+                <br>
+                <input type="radio" name="edad" value="2040" checked> 20-40
+                <br>
+                <input type="radio" name="edad" value="4060"> 40-60
+                <br>
+                <input type="radio" name="edad" value="60100"> 60-100
+                <br>
+
+                <p class="hidden">Error: Se ha de seleccionar una opcion valida</p>
+            </td>
+            <td id="checkboxe">&iquest;C&oacute;mo nos conociste?<br>
+                <input type="checkbox" name="conocer">
+                A trav&eacute;s de un amigo.<br>
+                <input type="checkbox" name="conocer">
+                A trav&eacute;s de un buscador.<br>
+                <input type="checkbox" name="conocer">
+                Navegando por la red.<br>
+                <input type="checkbox" name="conocer">
+                Otros<br>
+                <p class="hidden" id="error_checkbox">Error: Se ha de seleccionar una opcion</p>
+            </td>
+        </tr>
+    </table>
+    <div>
+        Opinión sobre nuestra p&aacute;gina web (máximo 200 palabras)<br>
+        <textarea class="text" cols="40" rows="5" name="opinion">Escriba aquí su opinión...</textarea>
+        <p class="hidden">Error: El campo esta vacio o el contenido por defecto</p>
+    </div>
+    <div>
+        Tiene alguna sugerencia... (máximo 200 palabras)
+        <br>
+        <textarea class="text" cols="40" rows="5" name="sugerencias">Escriba aquí sus sugerencias...</textarea>
+        <p class="hidden" id="error_sugerencias">Error: El campo esta vacio o el contenido por defecto</p>
+    </div>
+    &iquest;C&uacute;anto navegas por intenet? (Se&ntilde;ala la opci&oacute;n que
+    m&aacute;s se acerque)<br>
+    <select name="frecuencia" size="2">
+        <option value="1">2 horas al día.
+        <option value="2">4 horas al día.
+        <option value="3">10 horas a la semana.
+        <option value="4">20 horas al mes.
+    </select>
+    <p  class="hidden">Error: Se ha de seleccionar una opcion</p>
+    <br>
+    <br>
+    <table width="50%" border="0" align="center" cellpadding="10" cellspacing="0">
+        <tr>
+            <td>
+                <div align="center">
+                    <input type="submit" value="Enviar formulario">
+                </div>
+            </td>
+            <td>
+                <div align="center">
+                    <input type="Reset" value="Borrar formulario">
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
+

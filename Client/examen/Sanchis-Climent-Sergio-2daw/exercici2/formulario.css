@@ -1,0 +1,10 @@
+.hidden{
+    display: none;
+}
+.validate_ko{
+    color: #ff0000;
+}
+
+form div{
+    margin:3px;
+}

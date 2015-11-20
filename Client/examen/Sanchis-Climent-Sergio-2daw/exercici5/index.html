@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        window.onload = function(){
+            var links = document.getElementsByTagName('a');
+            for(var i = 0; i < links.length; i++){
+                links[i].onclick = funcio;
+            }
+        }
+        function funcio(){
+            var message = "Se va a acceder a una url externa\n";
+            message += this.href;
+            alert(message);
+        }
+
+    </script>
+</head>
+<body>
+<div><a href="http://www.abc.com">ABC</a></div>
+<div><a href="http://www.libertaddigital.com/">Libertad Digital</a></div>
+<div><a href="http://www.elplural.com/">El Plural</a></div>
+<div><a href="http://www.levante-emv.com/">Levante</a></div>
+
+</body>
+</html>
