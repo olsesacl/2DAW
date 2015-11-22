@@ -27,6 +27,15 @@ include('Tenda.php'); ?>
 	<link rel="stylesheet" href="./css/tabla.css">
 	<link rel="stylesheet" href="./css/paginador.css">
 	<script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="./fancybox/jquery-1.4.3.min.js"></script>
+    <script type="text/javascript" src="./fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+    <script type="text/javascript" src="./fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="./fancybox/jquery.fancybox-1.3.4.css" media="screen">
+    <script>
+        $(document).ready(function() {
+            $("a.fancybox").fancybox();
+        });
+    </script>
 </head>
 <body>
 

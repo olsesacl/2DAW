@@ -172,7 +172,8 @@ class Tenda
 					<td>".$this->email."</td>
 					<td>";
         if(file_exists("./fotos/".$this->id.".jpg")){
-            print "<img src='./fotos/".$this->id.".jpg' height='50'>";
+            print "<a class='fancybox' href='./fotos/".$this->id.".jpg'><img src='./thumb.php?file=/fotos/".$this->id
+                .".jpg&width=50'></a>";
         }
         print "</td>";
 
