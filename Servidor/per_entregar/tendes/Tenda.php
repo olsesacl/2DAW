@@ -72,7 +72,7 @@ class Tenda
 			$sql.= " AND store_area_id=".$zona;
 		}
 
-		if($orderby!=''){
+		if($orderby!='' && $orderby!='Foto'){
 			switch($orderby){
 				case 'Nombre':
 					$orderby = 'store_name';
@@ -169,7 +169,12 @@ class Tenda
 					<td>".$this->address."</td>
 					<td>".$this->city."</td>
 					<td>".$this->phone."</td>
-					<td>".$this->email."</td>";
+					<td>".$this->email."</td>
+					<td>";
+        if(file_exists("./fotos/".$this->id.".jpg")){
+            print "<img src='./fotos/".$this->id.".jpg' height='50'>";
+        }
+        print "</td>";
 
 		if($actions ==1){
 			print "<td>
@@ -195,10 +200,10 @@ class Tenda
 				<thead>
 				<tr>";
 
-		$campos = array("Nombre", "Zona", "Direccion", "Ciudad", "Telefono", "Email");
+		$campos = array("Nombre", "Zona", "Direccion", "Ciudad", "Telefono", "Email","Foto");
 		foreach($campos as $campo){
 			print "<th>";
-			if($links==''){
+			if($links=='' || $campo=='Foto'){
 				print $campo;
 			} else {
 				print "<a href='./index.php?orderby=".$campo;
