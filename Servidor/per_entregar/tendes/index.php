@@ -1,14 +1,21 @@
 <?php
 session_start();
-$_SESSION['linees'] = !empty($_POST['linees'])?$_POST['linees']:$_SESSION['linees'];
 
 //si no existen las variables se declaran
 if(empty($_SESSION['nombre'])) $_SESSION['nombre'] = '';
 if(empty($_SESSION['zone_id'])) $_SESSION['zone_id'] = '';
+if(empty($_SESSION['linees'])) $_SESSION['linees'] = '10';
 
 //comprovamos si se ha enviado por post los datos, y si es asi los cogemos
+if(isset($_POST['linees']))$_SESSION['linees'] = $_POST['linees'];
 if(isset($_POST['nombre'])) $_SESSION['nombre'] = $_POST['nombre'];
-if(isset($_POST['zone_id'])) $_SESSION['zone_id'] = $_POST['zone_id'];
+
+if(isset($_POST['zone_id'])){
+    //esta opcion es para cuando hacemos reset en el formulario envia 0, asi que la variable de sesion se ha de poner a 0
+    if($_POST['zone_id']=='0') $_SESSION['zone_id']='';
+    else $_SESSION['zone_id'] = $_POST['zone_id'];
+}
+
 
 
 include('Tenda.php'); ?>
@@ -44,11 +51,17 @@ include('Tenda.php'); ?>
 			$id = !empty($_POST['id'])?$_POST['id']:'';
 		}
 
-		if($action == 'edit'){
+        if($action == 'add'){
+            unset($_SESSION['nombre']);
+            unset($_SESSION['zone_id']);
+            $tenda->fetch($id);
+            $tenda->edit_add(2);
+        }
+		elseif($action == 'edit'){
             unset($_SESSION['nombre']);
             unset($_SESSION['zone_id']);
 			$tenda->fetch($id);
-			$tenda->editar();
+			$tenda->edit_add();
 
 		}elseif($action == 'update'){
             unset($_SESSION['nombre']);
@@ -84,6 +97,10 @@ include('Tenda.php'); ?>
 			Tenda::select_number_linees();
 
 			Tenda::buscador($_SESSION['nombre'], $_SESSION['zone_id']);
+
+            print "<div id='add_shop' class='linees'><span>Añadir una nueva tienda</span> <a href='".$_SERVER['PHP_SELF']."?action=add'><img
+src='./img/16x16/add_item.png'></a></div>";
+
 			$tenda->show_all_store($inicio, $_SESSION['linees'], $pagina, $orderby, $order,$_SESSION['nombre'],
                 $_SESSION['zone_id']);
 		}

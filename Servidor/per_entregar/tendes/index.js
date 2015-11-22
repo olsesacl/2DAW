@@ -1,5 +1,6 @@
 window.onload=function(){
     document.getElementById('mostrar_form').onclick = mostrar_ocultar;
+    document.getElementById('buscador').onreset = reset;
 };
 function mostrar_ocultar(){
     var buscador = document.getElementById('buscador');
@@ -12,4 +13,10 @@ function mostrar_ocultar(){
         buscador.style.display = 'none';
         this.firstElementChild.setAttribute('src', 'img/16x16/add_item.png');
     }
+}
+
+function reset(){
+    document.getElementById('nombre').value = '';
+    document.getElementById('zone_id').selectedIndex = 0;
+    return false;
 }

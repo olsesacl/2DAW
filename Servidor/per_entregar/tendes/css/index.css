@@ -39,3 +39,13 @@ a{
     color: #666;
     font: 14px/24px sans-serif;
 }
+#add_shop{
+    float: right !important;
+    display: table;
+    margin-bottom: 5px;
+    width: 180px !important;
+}
+#add_shop span{
+    display: table-cell;
+    vertical-align: middle;
+}

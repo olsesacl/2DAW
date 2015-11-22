@@ -134,7 +134,8 @@ class Tenda
 	 * @param string $nombre
 	 * @param string $zona
 	 */
-	function show_all_store($inici='0', $tamany = '15', $activa = '1', $orderby='Nombre', $order = 'ASC', $nombre='', $zona=''){
+	function show_all_store($inici='0', $tamany = '10', $activa = '1', $orderby='Nombre', $order = 'ASC', $nombre='',
+                            $zona=''){
 
 		$this->cabecera(null, 1 , $orderby, $order);
 
@@ -144,8 +145,8 @@ class Tenda
 		print "<tbody>";
 
 		for($i =0; $i < $tamany; $i++){
-            if( ($i+$inici) < count($tendes))
-			    $tendes[($i+$inici)]->tr_tienda(1);
+            if( ($i + $inici) < count($tendes))
+			    $tendes[($i + $inici)]->tr_tienda(1);
 		}
 		print "</tbody>";
 		print "</table>";
@@ -160,7 +161,7 @@ class Tenda
 	/**
 	 * @param int $actions
 	 */
-	function tr_tienda($actions = 0){
+	private function tr_tienda($actions = 0){
 
 		print "<tr>
 					<td>".$this->name."</td>
@@ -243,7 +244,7 @@ class Tenda
      */
 	private function paginador($paginas, $activa){
 
-		print "<a class='page' href='index.php?pag=1'>Primera</a>";
+		if($paginas > 0)print "<a class='page' href='index.php?pag=1'>Primera</a>";
 
 		for ($i = 1; $i <= $paginas; $i++){
 			print "<a class='page";
@@ -251,15 +252,15 @@ class Tenda
 			print "' href='index.php?pag=$i'>$i</a>";
 		}
 
-		print "<a class='page' href='index.php?pag=$paginas'>Ultima</a>";
+        if($paginas > 0)print "<a class='page' href='index.php?pag=$paginas'>Ultima</a>";
 
 	}
 
-	/**
-	 *
-	 */
-	function editar(){
-		print "<form action='./index.php' method='post' enctype='application/x-www-form-urlencoded'>";
+    /**
+     * @param int $action if is edit $action = 1 if is add $action = 2
+     */
+    function edit_add($action=1){
+		print "<form action='./index.php' method='post' enctype='application/x-www-form-urlencoded' id='form'>";
 		$this->cabecera(1);
 
 		print "<tbody>";
@@ -275,9 +276,9 @@ class Tenda
 		<td>".$this->input_edit('email', $this->email)."</td>
 		</tr></tbody></table>";
 
-		print "<div class='submits'><button type='submit' value='Enviar'>Enviar</button></div>";
-
-		print "</form>";
+        print "</form>";
+		print "<div class='submits'><button type='submit' value='Enviar'  form='form'>Enviar</button>
+        <a href='./index.php'><button>Cancelar</button></a></div>";
 
 	}
 	private function input_edit($name, $value, $type='text'){
@@ -297,8 +298,8 @@ class Tenda
 		$stmt->execute();
 		$result = $stmt->fetchAll();
 
-		$data = "<select name='zone_id'>";
-		$data.= "<option value='' style='color:#999'>Zona</option>";
+		$data = "<select name='zone_id' id='zone_id'>";
+		$data.= "<option value='0' style='color:#999'>Zona</option>";
 
 		foreach($result as $zona){
 			$data .= "<option value='".$zona['id']."'";
@@ -404,9 +405,18 @@ class Tenda
 	 */
 	static function buscador($nombre='', $zona=''){
 		print "<div class='form-style-8'>";
-		print "<h2>Buscador<div id='mostrar_form'><img src='img/16x16/add_item.png'> </div></h2>";
-		print "<form id='buscador' method='post' action='".$_SERVER['PHP_SELF']."' style='display:none'>";
-		print "<input type='text' name='nombre' value='".$nombre."' placeholder='Nombre'>";
+		print "<h2>Buscador<div id='mostrar_form'>";
+        if(!empty($nombre) || !empty($zona)){
+            print "<img src='img/16x16/remove_item.png'> </div>";
+        } else {
+            print "<img src='img/16x16/add_item.png'> </div>";
+        }
+
+        print "</h2>";
+		print "<form id='buscador' method='post' action='".$_SERVER['PHP_SELF']."'";
+        if(!empty($nombre) || !empty($zona)) print ">";
+        else  print " style='display:none'>";
+		print "<input type='text' name='nombre' id='nombre' value='".$nombre."' placeholder='Nombre'>";
 		print Tenda::select_zone($zona);
 		print "<button type='submit'>Buscar</button>";
 		print "<button type='reset'>Reset</button>";
