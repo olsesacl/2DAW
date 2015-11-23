@@ -266,7 +266,7 @@ class Tenda
      * @param int $action if is edit $action = 1 if is add $action = 2
      */
     function edit_add($action=1){
-		print "<form action='./index.php' method='post' enctype='application/x-www-form-urlencoded' id='form'>";
+		print "<form action='./index.php' method='post' enctype='multipart/form-data' id='form'>";
 		$this->cabecera(1);
 
 		print "<tbody>";
@@ -384,6 +384,32 @@ class Tenda
 		$this->fetch($this->id);
 	}
 
+	/**
+	 * @param $name
+	 * @param $zone_id
+	 * @param $address
+	 * @param $city
+	 * @param $phone
+	 * @param $email
+	 */
+	function add($name, $zone_id, $address, $city, $phone, $email){
+
+		$sql = "INSERT INTO cg_store (store_name, store_area_id, store_address, store_city, store_phone, store_email)
+ 				VALUES (?, ?, ?, ?, ?, ?)";
+
+		try{
+			$stmt = $this->conex->prepare($sql);
+			$dades = array($name, $zone_id, $address, $city, $phone,$email);
+			$stmt->execute($dades);
+
+			 $this->id = $this->conex->lastInsertId();
+
+		}catch (Exception $error){
+			print $error->getMessage();
+		}
+		$this->fetch($this->id);
+	}
+
 	function show(){
 		$this->cabecera(1);
 
@@ -439,6 +465,10 @@ class Tenda
 		print "<button type='reset'>Reset</button>";
 		print "</form>";
 		print "</div>";
+
+	}
+
+	public function upload_file($file){
 
 	}
 

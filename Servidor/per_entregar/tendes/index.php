@@ -87,6 +87,18 @@ include('Tenda.php'); ?>
 
 			$tenda->update($name, $zone_id, $address, $city, $phone, $email);
 			$tenda->show();
+		}elseif($action == 'added'){
+
+			$name = $_POST['name'];
+			$zone_id = $_POST['zone_id'];
+			$address = $_POST['address'];
+			$city = $_POST['city'];
+			$phone = $_POST['phone'];
+			$email = $_POST['email'];
+
+			$tenda->add($name, $zone_id, $address, $city, $phone, $email);
+			$tenda->upload_file($_FILES);
+			$tenda->show();
 		}
 		else {
 			$order = '';

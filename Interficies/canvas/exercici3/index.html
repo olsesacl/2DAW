@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>Canvas tutorial</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            draw();
+        };
+        function draw() {
+
+            var canvas = document.getElementById('mouse');
+            if (canvas.getContext) {
+
+                var ctx = canvas.getContext("2d");
+
+                //cara
+                ctx.beginPath();
+                ctx.fillStyle = "rgb(200,0,0)";
+                ctx.arc(300,300,130,0,Math.PI*2,true);
+
+                //orejas
+                ctx.moveTo(200,200);
+                ctx.arc(200,160,75,0,Math.PI*2,true);
+                ctx.moveTo(400,200);
+                ctx.arc(400,160,75,0,Math.PI*2,true);
+                ctx.fill();
+            }
+
+        };
+    </script>
+</head>
+<body>
+<canvas id="mouse" width="500px" height="500px"></canvas>
+</body>
+</html>

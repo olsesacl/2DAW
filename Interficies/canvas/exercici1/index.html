@@ -10,9 +10,11 @@
             if (canvas.getContext) {
                 var ctx = canvas.getContext("2d");
 
+                //muros de la casa
                 ctx.fillStyle = "rgb(200,0,0)";
                 ctx.fillRect (100, 200, 100, 100);
 
+                //tejado
                 ctx.beginPath();
                 ctx.fillStyle = "rgb(100,50,50)";
                 ctx.moveTo(90,200);
@@ -20,18 +22,24 @@
                 ctx.lineTo(210,200);
                 ctx.fill();
 
+                //ventanas
                 ctx.clearRect(120,220,20,20);
+                ctx.strokeRect(120,220,20,20);//marco de la ventana
                 ctx.clearRect(160,220,20,20);
+                ctx.strokeRect(160,220,20,20);//marco de la ventana
 
+                //puerta
                 ctx.beginPath();
                 ctx.fillRect(140,300,20,-40);
 
+                //pomo puerta
                 ctx.beginPath();
                 ctx.moveTo(143,270);
                 ctx.fillStyle = "rgb(235,243,11)";
                 ctx.arc(144,275,2,0,Math.PI*2,true);
                 ctx.fill();
 
+                //sol
                 ctx.beginPath();
                 ctx.moveTo(60,65);
                 ctx.fillStyle = "rgb(235,243,11)";

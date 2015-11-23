@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>Canvas tutorial</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			draw();
+		};
+		function draw() {
+
+			var canvas = document.getElementById('cuadraditos');
+			if (canvas.getContext) {
+				var ctx = canvas.getContext("2d");
+
+				ctx.fillStyle = "rgb(0,0,0)";
+				for (var i = 0; i < 200; i = i + 40) {
+					for (var j = 0; j < 200; j = j + 40) {
+						ctx.fillRect ((j + 100), (i + 100), 20, 20);
+					}
+				}
+			}
+
+		};
+	</script>
+</head>
+<body>
+<canvas id="cuadraditos" width="500px" height="500px"></canvas>
+</body>
+</html>
