@@ -60,21 +60,22 @@ include('Tenda.php'); ?>
 			$id = !empty($_POST['id'])?$_POST['id']:'';
 		}
 
+		if($action == 'add' || $action == 'edit' || $action == 'update'){
+			unset($_SESSION['nombre']);
+			unset($_SESSION['zone_id']);
+		}
+
         if($action == 'add'){
-            unset($_SESSION['nombre']);
-            unset($_SESSION['zone_id']);
+
             $tenda->fetch($id);
             $tenda->edit_add(2);
         }
 		elseif($action == 'edit'){
-            unset($_SESSION['nombre']);
-            unset($_SESSION['zone_id']);
+
 			$tenda->fetch($id);
 			$tenda->edit_add();
 
 		}elseif($action == 'update'){
-            unset($_SESSION['nombre']);
-            unset($_SESSION['zone_id']);
 
 			$tenda->fetch($id);
 			$name = $_POST['name'];
@@ -107,8 +108,12 @@ include('Tenda.php'); ?>
 
 			Tenda::buscador($_SESSION['nombre'], $_SESSION['zone_id']);
 
-            print "<div id='add_shop' class='linees'><span>Añadir una nueva tienda</span> <a href='".$_SERVER['PHP_SELF']."?action=add'><img
-src='./img/16x16/add_item.png'></a></div>";
+            print "<div id='add_shop' class='linees'>
+					<a href='".$_SERVER['PHP_SELF']."?action=add'>
+						<span>Añadir una nueva tienda</span>
+						<img src='./img/16x16/add_item.png'>
+					</a>
+				</div>";
 
 			$tenda->show_all_store($inicio, $_SESSION['linees'], $pagina, $orderby, $order,$_SESSION['nombre'],
                 $_SESSION['zone_id']);

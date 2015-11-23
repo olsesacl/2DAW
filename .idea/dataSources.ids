@@ -1,123 +1,366 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="MySQL - @localhost" uuid="2e185d38-4eed-4c0e-89c8-c50137e982a5">
-    <database-info product="MySQL" version="5.6.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+    <database-info product="MySQL" version="5.5.43-0ubuntu0.12.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
-    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
     <database-model serializer="dbm" rdbms="MYSQL" format-version="2.2">
       <schema id="1" name="tiendas"/>
-      <table id="2" parent="1" name="cg_area_store"/>
-      <table id="3" parent="1" name="cg_store"/>
-      <column id="4" parent="2" name="area_store_id">
+      <schema id="2" name="incidencias"/>
+      <table id="3" parent="1" name="cg_area_store"/>
+      <table id="4" parent="1" name="cg_store"/>
+      <table id="5" parent="1" name="cg_user"/>
+      <table id="6" parent="1" name="participantes"/>
+      <table id="7" parent="2" name="usuario"/>
+      <column id="8" parent="3" name="area_store_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="5" parent="2" name="area_store_name">
+      <column id="9" parent="3" name="area_store_name">
         <mandatory>1</mandatory>
         <data-type>varchar(200)</data-type>
       </column>
-      <key id="6" parent="2" name="PRIMARY">
+      <key id="10" parent="3" name="PRIMARY">
         <columns>area_store_id</columns>
         <primary>1</primary>
       </key>
-      <column id="7" parent="3" name="store_id">
+      <column id="11" parent="4" name="store_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="8" parent="3" name="store_name">
+      <column id="12" parent="4" name="store_name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="9" parent="3" name="store_address">
+      <column id="13" parent="4" name="store_address">
         <mandatory>1</mandatory>
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="10" parent="3" name="store_city">
+      <column id="14" parent="4" name="store_city">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;Gandia&apos;, &apos;Grao de Gandia&apos;, &apos;Playa de Gandia&apos;)</data-type>
         <default-expression>&apos;Gandia&apos;</default-expression>
       </column>
-      <column id="11" parent="3" name="store_coordinate_latitude">
+      <column id="15" parent="4" name="store_coordinate_latitude">
         <mandatory>1</mandatory>
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="12" parent="3" name="store_coordinate_longitude">
+      <column id="16" parent="4" name="store_coordinate_longitude">
         <mandatory>1</mandatory>
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="13" parent="3" name="store_state">
+      <column id="17" parent="4" name="store_state">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;Valencia&apos;)</data-type>
         <default-expression>&apos;Valencia&apos;</default-expression>
       </column>
-      <column id="14" parent="3" name="store_phone">
+      <column id="18" parent="4" name="store_phone">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="15" parent="3" name="store_zip">
+      <column id="19" parent="4" name="store_zip">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;46701&apos;, &apos;46702&apos;, &apos;46703&apos;, &apos;46728&apos;, &apos;46730&apos;)</data-type>
       </column>
-      <column id="16" parent="3" name="store_logo">
+      <column id="20" parent="4" name="store_logo">
         <mandatory>1</mandatory>
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="17" parent="3" name="store_visible">
+      <column id="21" parent="4" name="store_visible">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;Activado&apos;, &apos;Desactivado&apos;)</data-type>
       </column>
-      <column id="18" parent="3" name="store_area_id">
+      <column id="22" parent="4" name="store_area_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="19" parent="3" name="store_contact_name">
+      <column id="23" parent="4" name="store_contact_name">
         <mandatory>1</mandatory>
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="20" parent="3" name="store_email">
+      <column id="24" parent="4" name="store_email">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="21" parent="3" name="store_web">
+      <column id="25" parent="4" name="store_web">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="22" parent="3" name="store_facebook">
+      <column id="26" parent="4" name="store_facebook">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="23" parent="3" name="store_comments">
+      <column id="27" parent="4" name="store_comments">
         <mandatory>1</mandatory>
         <data-type>text</data-type>
       </column>
-      <column id="24" parent="3" name="store_date">
+      <column id="28" parent="4" name="store_date">
         <mandatory>1</mandatory>
         <data-type>datetime</data-type>
       </column>
-      <column id="25" parent="3" name="store_featured">
+      <column id="29" parent="4" name="store_featured">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;Si&apos;, &apos;No&apos;)</data-type>
       </column>
-      <column id="26" parent="3" name="store_category_id">
+      <column id="30" parent="4" name="store_category_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="27" parent="3" name="store_image_1">
+      <column id="31" parent="4" name="store_image_1">
         <data-type>varchar(150)</data-type>
       </column>
-      <column id="28" parent="3" name="store_image_2">
+      <column id="32" parent="4" name="store_image_2">
         <data-type>varchar(150)</data-type>
       </column>
-      <column id="29" parent="3" name="store_image_3">
+      <column id="33" parent="4" name="store_image_3">
         <data-type>varchar(150)</data-type>
       </column>
-      <column id="30" parent="3" name="store_image_4">
+      <column id="34" parent="4" name="store_image_4">
         <data-type>varchar(150)</data-type>
       </column>
-      <column id="31" parent="3" name="store_image_5">
+      <column id="35" parent="4" name="store_image_5">
         <data-type>varchar(150)</data-type>
       </column>
-      <key id="32" parent="3" name="PRIMARY">
+      <key id="36" parent="4" name="PRIMARY">
         <columns>store_id</columns>
         <primary>1</primary>
+      </key>
+      <column id="37" parent="5" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="38" parent="5" name="user_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="39" parent="5" name="user_password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="40" parent="5" name="user_email">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="41" parent="5" name="user_description">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <key id="42" parent="5" name="PRIMARY">
+        <columns>user_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="43" parent="6" name="IdParticipante">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="44" parent="6" name="Dorsal">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="45" parent="6" name="Apellidos">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="46" parent="6" name="Nombre">
+        <data-type>varchar(25)</data-type>
+      </column>
+      <column id="47" parent="6" name="Sexo">
+        <data-type>enum(&apos;M&apos;, &apos;F&apos;)</data-type>
+      </column>
+      <column id="48" parent="6" name="FechaNac">
+        <data-type>date</data-type>
+      </column>
+      <column id="49" parent="6" name="DNI">
+        <data-type>varchar(33)</data-type>
+      </column>
+      <column id="50" parent="6" name="FechaAlta">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="51" parent="6" name="Direccion">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="52" parent="6" name="Poblacion">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="53" parent="6" name="Provincia">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="54" parent="6" name="CP">
+        <data-type>varchar(5)</data-type>
+      </column>
+      <column id="55" parent="6" name="email">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="56" parent="6" name="NEvento">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="57" parent="6" name="NumCarrera">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="58" parent="6" name="Tiempo1">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="59" parent="6" name="Tiempo2">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="60" parent="6" name="Tiempo3">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="61" parent="6" name="Tiempo4">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="62" parent="6" name="TiempoMeta">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="63" parent="6" name="Seg1">
+        <data-type>time</data-type>
+      </column>
+      <column id="64" parent="6" name="Seg2">
+        <data-type>time</data-type>
+      </column>
+      <column id="65" parent="6" name="Seg3">
+        <data-type>time</data-type>
+      </column>
+      <column id="66" parent="6" name="Seg4">
+        <data-type>time</data-type>
+      </column>
+      <column id="67" parent="6" name="Seg5">
+        <data-type>time</data-type>
+      </column>
+      <column id="68" parent="6" name="Seg6">
+        <data-type>time</data-type>
+      </column>
+      <column id="69" parent="6" name="CLUB">
+        <data-type>varchar(70)</data-type>
+      </column>
+      <column id="70" parent="6" name="NUM_CLUB">
+        <data-type>double</data-type>
+      </column>
+      <column id="71" parent="6" name="Telefono">
+        <data-type>varchar(15)</data-type>
+      </column>
+      <column id="72" parent="6" name="grupo_cate">
+        <data-type>varchar(15)</data-type>
+      </column>
+      <column id="73" parent="6" name="categoria">
+        <data-type>varchar(18)</data-type>
+      </column>
+      <column id="74" parent="6" name="OBSER_INSCRIPCION">
+        <data-type>mediumtext</data-type>
+      </column>
+      <column id="75" parent="6" name="PosicionGeneral">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="76" parent="6" name="PosicionCategoria">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="77" parent="6" name="PosicionGrupoEdad">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="78" parent="6" name="PosicionClub">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="79" parent="6" name="PosicionClubPorSexo">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="80" parent="6" name="PosicionPorSexo">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="81" parent="6" name="Descalificado">
+        <data-type>bit(1)</data-type>
+      </column>
+      <column id="82" parent="6" name="Motivo Descalificacion">
+        <data-type>varchar(80)</data-type>
+      </column>
+      <column id="83" parent="6" name="PosSeg1">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="84" parent="6" name="PosSeg2">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="85" parent="6" name="PosSeg3">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="86" parent="6" name="PosSeg4">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="87" parent="6" name="Velocidad">
+        <mandatory>1</mandatory>
+        <data-type>float</data-type>
+      </column>
+      <column id="88" parent="6" name="VelSeg1">
+        <data-type>float</data-type>
+      </column>
+      <column id="89" parent="6" name="VelSeg2">
+        <data-type>float</data-type>
+      </column>
+      <column id="90" parent="6" name="VelSeg3">
+        <data-type>float</data-type>
+      </column>
+      <column id="91" parent="6" name="VelSeg4">
+        <data-type>float</data-type>
+      </column>
+      <column id="92" parent="6" name="EstaFederado">
+        <data-type>bit(1)</data-type>
+      </column>
+      <column id="93" parent="6" name="CodigoConchip">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="94" parent="6" name="FechaGrabacion">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="95" parent="6" name="BloquearTiempo">
+        <mandatory>1</mandatory>
+        <data-type>enum(&apos;SI&apos;, &apos;NO&apos;)</data-type>
+        <default-expression>&apos;NO&apos;</default-expression>
+      </column>
+      <column id="96" parent="6" name="Equipo">
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="97" parent="6" name="Modalitat">
+        <data-type>varchar(80)</data-type>
+      </column>
+      <column id="98" parent="6" name="NlicenciaFederado">
+        <data-type>varchar(30)</data-type>
+      </column>
+      <column id="99" parent="6" name="Retirado">
+        <data-type>bit(1)</data-type>
+      </column>
+      <column id="100" parent="6" name="web">
+        <data-type>bit(1)</data-type>
+      </column>
+      <column id="101" parent="6" name="pais">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="102" parent="6" name="PRIMARY">
+        <columns>IdParticipante</columns>
+        <primary>1</primary>
+      </key>
+      <column id="103" parent="7" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="104" parent="7" name="name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="105" parent="7" name="email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="106" parent="7" name="password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="107" parent="7" name="id_rol">
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="108" parent="7" name="usuario_email_uindex">
+        <columns>email</columns>
+        <unique>1</unique>
+      </index>
+      <key id="109" parent="7" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="110" parent="7" name="usuario_email_uindex">
+        <columns>email</columns>
+        <underlying-index>usuario_email_uindex</underlying-index>
       </key>
     </database-model>
   </data-source>

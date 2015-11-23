@@ -22,7 +22,7 @@
           <h1 class="text-center">Iniciar sesión</h1>
       </div>
       <div class="modal-body">
-          <form class="form col-md-12 center-block" action="<?php echo site_url("Login/validate_user"); ?>">
+          <form class="form col-md-12 center-block" action="<?php echo site_url("Admin/validate_user"); ?>">
             <div class="form-group">
               <input type="text" class="form-control input-lg" placeholder="Email">
             </div>

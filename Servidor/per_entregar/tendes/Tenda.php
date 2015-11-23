@@ -270,16 +270,27 @@ class Tenda
 		$this->cabecera(1);
 
 		print "<tbody>";
-		print "<tr>
+		print "<tr>";
 
-		".$this->input_edit('action', 'update', 'hidden')."
-		".$this->input_edit('id', $this->id, 'hidden')."
-		<td>".$this->input_edit('name', $this->name)."</td>
+		if($action == 1){
+			print $this->input_edit('action', 'update', 'hidden')."
+		".$this->input_edit('id', $this->id, 'hidden');
+		} else {
+			print $this->input_edit('action', 'added','hidden');
+		}
+
+		print "<td>".$this->input_edit('name', $this->name)."</td>
 		<td>".$this->select_zone($this->zone_id)."</td>
 		<td>".$this->input_edit('address', $this->address)."</td>
 		<td>".$this->select_city()."</td>
 		<td>".$this->input_edit('phone', $this->phone)."</td>
 		<td>".$this->input_edit('email', $this->email)."</td>
+		<td>
+			<input type='file' name='photo'>";
+
+			if($action == 1) print "<div><label for='del_photo'>Desea eliminar la foto?</label><input type='checkbox' name='del_photo'></div>";
+
+		print "</td>
 		</tr></tbody></table>";
 
         print "</form>";
