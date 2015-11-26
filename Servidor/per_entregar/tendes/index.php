@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+ob_start();
+
 //si no existen las variables se declaran
 if(empty($_SESSION['nombre'])) $_SESSION['nombre'] = '';
 if(empty($_SESSION['zone_id'])) $_SESSION['zone_id'] = '';
@@ -153,3 +155,6 @@ include('Tenda.php'); ?>
 
 </body>
 </html>
+<?php
+ob_end_flush();
+?>
