@@ -60,7 +60,7 @@ include('Tenda.php'); ?>
 			$id = !empty($_POST['id'])?$_POST['id']:'';
 		}
 
-		if($action == 'add' || $action == 'edit' || $action == 'update'){
+		if($action == 'add' || $action == 'edit' || $action == 'update' || $action == 'delete'){
 			unset($_SESSION['nombre']);
 			unset($_SESSION['zone_id']);
 		}
@@ -86,6 +86,13 @@ include('Tenda.php'); ?>
 			$email = $_POST['email'];
 
 			$tenda->update($name, $zone_id, $address, $city, $phone, $email);
+			if(isset($_POST['del_photo'])){
+				$tenda->delete_image();
+			}
+			if($_FILES['photo']['size']!=0){
+				$tenda->upload_file($_FILES);
+			}
+
 			$tenda->show();
 		}elseif($action == 'added'){
 
@@ -97,8 +104,16 @@ include('Tenda.php'); ?>
 			$email = $_POST['email'];
 
 			$tenda->add($name, $zone_id, $address, $city, $phone, $email);
-			$tenda->upload_file($_FILES);
+
+			if($_FILES['photo']['size']!=0){
+				$tenda->upload_file($_FILES);
+			}
+
 			$tenda->show();
+		} elseif($action == 'delete'){
+			$tenda->fetch($id);
+			$tenda->delete();
+			header('Location: ./index.php');
 		}
 		else {
 			$order = '';

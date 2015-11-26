@@ -470,6 +470,28 @@ class Tenda
 
 	public function upload_file($file){
 
+		$fichero_subido = './fotos/'.$this->id.".jpg";
+		move_uploaded_file($file['photo']['tmp_name'], $fichero_subido);
+	}
+
+	public function delete(){
+		$sql = "DELETE FROM cg_store WHERE store_id = ".$this->id;
+
+		try{
+			$stmt = $this->conex->prepare($sql);
+			$stmt->execute();
+			$this->delete_image();
+			return true;
+
+		}catch (Exception $error){
+			print $error->getMessage();
+			return false;
+		}
+	}
+
+	public function delete_image(){
+		$fichero_subido = './fotos/'.$this->id.".jpg";
+		unlink($fichero_subido);
 	}
 
 
