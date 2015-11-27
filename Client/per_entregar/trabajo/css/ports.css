@@ -42,3 +42,7 @@ tr:nth-child(2n+1){
 .hidden{
     display:none;
 }
+.red{
+    background: #9f191f !important;
+    color: #ffffff !important;
+}
