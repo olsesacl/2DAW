@@ -1,3 +1,46 @@
+$(document).ready(function() {
+    $(".fancybox").fancybox({
+        padding: 0,
+
+        openEffect : 'elastic',
+        openSpeed  : 150,
+
+        closeEffect : 'elastic',
+        closeSpeed  : 150,
+        helpers : {
+            title: {
+                overlay : null
+            },
+            overlay : {
+                css : {
+                    'background' : 'rgba(238,238,238,0.3)'
+                }
+            }
+        },
+
+        afterLoad : function() {
+            this.title = 'Imagen ' + (this.index + 1) + ' de ' + this.group.length + (this.title ? ' - ' +
+                this.title : '');
+        }
+    });
+    $(".fancybox-altimetria").fancybox({
+        padding: 0,
+
+        openEffect : 'elastic',
+        openSpeed  : 150,
+
+        closeEffect : 'elastic',
+        closeSpeed  : 150,
+        helpers : {
+            overlay : {
+                css : {
+                    'background' : 'rgba(238,238,238,0.3)'
+                }
+            }
+        }
+    });
+});
+
 window.onload = function(){
     cambiar_ports();
     document.getElementById('selector_ports').onchange = cambiar_ports;

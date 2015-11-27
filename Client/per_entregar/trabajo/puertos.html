@@ -13,7 +13,6 @@ Released for free under a Creative Commons Attribution 3.0 Unported License (CC 
     <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <link href="css/ports.css" rel="stylesheet" type="text/css">
-    <script src="js/puertos.js" ></script>
     <!-- Add jQuery library -->
     <script type="text/javascript" src="./js/jquery-1.10.1.min.js"></script>
     <!-- Add mousewheel plugin (this is optional) -->
@@ -24,52 +23,9 @@ Released for free under a Creative Commons Attribution 3.0 Unported License (CC 
     <!-- Add Button helper (this is optional) -->
     <link rel="stylesheet" type="text/css" href="./css/jquery.fancybox-buttons.css?v=1.0.5" />
     <script type="text/javascript" src="./js/jquery.fancybox-buttons.js?v=1.0.5"></script>
-    <script>
-        $(document).ready(function() {
-            $(".fancybox").fancybox({
-                padding: 0,
-
-                openEffect : 'elastic',
-                openSpeed  : 150,
-
-                closeEffect : 'elastic',
-                closeSpeed  : 150,
-                helpers : {
-                    title: {
-                        overlay : null
-                    },
-                    overlay : {
-                        css : {
-                            'background' : 'rgba(238,238,238,0.3)'
-                        }
-                    }
-                },
-
-                afterLoad : function() {
-                    this.title = 'Imagen ' + (this.index + 1) + ' de ' + this.group.length + (this.title ? ' - ' +
-                            this.title : '');
-                }
-            });
-            $(".fancybox-altimetria").fancybox({
-                padding: 0,
-
-                openEffect : 'elastic',
-                openSpeed  : 150,
-
-                closeEffect : 'elastic',
-                closeSpeed  : 150,
-                helpers : {
-                    overlay : {
-                        css : {
-                            'background' : 'rgba(238,238,238,0.3)'
-                        }
-                    }
-                }
-            });
-        });
-    </script>
     <link rel="stylesheet" type="text/css" href="./css/jquery-ui.min.css" />
     <script type="text/javascript" src="./js/jquery-ui.min.js"></script>
+    <script src="js/puertos.js" ></script>
 
 
 </head>
@@ -81,8 +37,8 @@ Released for free under a Creative Commons Attribution 3.0 Unported License (CC 
             <ul id="navlist">
                 <li><a href="index.html ">Inicio</a></li>
                 <li id="active"><a href="puertos.html">Puertos</a></li>
-                <li><a href="#">Ciclistas</a></li>
-                <li><a href="#">Inscripción</a></li>
+                <li><a href="ciclistas.html">Ciclistas</a></li>
+                <li><a href="inscripcion.html">Inscripción</a></li>
             </ul>
         </nav>
         <div class="clearfloat"></div>

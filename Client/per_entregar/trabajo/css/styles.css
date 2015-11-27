@@ -1,8 +1,30 @@
-/*
-Design by Free Responsive Templates
-http://www.free-responsive-templates.com
-Released for free under a Creative Commons Attribution 3.0 Unported License (CC BY 3.0)
-*/
+.validate_ko{
+	color: red;
+	clear: both;
+}
+
+#form div{
+	text-align: center;
+	margin:5px;
+}
+#form div label{
+	display:inline-block;
+	width: 150px;
+	text-align: right;
+}
+#form div input{
+	display: inline-block;
+	width: 250px;
+}
+#form button{
+	width: 81px;
+	height: 38px;
+	margin-top: 10px;
+	font-size: 17px;
+}
+p{
+	text-align: justify;
+}
 #mostrar_ocultar span{display: none;}
 #mostrar_ocultar ~ div{
 	cursor: pointer;
@@ -10,12 +32,25 @@ Released for free under a Creative Commons Attribution 3.0 Unported License (CC 
 }
 #carrusel_random{text-align: center;}
 #carrusel_random img{ border-radius: 40px 40px 40px 40px;}
+
 .reloj{margin-bottom: 20px;}
+
+#ciclistas #carrusel_random img{height: 300px;}
+
 #ganador{
-    height: 200px;
-    background-size: cover !important;
-    border-radius: 10px 10px 10px 10px;
+	height: 200px;
+	background-size: cover !important;
+	border-radius: 10px 10px 10px 10px;
 }
+.form{
+	text-align: center;
+}
+/*
+Design by Free Responsive Templates
+http://www.free-responsive-templates.com
+Released for free under a Creative Commons Attribution 3.0 Unported License (CC BY 3.0)
+*/
+
 * {
 	margin:0;
 	padding:0;
@@ -48,6 +83,7 @@ h1 {
 	color:#8dc35a;
 	font-family: 'Lobster', sans-serif;
 	padding: 0 0 10px 0;
+	text-shadow: 0 0, 1px 3px #677A83;
 }
 h2 {
 	font-size:24px;
