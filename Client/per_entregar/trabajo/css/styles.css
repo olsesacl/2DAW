@@ -12,9 +12,13 @@
 	width: 150px;
 	text-align: right;
 }
-#form div input{
+#form div input, #form div textarea{
 	display: inline-block;
 	width: 250px;
+	vertical-align: middle;
+}
+#form div textarea{
+	height: 50px;
 }
 #form button{
 	width: 81px;
