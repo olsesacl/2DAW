@@ -12,10 +12,76 @@ class Admin extends CI_Controller {
 	}
 
 	public function index() {
-		$view = "admin/login.php";
-		$this->load->view($view);
+		if( $this->session->userdata('logged_in') ) {
+			$this->incidencias();
+		} else {
+			$view = "admin/login.php";
+			$this->load->view($view);
+		}
+
 	}
-	public function validate_user(){
-		print "entra";
+	public function validate_user() {
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+
+		$sql = "SELECT id, clave, nombre FROM usuarios WHERE email=?";
+
+		$query = $this->db->query($sql, array($email));
+
+		$row = $query->row();
+		if ($query->num_rows() == 1) {
+
+			$claveCifrada = $row->clave;
+			$claveDescodificada = $this->encrypt->decode($claveCifrada);
+
+			if ($password == $claveDescodificada) {
+
+				$newdata = array(
+						'id'		=> $row->id,
+						'user_name'  => $row->nombre,
+						'user_email'     => $email,
+						'logged_in' => TRUE
+				);
+
+				$this->session->set_userdata($newdata);
+
+			} else {
+				echo "<script>alert('Acceso incorrecto.');</script>";
+			}
+		} else {
+			echo "<script>alert('Acceso incorrecto.');</script>";
+		}
+		redirect('/Admin/');
+	}
+
+	public function cerrar_session(){
+		$this->session->unset_userdata('logged_in');
+		$this->session->sess_destroy();
+		$this->index();
+	}
+
+	public function check_session(){
+
+		if( $this->session->userdata('logged_in') ) {
+			return true;
+		} else {
+			$this->index();
+		}
+	}
+
+	public function usuarios() {
+		$crud = new Grocery_CRUD();
+		$crud->set_table('usuarios');
+		$crud->columns('id','email','nombre','idrol');
+		$output = $crud->render();
+		$this->load->view("admin/panel/index", $output);
+	}
+
+	public function incidencias(){
+		$crud = new Grocery_CRUD();
+		$crud->set_table('incidencias');
+		$crud->columns('id','numero','idtipo','descripcion','ubicacion','fecha_alta','estado','idusuario','persona_detecta','prioridad','fecha_fin');
+		$output = $crud->render();
+		$this->load->view("admin/panel/index", $output);
 	}
 }
