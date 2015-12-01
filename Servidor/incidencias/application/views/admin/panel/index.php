@@ -1,3 +1,8 @@
+<?php
+if( !$this->session->userdata('logged_in') ) {
+	redirect(base_url());
+}
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -183,14 +188,14 @@ desired effect
 							<!-- The user image in the navbar-->
 							<img src="<?php print base_url() ?>assets/admin/dist/img/user_anonymous.png" class="user-image" alt="User Image">
 							<!-- hidden-xs hides the username on small devices so only the image appears. -->
-							<span class="hidden-xs"><?php print $user_name?></span>
+							<span class="hidden-xs"><?php print $this->session->userdata('user_name'); ?></span>
 						</a>
 						<ul class="dropdown-menu">
 							<!-- The user image in the menu -->
 							<li class="user-header">
 								<img src="<?php print base_url() ?>assets/admin/dist/img/user_anonymous.png" class="img-circle" alt="User Image">
 								<p>
-									<?php print $user_name?>
+									<?php print $this->session->userdata('user_name');?>
 									<!--<small>Member since Nov. 2012</small>-->
 								</p>
 							</li>
@@ -237,40 +242,48 @@ desired effect
 					<img src="<?php print base_url() ?>assets/admin/dist/img/user_anonymous.png" class="img-circle" alt="User Image">
 				</div>
 				<div class="pull-left info">
-					<p>Alexander Pierce</p>
+					<p><?php print $this->session->userdata('user_name');?></p>
 					<!-- Status -->
 					<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 				</div>
 			</div>
 
 			<!-- search form (Optional) -->
-			<form action="#" method="get" class="sidebar-form">
+			<!--<form action="#" method="get" class="sidebar-form">
 				<div class="input-group">
 					<input type="text" name="q" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
 				</div>
-			</form>
+			</form>-->
 			<!-- /.search form -->
 
 			<!-- Sidebar Menu -->
 			<ul class="sidebar-menu">
 				<li class="header">Secciones</li>
 				<!-- Optionally, you can add icons to the links -->
-				<li class="active treeview">
-					<a href="#">
-
-						<i class="fa fa-link"></i>
-						<span>Usuarios</span>
-					</a><?php echo site_url('Admin/usuarios')?>
-				</li>
-				<li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-				<li class="treeview">
-					<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+				<li class="<?php if($this->session->userdata('section')==1) print "active";?> treeview">
+					<a href="#"><i class="fa fa-link"></i> <span>Usuarios</span> <i class="fa fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
-						<li><a href="#">Link in level 2</a></li>
-						<li><a href="#">Link in level 2</a></li>
+						<li><a href="<?php echo site_url('Admin/usuarios')?>">Ver usuarios</a></li>
+						<li><a href="<?php echo site_url('Admin/usuarios/add')?>">Añadir usuario</a></li>
+					</ul>
+				</li>
+				<li class="<?php if($this->session->userdata('section')==2) print "active";?> treeview">
+					<a href="#"><i class="fa fa-link"></i> <span>Rol</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<ul class="treeview-menu">
+						<li><a href="<?php echo site_url('Admin/roles')?>">Ver roles</a></li>
+						<li><a href="<?php echo site_url('Admin/roles/add')?>">Añadir rol</a></li>
+					</ul>
+				</li>
+				<li class="<?php if($this->session->userdata('section')==3) print "active";?> treeview">
+					<a href="#"><i class="fa fa-link"></i> <span>Incidencias</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<ul class="treeview-menu">
+						<li><a href="<?php echo site_url('Admin/incidencias')?>">Ver incidencias</a></li>
+						<li><a href="<?php echo site_url('Admin/incidencias/add')?>">Añadir incidencia</a></li>
+						<li><a href="<?php echo site_url('Admin/tipos_incidencias')?>">Ver tipos incidencias</a></li>
+						<li><a href="<?php echo site_url('Admin/tipos_incidencias/add')?>">Añadir tipos de incidencia</a></li>
 					</ul>
 				</li>
 			</ul><!-- /.sidebar-menu -->
@@ -286,10 +299,10 @@ desired effect
 				Page <?php print $titulo;?>
 				<!--<small>Optional description</small>-->
 			</h1>
-			<ol class="breadcrumb">
+			<!--<ol class="breadcrumb">
 				<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
 				<li class="active">Here</li>
-			</ol>
+			</ol>-->
 		</section>
 
 		<!-- Main content -->

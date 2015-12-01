@@ -62,47 +62,64 @@ class Admin extends CI_Controller {
 		$this->index();
 	}
 
-	public function check_session(){
+	/*public function check_session(){
 
 		if( $this->session->userdata('logged_in') ) {
 			return true;
 		} else {
 			$this->index();
 		}
-	}
+	}*/
 
 	public function usuarios() {
-		if($this->check_session()){
 
-			$crud = new Grocery_CRUD();
-			$crud->set_table('usuarios');
-			$crud->set_subject('usuario');
-			$crud->columns('id','email','nombre','idrol');
+		$crud = new Grocery_CRUD();
+		$crud->set_table('usuarios');
+		$crud->set_subject('usuario');
+		$crud->columns('id','email','nombre','idrol');
 
-			$crud->field_type('clave', 'password');
+		//los campos que se mostraran al editar o añadir
+		$crud->fields('email', 'clave','nombre','idrol');
 
-			//relaciones entre tablas
-			$crud->set_relation('idrol','roles','{descripcion}');
-			$crud->display_as('idrol','Rol');
+		//elegimos los campos que se mostraran al ver el registro
+		$crud->set_read_fields('id','email','nombre','idrol');
 
-			//code clave
-			$crud->callback_before_insert(array($this,'encrypt_password_callback'));
-			$crud->callback_before_update(array($this,'encrypt_password_callback'));
+		$crud->field_type('clave', 'password');
 
-			$crud->columns('id', 'nombre', 'email', 'email2', 'idrol');
-			$crud->order_by('id');
 
-			//*Deshabilita la opcion Imprimir y exportar*/
-			$crud->unset_print();
-			$crud->unset_export();
+		//relaciones entre tablas
+		$crud->set_relation('idrol','roles','{descripcion}');
+		$crud->display_as('idrol','Rol');
 
-			$output = $crud->render();
+		//cuando se inserta un nuevo usuario o se actualiza codifica la clave antes de guardarla
+		$crud->callback_before_insert(array($this,'encrypt_password_callback'));
+		$crud->callback_before_update(array($this,'encrypt_password_callback'));
 
-			$output->titulo = "Administración de usuarios";
+		//para al editar si no se cambia la clave que se mantenga
+		$crud->callback_edit_field('clave',array($this,'decrypt_password_callback'));
 
-			$this->load->view("admin/panel/index", $output);
-		}
+		$crud->columns('id', 'nombre', 'email', 'email2', 'idrol');
+		$crud->order_by('id');
 
+		//*Deshabilita la opcion Imprimir y exportar*/
+		$crud->unset_print();
+		$crud->unset_export();
+
+		$output = $crud->render();
+
+		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
+		$this->session->set_userdata('section', '1');
+
+		$output->titulo = "Administración de usuarios";
+		$this->load->view("admin/panel/index", $output);
+
+
+	}
+
+	function decrypt_password_callback($value)
+	{
+		$decrypted_password = $this->encrypt->decode($value);
+		return "<input type='password' name='clave' value='$decrypted_password' />";
 	}
 
 	function encrypt_password_callback($post_array) {
@@ -112,33 +129,78 @@ class Admin extends CI_Controller {
 	}
 
 	public function incidencias(){
-		if($this->check_session()){
-			$crud = new Grocery_CRUD();
-			$crud->set_table('incidencias');
-			$crud->set_subject('incidencia');
 
-			//enlaces entre tablas
-			$crud->set_relation('idusuario','usuarios','{nombre}');
-			$crud->display_as('idusuario','Usuario');
+		$crud = new Grocery_CRUD();
+		$crud->set_table('incidencias');
+		$crud->set_subject('incidencia');
 
-			$crud->set_relation('idtipo','tipos_incidencias','{descripcion}');
-			$crud->display_as('idtipo','Tipo');
+		//enlaces entre tablas
+		$crud->set_relation('idusuario','usuarios','{nombre}');
+		$crud->display_as('idusuario','Usuario');
 
-			//tipo de datos
-			$crud->field_type('fecha_alta', 'date');
+		$crud->set_relation('idtipo','tipos_incidencias','{descripcion}');
+		$crud->display_as('idtipo','Tipo');
 
-			$crud->columns('id','numero','idtipo','descripcion','ubicacion','idusuario','persona_detecta','prioridad','fecha_alta','fecha_fin','estado');
-			$crud->order_by('id');
+		//tipo de datos
+		$crud->field_type('fecha_alta', 'date');
 
-			//*Deshabilita la opcion Imprimir y exportar*/
-			$crud->unset_print();
-			$crud->unset_export();
+		$crud->columns('id','numero','idtipo','descripcion','ubicacion','idusuario','persona_detecta','prioridad','fecha_alta','fecha_fin','estado');
+		$crud->order_by('id');
 
-			$output = $crud->render();
-			$output->titulo = "Administración de incidencias";
-			$output->user_name= $this->session->unset_userdata('user_name');
-			$this->load->view("admin/panel/index", $output);
-		}
+		//*Deshabilita la opcion Imprimir y exportar*/
+		$crud->unset_print();
+		$crud->unset_export();
+
+
+		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
+		$this->session->set_userdata('section', '3');
+
+		$output = $crud->render();
+		$output->titulo = "Administración de incidencias";
+		$this->load->view("admin/panel/index", $output);
+	}
+
+	public function tipos_incidencias(){
+		$crud = new Grocery_CRUD();
+		$crud->set_table('tipos_incidencias');
+		$crud->set_subject('tipo incidencia');
+
+		$crud->unset_print();
+		$crud->unset_export();
+
+		$crud->set_relation_n_n('usuarios', 'tipos_incidencias_usuario', 'usuarios', 'idtipo', 'idusuario', 'nombre','');
+		$crud->order_by('idtipo');
+
+		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
+		$this->session->set_userdata('section', '3');
+
+		$output = $crud->render();
+		$output->titulo = "Administración de tipos de incidencia";
+		$this->load->view("admin/panel/index", $output);
+
+	}
+
+	public function roles(){
+		$crud = new Grocery_CRUD();
+		$crud->set_table('roles');
+		$crud->set_subject('rol');
+
+		$crud->unset_print();
+		$crud->unset_export();
+
+		$crud->display_as('idrol','Id');
+		$crud->display_as('rol','Codigo rol');
+		$crud->display_as('descripcion','Descripcion');
+		$crud->display_as('nivel','Nivel');
+
+		$crud->columns('idrol', 'rol', 'descripcion', 'nivel');
+
+		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
+		$this->session->set_userdata('section', '2');
+
+		$output = $crud->render();
+		$output->titulo = "Administración de tipos de incidencia";
+		$this->load->view("admin/panel/index", $output);
 
 	}
 }

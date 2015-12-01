@@ -116,6 +116,7 @@ table th
 	white-space:nowrap;
 }
 .flexigrid div.mDiv div.ptogtitle {
+	display: none;
 	position:absolute;
 	top:4px;
 	right:3px;
@@ -308,7 +309,7 @@ table th
 {
 	font-size: 15px;
 	width: 500px;
-	height:20px;
+	/*height:20px;*/
 	border: 1px solid #AAA;
 	padding: 5px 5px 5px 5px;
 	background: #fafafa;
