@@ -8,11 +8,13 @@ class Admin extends CI_Controller {
 		$this->load->database();
 		$this->load->library("session");
 		$this->load->library("encrypt");
+		$this->load->helper('date');
 		$this->load->library("Grocery_CRUD");
 	}
 
 	public function index() {
 		if( $this->session->userdata('logged_in') ) {
+			redirect("/Admin/incidencias");
 			$this->incidencias();
 		} else {
 			$view = "admin/login.php";
@@ -51,7 +53,7 @@ class Admin extends CI_Controller {
 		} else {
 			echo "<script>alert('Acceso incorrecto.');</script>";
 		}
-		redirect('/Admin/');
+		$this->index();
 	}
 
 	public function cerrar_session(){
@@ -70,18 +72,40 @@ class Admin extends CI_Controller {
 	}
 
 	public function usuarios() {
-		$crud = new Grocery_CRUD();
-		$crud->set_table('usuarios');
-		$crud->columns('id','email','nombre','idrol');
-		$output = $crud->render();
-		$this->load->view("admin/panel/index", $output);
+		if($this->check_session()){
+			$crud = new Grocery_CRUD();
+			$crud->set_table('usuarios');
+			$crud->columns('id','email','nombre','idrol');
+			$output = $crud->render();
+			$this->load->view("admin/panel/index", $output);
+		}
+
 	}
 
 	public function incidencias(){
-		$crud = new Grocery_CRUD();
-		$crud->set_table('incidencias');
-		$crud->columns('id','numero','idtipo','descripcion','ubicacion','fecha_alta','estado','idusuario','persona_detecta','prioridad','fecha_fin');
-		$output = $crud->render();
-		$this->load->view("admin/panel/index", $output);
+		if($this->check_session()){
+			$crud = new Grocery_CRUD();
+			$crud->set_table('incidencias');
+			$crud->set_subject('incidencias');
+
+			//enlaces entre tablas
+			$crud->set_relation('idusuario','usuarios','{nombre}');
+			$crud->display_as('idusuario','Usuario');
+
+			$crud->set_relation('idtipo','tipos_incidencias','{descripcion}');
+			$crud->display_as('idtipo','Tipo');
+
+			//tipo de datos
+			//$crud->field_type('fecha_alta', 'date');
+
+			//$crud->columns('id','numero','idtipo','descripcion','ubicacion','fecha_alta','estado','idusuario','persona_detecta','prioridad','fecha_fin');
+			//*Deshabilita la opcion Imprimir y exportar*/
+			$crud->unset_print();
+			$crud->unset_export();
+
+			$output = $crud->render();
+			$this->load->view("admin/panel/index", $output);
+		}
+
 	}
 }
