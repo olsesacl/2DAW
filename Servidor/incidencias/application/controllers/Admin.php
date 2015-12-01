@@ -73,20 +73,49 @@ class Admin extends CI_Controller {
 
 	public function usuarios() {
 		if($this->check_session()){
+
 			$crud = new Grocery_CRUD();
 			$crud->set_table('usuarios');
+			$crud->set_subject('usuario');
 			$crud->columns('id','email','nombre','idrol');
+
+			$crud->field_type('clave', 'password');
+
+			//relaciones entre tablas
+			$crud->set_relation('idrol','roles','{descripcion}');
+			$crud->display_as('idrol','Rol');
+
+			//code clave
+			$crud->callback_before_insert(array($this,'encrypt_password_callback'));
+			$crud->callback_before_update(array($this,'encrypt_password_callback'));
+
+			$crud->columns('id', 'nombre', 'email', 'email2', 'idrol');
+			$crud->order_by('id');
+
+			//*Deshabilita la opcion Imprimir y exportar*/
+			$crud->unset_print();
+			$crud->unset_export();
+
 			$output = $crud->render();
+
+			$output->titulo = "Administración de usuarios";
+
 			$this->load->view("admin/panel/index", $output);
 		}
 
+	}
+
+	function encrypt_password_callback($post_array) {
+		$post_array['clave'] = $this->encrypt->encode($post_array['clave']);
+
+		return $post_array;
 	}
 
 	public function incidencias(){
 		if($this->check_session()){
 			$crud = new Grocery_CRUD();
 			$crud->set_table('incidencias');
-			$crud->set_subject('incidencias');
+			$crud->set_subject('incidencia');
 
 			//enlaces entre tablas
 			$crud->set_relation('idusuario','usuarios','{nombre}');
@@ -96,14 +125,18 @@ class Admin extends CI_Controller {
 			$crud->display_as('idtipo','Tipo');
 
 			//tipo de datos
-			//$crud->field_type('fecha_alta', 'date');
+			$crud->field_type('fecha_alta', 'date');
 
-			//$crud->columns('id','numero','idtipo','descripcion','ubicacion','fecha_alta','estado','idusuario','persona_detecta','prioridad','fecha_fin');
+			$crud->columns('id','numero','idtipo','descripcion','ubicacion','idusuario','persona_detecta','prioridad','fecha_alta','fecha_fin','estado');
+			$crud->order_by('id');
+
 			//*Deshabilita la opcion Imprimir y exportar*/
 			$crud->unset_print();
 			$crud->unset_export();
 
 			$output = $crud->render();
+			$output->titulo = "Administración de incidencias";
+			$output->user_name= $this->session->unset_userdata('user_name');
 			$this->load->view("admin/panel/index", $output);
 		}
 
