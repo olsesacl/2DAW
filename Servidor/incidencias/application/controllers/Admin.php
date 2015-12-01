@@ -127,7 +127,8 @@ class Admin extends CI_Controller {
 		$crud->display_as('idtipo','Tipo');
 
 		//tipo de datos
-		$crud->field_type('fecha_alta', 'date');
+		$crud->field_type('fecha_alta', 'datetime');
+		$crud->field_type('fecha_fin', 'datetime');
 
 		$crud->columns('id','numero','idtipo','descripcion','ubicacion','idusuario','persona_detecta','prioridad','fecha_alta','fecha_fin','estado');
 		$crud->order_by('id');
