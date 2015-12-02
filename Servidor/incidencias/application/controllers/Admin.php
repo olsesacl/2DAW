@@ -16,7 +16,8 @@ class Admin extends CI_Controller {
 
 	public function index() {
 		if( $this->session->userdata('logged_in') ) {
-			$this->usuarios();
+			redirect("/Admin/usuarios");
+
 		} else {
 			$view = "admin/login.php";
 			$this->load->view($view);
