@@ -214,9 +214,9 @@ desired effect
 							</li>-->
 							<!-- Menu Footer-->
 							<li class="user-footer">
-								<!--<div class="pull-left">
-									<a href="#" class="btn btn-default btn-flat">Profile</a>
-								</div>-->
+								<div class="pull-left">
+									<a href="<?php echo site_url('Admin/usuarios/read/'.$this->session->userdata('id'))?>" class="btn btn-default btn-flat">Perfil</a>
+								</div>
 								<div class="pull-right">
 									<a href="<?php echo site_url('Admin/cerrar_session')?>" class="btn btn-default btn-flat">Cerrar sesion</a>
 								</div>
