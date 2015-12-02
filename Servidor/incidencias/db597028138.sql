@@ -542,15 +542,16 @@ CREATE TABLE `usuarios` (
   `clave` varchar(128) COLLATE latin1_spanish_ci NOT NULL,
   `nombre` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `idrol` tinyint(4) NOT NULL,
-  `email2` varchar(50) COLLATE latin1_spanish_ci NOT NULL
+  `email2` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
+  `logo` VARCHAR(45)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `email`, `clave`, `nombre`, `idrol`, `email2`) VALUES
-(1, '2daw', '1234', '2daw', 1, '');
+INSERT INTO usuarios(id, email, clave, nombre, idrol, email2, logo) VALUES (1, '2daw', 'amGSmuzYw4sTMOcgcgdv6DOcy+VlwVbPmrn3JwdOeimwKdVh69wMMzcTFEGja3tfgQZ99k+bhJQ/uOzJZ6/Q+A==', '2daw', 1, '', null);
+INSERT INTO usuarios(id, email, clave, nombre, idrol, email2, logo) VALUES (2, 'sergiosanchis@hotmail.com', '3HvchnWfs/VRxR0oBoqKrr0tbYqFgB1x8MaF6DTIbifBtXkr+FQ/FVFMsgAdMycw+8XPTJf+AI00cSuXBSFXiA==', 'Sergio Sanchis Climent', 1, '', null);
 
 --
 -- Índices para tablas volcadas

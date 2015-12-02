@@ -2,6 +2,7 @@
 if( !$this->session->userdata('logged_in') ) {
 	redirect(base_url());
 }
+
 ?>
 <!DOCTYPE html>
 <!--
@@ -186,17 +187,17 @@ desired effect
 						<!-- Menu Toggle Button -->
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<!-- The user image in the navbar-->
-							<img src="<?php print base_url() ?>assets/admin/dist/img/user_anonymous.png" class="user-image" alt="User Image">
+							<img src="<?php	print base_url().$logo_perfil; ?>" class="user-image" alt="User Image">
 							<!-- hidden-xs hides the username on small devices so only the image appears. -->
 							<span class="hidden-xs"><?php print $this->session->userdata('user_name'); ?></span>
 						</a>
 						<ul class="dropdown-menu">
 							<!-- The user image in the menu -->
 							<li class="user-header">
-								<img src="<?php print base_url() ?>assets/admin/dist/img/user_anonymous.png" class="img-circle" alt="User Image">
+								<img src="<?php	print base_url().$logo_perfil; ?>" class="img-circle" alt="User Image">
 								<p>
 									<?php print $this->session->userdata('user_name');?>
-									<!--<small>Member since Nov. 2012</small>-->
+									<small><?php print $this->session->userdata('user_email');?></small>
 								</p>
 							</li>
 							<!-- Menu Body -->
@@ -239,7 +240,7 @@ desired effect
 			<!-- Sidebar user panel (optional) -->
 			<div class="user-panel">
 				<div class="pull-left image">
-					<img src="<?php print base_url() ?>assets/admin/dist/img/user_anonymous.png" class="img-circle" alt="User Image">
+					<img src="<?php	print base_url().$logo_perfil; ?>" class="img-circle" alt="User Image">
 				</div>
 				<div class="pull-left info">
 					<p><?php print $this->session->userdata('user_name');?></p>

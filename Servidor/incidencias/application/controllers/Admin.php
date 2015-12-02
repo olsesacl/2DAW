@@ -10,6 +10,8 @@ class Admin extends CI_Controller {
 		$this->load->library("encrypt");
 		$this->load->helper('date');
 		$this->load->library("Grocery_CRUD");
+
+		$this->load->model("Admin_model");
 	}
 
 	public function index() {
@@ -26,7 +28,7 @@ class Admin extends CI_Controller {
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 
-		$sql = "SELECT id, clave, nombre FROM usuarios WHERE email=?";
+		$sql = "SELECT id, clave, nombre, logo FROM usuarios WHERE email=?";
 
 		$query = $this->db->query($sql, array($email));
 
@@ -40,8 +42,8 @@ class Admin extends CI_Controller {
 
 				$newdata = array(
 						'id'		=> $row->id,
-						'user_name'  => $row->nombre,
-						'user_email'     => $email,
+						'user_name' => $row->nombre,
+						'user_email'=> $email,
 						'logged_in' => TRUE
 				);
 
@@ -62,15 +64,6 @@ class Admin extends CI_Controller {
 		$this->index();
 	}
 
-	/*public function check_session(){
-
-		if( $this->session->userdata('logged_in') ) {
-			return true;
-		} else {
-			$this->index();
-		}
-	}*/
-
 	public function usuarios() {
 
 		$crud = new Grocery_CRUD();
@@ -79,26 +72,29 @@ class Admin extends CI_Controller {
 		$crud->columns('id','email','nombre','idrol');
 
 		//los campos que se mostraran al editar o añadir
-		$crud->fields('email', 'clave','nombre','idrol');
+		$crud->fields('email', 'clave','nombre','idrol', "logo");
 
 		//elegimos los campos que se mostraran al ver el registro
-		$crud->set_read_fields('id','email','nombre','idrol');
+		$crud->set_read_fields('id','email','nombre','idrol',"logo");
 
 		$crud->field_type('clave', 'password');
-
 
 		//relaciones entre tablas
 		$crud->set_relation('idrol','roles','{descripcion}');
 		$crud->display_as('idrol','Rol');
 
+		//columna donde se guardaran las imagenes de perfil
+		$crud->set_field_upload("logo", "assets/uploads/files/profile");
+
 		//cuando se inserta un nuevo usuario o se actualiza codifica la clave antes de guardarla
-		$crud->callback_before_insert(array($this,'encrypt_password_callback'));
-		$crud->callback_before_update(array($this,'encrypt_password_callback'));
+		$crud->callback_before_insert(array($this->Admin_model,'encrypt_password_callback'));
+		$crud->callback_before_update(array($this->Admin_model,'encrypt_password_callback'));
 
 		//para al editar si no se cambia la clave que se mantenga
-		$crud->callback_edit_field('clave',array($this,'decrypt_password_callback'));
+		$crud->callback_edit_field('clave',array($this->Admin_model,'decrypt_password_callback'));
 
-		$crud->columns('id', 'nombre', 'email', 'email2', 'idrol');
+
+		$crud->columns('id', 'nombre', 'email', 'email2', 'idrol', 'logo');
 		$crud->order_by('id');
 
 		//*Deshabilita la opcion Imprimir y exportar*/
@@ -111,21 +107,10 @@ class Admin extends CI_Controller {
 		$this->session->set_userdata('section', '1');
 
 		$output->titulo = "Administración de usuarios";
+		$output->logo_perfil = $this->Admin_model->imagen_perfil();
 		$this->load->view("admin/panel/index", $output);
 
 
-	}
-
-	function decrypt_password_callback($value)
-	{
-		$decrypted_password = $this->encrypt->decode($value);
-		return "<input type='password' name='clave' value='$decrypted_password' />";
-	}
-
-	function encrypt_password_callback($post_array) {
-		$post_array['clave'] = $this->encrypt->encode($post_array['clave']);
-
-		return $post_array;
 	}
 
 	public function incidencias(){
@@ -157,6 +142,7 @@ class Admin extends CI_Controller {
 
 		$output = $crud->render();
 		$output->titulo = "Administración de incidencias";
+		$output->logo_perfil = $this->Admin_model->imagen_perfil();
 		$this->load->view("admin/panel/index", $output);
 	}
 
@@ -176,6 +162,7 @@ class Admin extends CI_Controller {
 
 		$output = $crud->render();
 		$output->titulo = "Administración de tipos de incidencia";
+		$output->logo_perfil = $this->Admin_model->imagen_perfil();
 		$this->load->view("admin/panel/index", $output);
 
 	}
@@ -200,6 +187,7 @@ class Admin extends CI_Controller {
 
 		$output = $crud->render();
 		$output->titulo = "Administración de tipos de incidencia";
+		$output->logo_perfil = $this->Admin_model->imagen_perfil();
 		$this->load->view("admin/panel/index", $output);
 
 	}
