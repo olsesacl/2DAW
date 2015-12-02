@@ -2513,11 +2513,38 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
 
 	protected function get_upload_file_readonly_input($field_info,$value)
 	{
-		$file = $file_url = base_url().$field_info->extras->upload_path.'/'.$value;
+		$file_url = base_url().$field_info->extras->upload_path.'/'.$value;
 
-		$value = !empty($value) ? '<a href="'.$file.'" target="_blank">'.$value.'</a>' : '';
+		//Fancybox
+		$this->load_js_fancybox();
 
-		return $this->get_readonly_input($field_info, $value);
+		$this->set_js_config($this->default_javascript_path.'/jquery_plugins/config/jquery.fancybox.config.js');
+
+		$unique = mt_rand();
+
+		$uploader_display_none 	= empty($value) ? "" : "display:none;";
+		$file_display_none  	= empty($value) ?  "display:none;" : "";
+
+		$is_image = !empty($value) &&
+		( substr($value,-4) == '.jpg'
+				|| substr($value,-4) == '.png'
+				|| substr($value,-5) == '.jpeg'
+				|| substr($value,-4) == '.gif'
+				|| substr($value,-5) == '.tiff')
+				? true : false;
+
+		$image_class = $is_image ? 'image-thumbnail' : '';
+
+		$this->set_css($this->default_css_path.'/jquery_plugins/file_upload/fileuploader.css');
+
+		$file_url = base_url().$field_info->extras->upload_path.'/'.$value;
+
+		$input = "<a href='".$file_url."' id='file_$unique' class='open-file";
+		$input .= $is_image ? " $image_class'><img src='".$file_url."' height='50px'>" : "' target='_blank'>$value";
+		$input .= "</a> ";
+		$input .= "</div><div style='clear:both'></div>";
+
+		return $input;
 	}
 
 	protected function get_relation_n_n_input($field_info_type, $selected_values)

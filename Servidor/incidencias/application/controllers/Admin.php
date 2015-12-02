@@ -28,33 +28,10 @@ class Admin extends CI_Controller {
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 
-		$sql = "SELECT id, clave, nombre, logo FROM usuarios WHERE email=?";
-
-		$query = $this->db->query($sql, array($email));
-
-		$row = $query->row();
-		if ($query->num_rows() == 1) {
-
-			$claveCifrada = $row->clave;
-			$claveDescodificada = $this->encrypt->decode($claveCifrada);
-
-			if ($password == $claveDescodificada) {
-
-				$newdata = array(
-						'id'		=> $row->id,
-						'user_name' => $row->nombre,
-						'user_email'=> $email,
-						'logged_in' => TRUE
-				);
-
-				$this->session->set_userdata($newdata);
-
-			} else {
-				echo "<script>alert('Acceso incorrecto.');</script>";
-			}
-		} else {
+		if(!$this->Admin_model->validate_user($email, $password)){
 			echo "<script>alert('Acceso incorrecto.');</script>";
 		}
+		//despues siempre redirigimos a index ya que este comprueba si existe sesion y redirige donde corresponda
 		$this->index();
 	}
 
@@ -92,6 +69,8 @@ class Admin extends CI_Controller {
 
 		//para al editar si no se cambia la clave que se mantenga
 		$crud->callback_edit_field('clave',array($this->Admin_model,'decrypt_password_callback'));
+
+		//$crud->callback_column('logo',array($this->Admin_model,'test'));
 
 
 		$crud->columns('id', 'nombre', 'email', 'email2', 'idrol', 'logo');

@@ -537,8 +537,8 @@ INSERT INTO `tipos_incidencias` (`idtipo`, `codigo_tipo`, `descripcion`) VALUES
 --
 
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `email` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  `email` varchar(50) COLLATE latin1_spanish_ci NOT NULL UNIQUE ,
   `clave` varchar(128) COLLATE latin1_spanish_ci NOT NULL,
   `nombre` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `idrol` tinyint(4) NOT NULL,
@@ -577,12 +577,6 @@ ALTER TABLE `tipos_incidencias`
 
 ALTER TABLE `tipos_incidencias_usuario`
   ADD PRIMARY KEY (`idtipo`, `idusuario`);
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -603,11 +597,7 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `tipos_incidencias`
   MODIFY `idtipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

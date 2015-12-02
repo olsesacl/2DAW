@@ -56,4 +56,40 @@ class Admin_model extends CI_Model {
 
         return $logo_perfil;
     }
+
+    function validate_user($email, $password){
+
+        $sql = "SELECT id, clave, nombre, logo FROM usuarios WHERE email=?";
+
+        $query = $this->db->query($sql, array($email));
+
+        $row = $query->row();
+        if ($query->num_rows() == 1) {
+
+            $claveCifrada = $row->clave;
+            $claveDescodificada = $this->encrypt->decode($claveCifrada);
+
+            if ($password == $claveDescodificada) {
+
+                $newdata = array(
+                    'id'		=> $row->id,
+                    'user_name' => $row->nombre,
+                    'user_email'=> $email,
+                    'logged_in' => TRUE
+                );
+
+                $this->session->set_userdata($newdata);
+
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    function test(){
+        $a = 5;
+    }
 }
