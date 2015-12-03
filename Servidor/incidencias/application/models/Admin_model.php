@@ -86,16 +86,19 @@ class Admin_model extends CI_Model {
         foreach($results as $result){
             $emails[]=$result->email;
         }
+        if (count($emails) > 0){
 
-        //montamos el mensaje en html
-        $message = "<div>Numero de inidencia: ".$post_array['numero']."</div>";
-        $message .= "<div>Descripcion:</div>";
-        $message .= $post_array['descripcion'];
-        $message .= "<div>Ubicacion: ".$post_array['ubicacion']."</div>";
+            //montamos el mensaje en html
+            $message = "<div>Numero de inidencia: ".$post_array['numero']."</div>";
+            $message .= "<div>Descripcion:</div>";
+            $message .= $post_array['descripcion'];
+            $message .= "<div>Ubicacion: ".$post_array['ubicacion']."</div>";
 
-        $subject = "Nueva incidencia";
+            $subject = "Nueva incidencia";
 
-        $this->send_email($subject, $message, $emails);
+            $this->send_email($subject, $message, $emails);
+        }
+
 
 
         return $post_array;
