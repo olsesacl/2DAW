@@ -10,9 +10,9 @@ class Frontoffice extends CI_Controller {
 		$this->load->model("Frontoffice_model");
 	}
 
-	public function index() {
+	public function index($num_page='') {
 
-		$datos['incidencias'] = $this->Frontoffice_model->cargar_incidencias();
+		$datos['incidencias'] = $this->Frontoffice_model->cargar_incidencias($num_page);
 
 
 		$view = "frontoffice/index.php";
