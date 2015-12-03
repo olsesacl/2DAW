@@ -152,8 +152,12 @@ desired effect
 						<!-- Menu Toggle Button -->
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="fa fa-flag-o"></i>
-							<span class="label2 label-warning"><?php print tareas_pendientes(1); ?></span>
-							<span class="label label-danger"><?php print tareas_pendientes(2); ?></span>
+							<?php if(tareas_pendientes(1)>0){
+								print '<span class="label2 label-warning">'.tareas_pendientes(1).'</span>';
+							}?>
+							<?php if(tareas_pendientes(2)>0){
+								print '<span class="label label-danger">'.tareas_pendientes(2).'</span>';
+							}?>
 						</a>
 						<ul class="dropdown-menu">
 							<li class="header">Hay <?php print tareas_pendientes(2); ?> tareas abieras</li>
@@ -270,9 +274,12 @@ desired effect
 					<a href="#"><i class="fa fa-link"></i> <span>Usuarios</span> <i class="fa fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
 						<li><a href="<?php echo site_url('Admin/usuarios')?>">Ver usuarios</a></li>
-						<li><a href="<?php echo site_url('Admin/usuarios/add')?>">Añadir usuario</a></li>
+						<?php if(id_rol()<=2){?>
+							<li><a href="<?php echo site_url('Admin/usuarios/add')?>">Añadir usuario</a></li>
+						<?php } ?>
 					</ul>
 				</li>
+				<?php if(id_rol()<=2){?>
 				<li class="<?php if($this->session->userdata('section')==2) print "active";?> treeview">
 					<a href="#"><i class="fa fa-link"></i> <span>Rol</span> <i class="fa fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
@@ -280,13 +287,16 @@ desired effect
 						<li><a href="<?php echo site_url('Admin/roles/add')?>">Añadir rol</a></li>
 					</ul>
 				</li>
+				<?php } ?>
 				<li class="<?php if($this->session->userdata('section')==3) print "active";?> treeview">
 					<a href="#"><i class="fa fa-link"></i> <span>Incidencias</span> <i class="fa fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
 						<li><a href="<?php echo site_url('Admin/incidencias')?>">Ver incidencias</a></li>
 						<li><a href="<?php echo site_url('Admin/incidencias/add')?>">Añadir incidencia</a></li>
-						<li><a href="<?php echo site_url('Admin/tipos_incidencias')?>">Ver tipos incidencias</a></li>
-						<li><a href="<?php echo site_url('Admin/tipos_incidencias/add')?>">Añadir tipos de incidencia</a></li>
+						<?php if(id_rol()<=2){
+							print '<li><a href="'.site_url('Admin/tipos_incidencias').'">Ver tipos incidencias</a></li>';
+							print '<li><a href="'.site_url('Admin/tipos_incidencias/add').'">Añadir tipos de incidencia</a></li>';
+						}?>
 					</ul>
 				</li>
 			</ul><!-- /.sidebar-menu -->

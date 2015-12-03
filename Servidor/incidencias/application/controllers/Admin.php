@@ -80,14 +80,14 @@ class Admin extends CI_Controller {
 
 		//filtro permisos por roles en este caso ponemos mayor que 2 solo podran ver usuarios, no editar ni crear
 		if(id_rol()>2){
+			$crud->where('id',$this->session->userdata('id'));
 			$crud->unset_delete();
-			$crud->unset_edit();
 			$crud->unset_add();
 		}
 
 		$output = $crud->render();
 
-		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
+		//añadimos el numero de seccion en sesion para que asi se muestre bien la plantilla
 		$this->session->set_userdata('section', '1');
 
 		$output->titulo = "Administración de usuarios";
@@ -172,6 +172,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function tipos_incidencias(){
+
 		$crud = new Grocery_CRUD();
 		$crud->set_table('tipos_incidencias');
 		$crud->set_subject('tipo incidencia');

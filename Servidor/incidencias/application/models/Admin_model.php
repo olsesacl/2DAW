@@ -6,7 +6,6 @@ class Admin_model extends CI_Model {
     function __construct() {
         parent::__construct();
         date_default_timezone_set("Europe/Madrid");
-        $this->load->library("email");
         $this->load->library("encrypt");
         $this->load->database();
         $this->load->library("Grocery_CRUD");
@@ -70,12 +69,45 @@ class Admin_model extends CI_Model {
     }
 
     function add_incidencia_callback($post_array){
+        $this->load->library("email");
 
+        //añadimos los datos que faltan y son automaticos
         $post_array['numero'] = date('YmdHis');
         $post_array['persona_detecta'] = $this->session->userdata('id');
         $post_array['fecha_alta']= date('Y-d-m H:i:s');
         $post_array['estado'] = 'ABIERTA';
 
+        //procedemos al envio del email a los responsables de ese tipo de incidencias
+        $sql = 'SELECT email FROM usuarios u, tipos_incidencias_usuario t WHERE u.id = t.idusuario AND idtipo=?';
+        $query = $this->db->query($sql, $post_array['idtipo']);
+        $results = $query->result();
+
+        $emails =array();
+        foreach($results as $result){
+            $emails[]=$result->email;
+        }
+
+        //montamos el mensaje en html
+        $message = "<div>Numero de inidencia: ".$post_array['numero']."</div>";
+        $message .= "<div>Descripcion:</div>";
+        $message .= $post_array['descripcion'];
+        $message .= "<div>Ubicacion: ".$post_array['ubicacion']."</div>";
+
+        $subject = "Nueva incidencia";
+
+        $this->send_email($subject, $message, $emails);
+
+
         return $post_array;
+    }
+
+    function send_email($subject, $message, $emails){
+
+        $this->email->from('daw@iesmariaenriquez.es', 'Incidencias Website');
+        $this->email->to($emails);
+        $this->email->subject($subject);
+        $this->email->message($message);
+        $this->email->send();
+
     }
 }
