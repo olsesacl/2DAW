@@ -16,13 +16,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<title><?php print $titulo; ?></title>
 	<!-- crud -->
 	<?php
+	if(isset($output)){
 	foreach($css_files as $file): ?>
 		<link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
 	<?php endforeach; ?>
 	<?php foreach($js_files as $file): ?>
 		<script src="<?php echo $file; ?>"></script>
-	<?php endforeach; ?>
+	<?php endforeach;
+	} ?>
 
+	<!-- jQuery 2.1.4 -->
+	<?php if(!isset($output)) print '<script src="'.base_url().'assets/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>';?>
+	<!-- Bootstrap 3.3.5 -->
+	<script src="<?php print base_url() ?>assets/admin/bootstrap/js/bootstrap.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="<?php print base_url() ?>assets/admin/dist/js/app.min.js"></script>
 
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -39,6 +47,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		  apply the skin class to the body tag so the changes take effect.
 	-->
 	<link rel="stylesheet" href="<?php print base_url() ?>assets/admin/dist/css/skins/skin-blue.min.css">
+	<!-- Morris chart -->
+	<link rel="stylesheet" href="<?php print base_url() ?>assets/admin/plugins/morris/morris.css">
+	<!-- Morris.js charts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="<?php print base_url() ?>assets/admin/plugins/morris/morris.min.js"></script>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -321,7 +334,12 @@ desired effect
 		<!-- Main content -->
 		<section class="content">
 
-			<?php echo $output; ?>
+			<?php if(isset($output)) echo $output;
+			if(isset($test)){
+				print '<div id="myfirstchart" style="height: 250px;"></div>';
+				print $test;
+			}
+			?>
 			<!-- Your Page Content Here -->
 
 		</section><!-- /.content -->
@@ -401,18 +419,5 @@ desired effect
 	<div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
-<!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 2.1.4 -->
-<!--<script src="<?php print base_url() ?>assets/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>-->
-<!-- Bootstrap 3.3.5 -->
-<script src="<?php print base_url() ?>assets/admin/bootstrap/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php print base_url() ?>assets/admin/dist/js/app.min.js"></script>
-
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-	 Both of these plugins are recommended to enhance the
-	 user experience. Slimscroll is required when using the
-	 fixed layout. -->
 </body>
 </html>
