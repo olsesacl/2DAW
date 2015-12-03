@@ -126,14 +126,14 @@ desired effect
 					*/?>
 
 					<!-- Notifications Menu -->
-					<li class="dropdown notifications-menu">
+					<?php /*<li class="dropdown notifications-menu">
 						<!-- Menu toggle button -->
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="fa fa-bell-o"></i>
-							<span class="label label-warning">10</span>
+							<span class="label label-warning"><?php print tareas_pendientes(1); ?></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li class="header">You have 10 notifications</li>
+							<li class="header">Hay <?php print tareas_pendientes(1); ?> incidencias en proceso</li>
 							<li>
 								<!-- Inner Menu: contains the notifications -->
 								<ul class="menu">
@@ -146,17 +146,19 @@ desired effect
 							</li>
 							<li class="footer"><a href="#">View all</a></li>
 						</ul>
-					</li>
+					</li>*/ ?>
 					<!-- Tasks Menu -->
 					<li class="dropdown tasks-menu">
 						<!-- Menu Toggle Button -->
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="fa fa-flag-o"></i>
-							<span class="label label-danger">9</span>
+							<span class="label2 label-warning"><?php print tareas_pendientes(1); ?></span>
+							<span class="label label-danger"><?php print tareas_pendientes(2); ?></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li class="header">You have 9 tasks</li>
-							<li>
+							<li class="header">Hay <?php print tareas_pendientes(2); ?> tareas abieras</li>
+							<li class="header">Hay <?php print tareas_pendientes(1); ?> incidencias en proceso</li>
+							<?php /*<li>
 								<!-- Inner menu: contains the tasks -->
 								<ul class="menu">
 									<li><!-- Task item -->
@@ -176,9 +178,9 @@ desired effect
 										</a>
 									</li><!-- end task item -->
 								</ul>
-							</li>
+							</li>*/ ?>
 							<li class="footer">
-								<a href="#">View all tasks</a>
+								<a href="<?php echo site_url('Admin/incidencias')?>">Ver todas las incidencias</a>
 							</li>
 						</ul>
 					</li>
@@ -187,14 +189,14 @@ desired effect
 						<!-- Menu Toggle Button -->
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<!-- The user image in the navbar-->
-							<img src="<?php	print base_url().$logo_perfil; ?>" class="user-image" alt="User Image">
+							<img src="<?php	print imagen_perfil(); ?>" class="user-image" alt="User Image">
 							<!-- hidden-xs hides the username on small devices so only the image appears. -->
 							<span class="hidden-xs"><?php print $this->session->userdata('user_name'); ?></span>
 						</a>
 						<ul class="dropdown-menu">
 							<!-- The user image in the menu -->
 							<li class="user-header">
-								<img src="<?php	print base_url().$logo_perfil; ?>" class="img-circle" alt="User Image">
+								<img src="<?php	print imagen_perfil(); ?>" class="img-circle" alt="User Image">
 								<p>
 									<?php print $this->session->userdata('user_name');?>
 									<small><?php print $this->session->userdata('user_email');?></small>
@@ -240,7 +242,7 @@ desired effect
 			<!-- Sidebar user panel (optional) -->
 			<div class="user-panel">
 				<div class="pull-left image">
-					<img src="<?php	print base_url().$logo_perfil; ?>" class="img-circle" alt="User Image">
+					<img src="<?php	print imagen_perfil(); ?>" class="img-circle" alt="User Image">
 				</div>
 				<div class="pull-left info">
 					<p><?php print $this->session->userdata('user_name');?></p>

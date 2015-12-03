@@ -4,7 +4,7 @@ class Admin extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->helper("url");
+		$this->load->helper(array("url","admin"));
 		$this->load->database();
 		$this->load->library("session");
 		$this->load->library("encrypt");
@@ -70,8 +70,6 @@ class Admin extends CI_Controller {
 		//para al editar si no se cambia la clave que se mantenga
 		$crud->callback_edit_field('clave',array($this->Admin_model,'decrypt_password_callback'));
 
-		//$crud->callback_column('logo',array($this->Admin_model,'test'));
-
 
 		$crud->columns('id', 'nombre', 'email', 'email2', 'idrol', 'logo');
 		$crud->order_by('id');
@@ -80,13 +78,19 @@ class Admin extends CI_Controller {
 		$crud->unset_print();
 		$crud->unset_export();
 
+		//filtro permisos por roles en este caso ponemos mayor que 2 solo podran ver usuarios, no editar ni crear
+		if(id_rol()>2){
+			$crud->unset_delete();
+			$crud->unset_edit();
+			$crud->unset_add();
+		}
+
 		$output = $crud->render();
 
 		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
 		$this->session->set_userdata('section', '1');
 
 		$output->titulo = "Administración de usuarios";
-		$output->logo_perfil = $this->Admin_model->imagen_perfil();
 		$this->load->view("admin/panel/index", $output);
 
 
@@ -98,23 +102,65 @@ class Admin extends CI_Controller {
 		$crud->set_table('incidencias');
 		$crud->set_subject('incidencia');
 
-		//enlaces entre tablas
-		$crud->set_relation('idusuario','usuarios','{nombre}');
-		$crud->display_as('idusuario','Usuario');
 
+		//enlace entre tablas
 		$crud->set_relation('idtipo','tipos_incidencias','{descripcion}');
 		$crud->display_as('idtipo','Tipo');
 
-		//tipo de datos
-		$crud->field_type('fecha_alta', 'datetime');
-		$crud->field_type('fecha_fin', 'datetime');
+		$crud->set_relation('idusuario','usuarios','{nombre}');
+		$crud->display_as('idusuario','Usuario');
 
-		$crud->columns('id','numero','idtipo','descripcion','ubicacion','idusuario','persona_detecta','prioridad','fecha_alta','fecha_fin','estado');
+
+		//typo de datos cuando se añade/edita y que campos nos hacen falta para añadir/editar
+		if($crud->getState() == 'add'){
+
+			$crud->field_type('numero','invisible');
+			$crud->field_type('persona_detecta','invisible');
+			$crud->field_type('fecha_alta','invisible');
+			$crud->field_type('estado','invisible');
+
+			$crud->fields('numero','idtipo','descripcion','ubicacion','persona_detecta','fecha_alta','estado');
+
+		} elseif($crud->getState() == 'edit'){
+
+			//relacions entre tables
+			$crud->set_relation('persona_detecta','usuarios','{nombre}');
+
+			$crud->field_type('numero', 'readonly');
+			$crud->field_type('fecha_fin', 'readonly');
+			$crud->field_type('fecha_alta', 'readonly');
+			$crud->field_type('persona_detecta','readonly');
+			$crud->field_type('id','readonly');
+
+			$crud->fields('id','numero','idtipo','descripcion','ubicacion','idusuario','persona_detecta','prioridad','fecha_alta','fecha_fin','estado');
+
+		}else{
+
+			//relacions entre tables
+			$crud->set_relation('persona_detecta','usuarios','{nombre}');
+			//tipo de datos
+			$crud->field_type('fecha_alta', 'datetime');
+			$crud->field_type('fecha_fin', 'datetime');
+
+			$crud->columns('id','numero','idtipo','descripcion','ubicacion','idusuario','persona_detecta','prioridad','fecha_alta','fecha_fin','estado');
+		}
+
+
 		$crud->order_by('id');
 
 		//*Deshabilita la opcion Imprimir y exportar*/
 		$crud->unset_print();
 		$crud->unset_export();
+
+		//filtro datos por roles en este caso ponemos mayor que 2 solo podran ver sus incidencias
+		if(id_rol()>2){
+			$crud->where('persona_detecta',$this->session->userdata('id'));
+			$crud->unset_delete();
+			$crud->unset_edit();
+		}
+
+
+		$crud->callback_before_insert(array($this->Admin_model,'add_incidencia_callback'));
 
 
 		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
@@ -122,7 +168,6 @@ class Admin extends CI_Controller {
 
 		$output = $crud->render();
 		$output->titulo = "Administración de incidencias";
-		$output->logo_perfil = $this->Admin_model->imagen_perfil();
 		$this->load->view("admin/panel/index", $output);
 	}
 
@@ -142,7 +187,6 @@ class Admin extends CI_Controller {
 
 		$output = $crud->render();
 		$output->titulo = "Administración de tipos de incidencia";
-		$output->logo_perfil = $this->Admin_model->imagen_perfil();
 		$this->load->view("admin/panel/index", $output);
 
 	}
@@ -167,7 +211,6 @@ class Admin extends CI_Controller {
 
 		$output = $crud->render();
 		$output->titulo = "Administración de tipos de incidencia";
-		$output->logo_perfil = $this->Admin_model->imagen_perfil();
 		$this->load->view("admin/panel/index", $output);
 
 	}

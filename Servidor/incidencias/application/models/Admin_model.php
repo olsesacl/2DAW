@@ -37,26 +37,6 @@ class Admin_model extends CI_Model {
         return $post_array;
     }
 
-    function imagen_perfil(){
-
-        $sql = "SELECT logo FROM usuarios WHERE id=".$this->session->userdata('id');
-        $query = $this->db->query($sql);
-        $image = $query->result();
-
-        //lo hacemos asi para prevenir la diferencia entre separadores de directorios entre linux y windows
-        $relative_path = join(DIRECTORY_SEPARATOR, array('assets', 'uploads', 'files', 'profile', ''));
-        //seleccionamos si ponemos la imagen estandar o la que tiene el usuario
-        $file = FCPATH.$relative_path.$image[0]->logo;
-
-        if(is_file($file)){
-            $logo_perfil = "assets/uploads/files/profile/".$image[0]->logo;
-        } else {
-            $logo_perfil = "assets/admin/dist/img/user_anonymous.png";
-        }
-
-        return $logo_perfil;
-    }
-
     function validate_user($email, $password){
 
         $sql = "SELECT id, clave, nombre, logo FROM usuarios WHERE email=?";
@@ -89,7 +69,13 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    function test(){
-        $a = 5;
+    function add_incidencia_callback($post_array){
+
+        $post_array['numero'] = date('YmdHis');
+        $post_array['persona_detecta'] = $this->session->userdata('id');
+        $post_array['fecha_alta']= date('Y-d-m H:i:s');
+        $post_array['estado'] = 'ABIERTA';
+
+        return $post_array;
     }
 }
