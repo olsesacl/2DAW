@@ -43,6 +43,7 @@ class Admin extends CI_Controller {
 
 	public function usuarios() {
 
+		check_logged();
 		$crud = new Grocery_CRUD();
 		$crud->set_table('usuarios');
 		$crud->set_subject('usuario');
@@ -97,6 +98,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function incidencias(){
+		check_logged();
 
 		$crud = new Grocery_CRUD();
 		$crud->set_table('incidencias');
@@ -107,8 +109,9 @@ class Admin extends CI_Controller {
 		$crud->set_relation('idtipo','tipos_incidencias','{descripcion}');
 		$crud->display_as('idtipo','Tipo');
 
-		$crud->set_relation('idusuario','usuarios','{nombre}');
-		$crud->display_as('idusuario','Usuario');
+		//con el tercer parametro podemos filtrar
+		$crud->set_relation('idusuario','usuarios','{nombre}',array('idrol' => '3'));
+		$crud->display_as('idusuario','Tecnico');
 
 
 		//typo de datos cuando se añade/edita y que campos nos hacen falta para añadir/editar
@@ -127,10 +130,10 @@ class Admin extends CI_Controller {
 			$crud->set_relation('persona_detecta','usuarios','{nombre}');
 
 			$crud->field_type('numero', 'readonly');
-			$crud->field_type('fecha_fin', 'readonly');
+			$crud->field_type('fecha_fin','readonly', 'invisible');
 			$crud->field_type('fecha_alta', 'readonly');
 			$crud->field_type('persona_detecta','readonly');
-			$crud->field_type('id','readonly');
+			$crud->field_type('id','hidden');
 
 			$crud->fields('id','numero','idtipo','descripcion','ubicacion','idusuario','persona_detecta','prioridad','fecha_alta','fecha_fin','estado');
 
@@ -161,6 +164,7 @@ class Admin extends CI_Controller {
 
 
 		$crud->callback_before_insert(array($this->Admin_model,'add_incidencia_callback'));
+		$crud->callback_before_update(array($this->Admin_model,'edit_incidencia_callback'));
 
 
 		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
@@ -172,7 +176,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function tipos_incidencias(){
-
+		check_logged();
 		$crud = new Grocery_CRUD();
 		$crud->set_table('tipos_incidencias');
 		$crud->set_subject('tipo incidencia');
@@ -180,7 +184,8 @@ class Admin extends CI_Controller {
 		$crud->unset_print();
 		$crud->unset_export();
 
-		$crud->set_relation_n_n('usuarios', 'tipos_incidencias_usuario', 'usuarios', 'idtipo', 'idusuario', 'nombre','');
+		//filtramos para aque solo pueda añadirse un coordinador
+		$crud->set_relation_n_n('usuarios', 'tipos_incidencias_usuario', 'usuarios', 'idtipo', 'idusuario', 'nombre','',array('idrol' => '2'));
 		$crud->order_by('idtipo');
 
 		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
@@ -193,6 +198,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function roles(){
+		check_logged();
 		$crud = new Grocery_CRUD();
 		$crud->set_table('roles');
 		$crud->set_subject('rol');

@@ -9,6 +9,7 @@ class Admin_model extends CI_Model {
         $this->load->library("encrypt");
         $this->load->database();
         $this->load->library("Grocery_CRUD");
+        $this->load->library("email");
     }
     public function sendMail($from,$to,$subject,$message,$adjunto = null){
         $this->email->from($from);
@@ -69,7 +70,6 @@ class Admin_model extends CI_Model {
     }
 
     function add_incidencia_callback($post_array){
-        $this->load->library("email");
 
         //añadimos los datos que faltan y son automaticos
         $post_array['numero'] = date('YmdHis');
@@ -99,6 +99,75 @@ class Admin_model extends CI_Model {
             $this->send_email($subject, $message, $emails);
         }
 
+        return $post_array;
+    }
+    function edit_incidencia_callback($post_array){
+
+        //comprobamos para enviar un email al tecnico nuevo
+        $nuevo_tecnito = $post_array['idusuario'];
+
+        if(isset($nuevo_tecnito) && $nuevo_tecnito !=''){
+
+            $sql = 'SELECT idusuario,numero,estado FROM incidencias WHERE id=?';
+            $query = $this->db->query($sql, $post_array['id']);
+            $results = $query->result();
+
+            $antituo_tecnico = $results[0]->idusuario;
+            $numero_incidencia = $results[0]->numero;
+            $estado_antes = $results[0]->estado;
+
+            if($nuevo_tecnito != $antituo_tecnico){
+
+                $sql = 'SELECT email FROM usuarios WHERE id=?';
+                $query = $this->db->query($sql, $nuevo_tecnito);
+                $results = $query->result();
+                $emails = $results[0]->email;
+
+                //montamos el mensaje en html
+                $message = "<div>Numero de inidencia: ".$numero_incidencia."</div>";
+                $message .= "<div>Descripcion:</div>";
+                $message .= $post_array['descripcion'];
+                $message .= "<div>Ubicacion: ".$post_array['ubicacion']."</div>";
+
+                $subject = "Se le ha asignado la incidencia ".$numero_incidencia;
+
+                $this->send_email($subject, $message, $emails);
+            }
+        }
+
+        //aqui comprobamos si se ha cerrado y si es asi ponemos fecha de fin
+        $estado = $post_array['estado'];
+        if($estado == 'CERRADA' && $estado_antes!=$estado){
+
+            $post_array['fecha_fin'] = date('Y-d-m H:i:s');
+
+            //al cerrarse la incidencia se envia un email a quien creo la incidencia, usaremos los mismos datos que antes para el cuerpo del email
+            $subject = "Se ha cerrado la incidencia ".$numero_incidencia;
+
+            //montamos el mensaje en html
+            $message = "<div>Numero de inidencia: ".$numero_incidencia."</div>";
+            $message .= "<div>Descripcion:</div>";
+            $message .= $post_array['descripcion'];
+            $message .= "<div>Ubicacion: ".$post_array['ubicacion']."</div>";
+
+            //añadimos al usuario que ha dado parte de la incidencia
+            $sql = 'SELECT email FROM usuarios u, incidencias i WHERE i.id=? AND u.id=i.persona_detecta';
+            $query = $this->db->query($sql, $post_array['id']);
+            $results = $query->result();
+            $emails[] = $results[0]->email;
+
+            //añadimos los emails de los coordinadores de esas categorias
+            $sql = 'SELECT email FROM usuarios u, tipos_incidencias_usuario t WHERE u.id = t.idusuario AND idtipo=?';
+            $query = $this->db->query($sql, $post_array['idtipo']);
+            $results = $query->result();
+
+            foreach($results as $result){
+                $emails[]=$result->email;
+            }
+
+
+            $this->send_email($subject, $message, $emails);
+        }
 
 
         return $post_array;

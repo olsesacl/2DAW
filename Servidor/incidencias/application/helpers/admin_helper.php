@@ -68,5 +68,18 @@ if(!function_exists('id_rol')){
 
         return $query->row(0)->idrol;
     }
+}
 
+if(!function_exists('check_logged')){
+
+    function check_logged() {
+
+        $CI=& get_instance();
+        $CI->load->database();
+        $CI->load->library("session");
+
+        if (!$CI->session->userdata('logged_in')) {
+            redirect(base_url());
+        }
+    }
 }
