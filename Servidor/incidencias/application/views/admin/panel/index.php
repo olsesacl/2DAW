@@ -287,12 +287,12 @@ desired effect
 					<a href="#"><i class="fa fa-link"></i> <span>Usuarios</span> <i class="fa fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
 						<li><a href="<?php echo site_url('Admin/usuarios')?>">Ver usuarios</a></li>
-						<?php if(id_rol()<=2){?>
+						<?php if(check_permisos(1)){?>
 							<li><a href="<?php echo site_url('Admin/usuarios/add')?>">Añadir usuario</a></li>
 						<?php } ?>
 					</ul>
 				</li>
-				<?php if(id_rol()<=2){?>
+				<?php if(check_permisos(1)){?>
 				<li class="<?php if($this->session->userdata('section')==2) print "active";?> treeview">
 					<a href="#"><i class="fa fa-link"></i> <span>Rol</span> <i class="fa fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
@@ -306,7 +306,7 @@ desired effect
 					<ul class="treeview-menu">
 						<li><a href="<?php echo site_url('Admin/incidencias')?>">Ver incidencias</a></li>
 						<li><a href="<?php echo site_url('Admin/incidencias/add')?>">Añadir incidencia</a></li>
-						<?php if(id_rol()<=2){
+						<?php if(check_permisos(1)){
 							print '<li><a href="'.site_url('Admin/tipos_incidencias').'">Ver tipos incidencias</a></li>';
 							print '<li><a href="'.site_url('Admin/tipos_incidencias/add').'">Añadir tipos de incidencia</a></li>';
 						}?>
@@ -335,9 +335,9 @@ desired effect
 		<section class="content">
 
 			<?php if(isset($output)) echo $output;
-			if(isset($test)){
-				print '<div id="myfirstchart" style="height: 250px;"></div>';
-				print $test;
+			if(isset($error_permisions)){
+				//print '<div id="myfirstchart" style="height: 250px;"></div>';
+				print $error_permisions;
 			}
 			?>
 			<!-- Your Page Content Here -->

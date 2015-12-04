@@ -79,21 +79,34 @@ class Admin extends CI_Controller {
 		$crud->unset_print();
 		$crud->unset_export();
 
+
 		//filtro permisos por roles en este caso ponemos mayor que 2 solo podran ver usuarios, no editar ni crear
-		if(id_rol()>2){
+		if(!check_permisos(1)){
 			$crud->where('id',$this->session->userdata('id'));
 			$crud->unset_delete();
 			$crud->unset_add();
+			$output = $crud->render();
+
+			//comprobamos que solo puedan editar su usuario y no acceder por url al de otro
+			if(($crud->getState() == "edit" || $crud->getState() == "read") && $this->uri->segments[4]!=$this->session->userdata('id')){
+				$return = array(
+						'error_permisions' =>  "No tienes acceso a realizar esta accion"
+				);
+
+				$output = (object)$return;
+
+			} else {
+				//añadimos el numero de seccion en sesion para que asi se muestre bien la plantilla
+				$this->session->set_userdata('section', '1');
+			}
+		} else {
+			$output = $crud->render();
+			//añadimos el numero de seccion en sesion para que asi se muestre bien la plantilla
+			$this->session->set_userdata('section', '1');
 		}
-
-		$output = $crud->render();
-
-		//añadimos el numero de seccion en sesion para que asi se muestre bien la plantilla
-		$this->session->set_userdata('section', '1');
 
 		$output->titulo = "Administración de usuarios";
 		$this->load->view("admin/panel/index", $output);
-
 
 	}
 
@@ -145,7 +158,7 @@ class Admin extends CI_Controller {
 			$crud->field_type('fecha_alta', 'datetime');
 			$crud->field_type('fecha_fin', 'datetime');
 
-			$crud->columns('id','numero','idtipo','descripcion','ubicacion','idusuario','persona_detecta','prioridad','fecha_alta','fecha_fin','estado');
+			$crud->columns('numero','idtipo','descripcion','ubicacion','idusuario','persona_detecta','prioridad','fecha_alta','fecha_fin','estado');
 		}
 
 
@@ -155,11 +168,31 @@ class Admin extends CI_Controller {
 		$crud->unset_print();
 		$crud->unset_export();
 
-		//filtro datos por roles en este caso ponemos mayor que 2 solo podran ver sus incidencias
-		if(id_rol()>2){
+		//filtro datos por roles
+		if(check_permisos(4)){
 			$crud->where('persona_detecta',$this->session->userdata('id'));
 			$crud->unset_delete();
 			$crud->unset_edit();
+
+		}else if(check_permisos(2)){ //los coordinadores tienen acceso a todas las incidencais donde el tipo sea donde estan dados de alta
+			$crud->or_where('persona_detecta',$this->session->userdata('id'));
+
+			$sql = "SELECT idtipo FROM tipos_incidencias_usuario WHERE idusuario=?";
+			$query = $this->db->query($sql,$this->session->userdata('id'));
+
+			$permisos = $query->result();
+
+			foreach($permisos as $permiso){
+				$crud->or_where('incidencias.idtipo',$permiso->idtipo);
+			}
+			$crud->unset_delete();
+
+		}else if(check_permisos(3)){ //los tecnicos tienen acceso a todas las incidencais que tienen asignadas
+			$crud->or_where('persona_detecta',$this->session->userdata('id'));
+
+			$crud->or_where('idusuario',$this->session->userdata('id'));
+
+			$crud->unset_delete();
 		}
 
 
@@ -199,6 +232,7 @@ class Admin extends CI_Controller {
 
 	public function roles(){
 		check_logged();
+
 		$crud = new Grocery_CRUD();
 		$crud->set_table('roles');
 		$crud->set_subject('rol');
@@ -216,7 +250,18 @@ class Admin extends CI_Controller {
 		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
 		$this->session->set_userdata('section', '2');
 
-		$output = $crud->render();
+		//comprobamos acceso a esta seccion
+		if(!check_permisos(1)){
+			$return = array(
+					'error_permisions' =>  "No tienes acceso a realizar esta accion"
+			);
+
+			$output = (object)$return;
+
+		} else {
+			$output = $crud->render();
+		}
+
 		$output->titulo = "Administración de tipos de incidencia";
 		$this->load->view("admin/panel/index", $output);
 
