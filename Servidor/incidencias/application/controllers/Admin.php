@@ -170,29 +170,132 @@ class Admin extends CI_Controller {
 
 		//filtro datos por roles
 		if(check_permisos(4)){
-			$crud->where('persona_detecta',$this->session->userdata('id'));
-			$crud->unset_delete();
-			$crud->unset_edit();
+
+			//control de acceso
+			if($crud->getState() == "read"){
+				$id_incidencia = $this->uri->segments[4];
+
+				$sql = "SELECT * FROM incidencias WHERE id=? AND persona_detecta=?";
+				$query = $this->db->query($sql, array($id_incidencia, $this->session->userdata('id')));
+				$num_row = $query->num_rows();
+
+				if($num_row==0){
+					$return = array(
+							'error_permisions' =>  "No tienes acceso a realizar esta accion"
+					);
+
+					$output = (object)$return;
+				} else {
+					$output = $crud->render();
+				}
+
+
+
+			} else if($crud->getState() == "edit" ||$crud->getState() == "delete"){
+				$return = array(
+						'error_permisions' =>  "No tienes acceso a realizar esta accion"
+				);
+
+				$output = (object)$return;
+
+
+			} else {
+				//añadimos el numero de seccion en sesion para que asi se muestre bien la plantilla
+				$this->session->set_userdata('section', '1');
+				$crud->where('persona_detecta',$this->session->userdata('id'));
+				$crud->unset_delete();
+				$crud->unset_edit();
+				$output = $crud->render();
+			}
+
+
+
 
 		}else if(check_permisos(2)){ //los coordinadores tienen acceso a todas las incidencais donde el tipo sea donde estan dados de alta
-			$crud->or_where('persona_detecta',$this->session->userdata('id'));
+			//control de acceso
+			if($crud->getState() == "read" || $crud->getState() == "edit"){
+				$id_incidencia = $this->uri->segments[4];
 
-			$sql = "SELECT idtipo FROM tipos_incidencias_usuario WHERE idusuario=?";
-			$query = $this->db->query($sql,$this->session->userdata('id'));
+				$sql = "SELECT i.id FROM incidencias i, tipos_incidencias_usuario tiu WHERE i.id=? AND i.idtipo=tiu.idtipo AND tiu.idusuario=?";
+				$query = $this->db->query($sql, array($id_incidencia, $this->session->userdata('id')));
+				$num_row = $query->num_rows();
 
-			$permisos = $query->result();
+				if($num_row==0){
+					$return = array(
+							'error_permisions' =>  "No tienes acceso a realizar esta accion"
+					);
 
-			foreach($permisos as $permiso){
-				$crud->or_where('incidencias.idtipo',$permiso->idtipo);
+					$output = (object)$return;
+				} else {
+					$output = $crud->render();
+				}
+
+
+
+			} else if($crud->getState() == "delete"){
+				$return = array(
+						'error_permisions' =>  "No tienes acceso a realizar esta accion"
+				);
+
+				$output = (object)$return;
+
+
+			} else {
+				$crud->or_where('persona_detecta',$this->session->userdata('id'));
+
+				$sql = "SELECT idtipo FROM tipos_incidencias_usuario WHERE idusuario=?";
+				$query = $this->db->query($sql,$this->session->userdata('id'));
+
+				$permisos = $query->result();
+
+				foreach($permisos as $permiso){
+					$crud->or_where('incidencias.idtipo',$permiso->idtipo);
+				}
+				$crud->unset_delete();
+				$output = $crud->render();
 			}
-			$crud->unset_delete();
 
 		}else if(check_permisos(3)){ //los tecnicos tienen acceso a todas las incidencais que tienen asignadas
-			$crud->or_where('persona_detecta',$this->session->userdata('id'));
+			//control de acceso
+			if($crud->getState() == "read" || $crud->getState() == "edit"){
+				$id_incidencia = $this->uri->segments[4];
 
-			$crud->or_where('idusuario',$this->session->userdata('id'));
+				$sql = "SELECT id FROM incidencias  WHERE id=? AND idusuario=?";
+				$query = $this->db->query($sql, array($id_incidencia, $this->session->userdata('id')));
+				$num_row = $query->num_rows();
 
-			$crud->unset_delete();
+				if($num_row==0){
+					$return = array(
+							'error_permisions' =>  "No tienes acceso a realizar esta accion"
+					);
+
+					$output = (object)$return;
+				} else {
+					$output = $crud->render();
+				}
+
+
+
+			} else if($crud->getState() == "delete"){
+				$return = array(
+						'error_permisions' =>  "No tienes acceso a realizar esta accion"
+				);
+
+				$output = (object)$return;
+
+
+			} else {
+				$crud->or_where('persona_detecta',$this->session->userdata('id'));
+				$crud->or_where('idusuario',$this->session->userdata('id'));
+
+				$crud->unset_delete();
+				$output = $crud->render();
+			}
+
+
+
+		} else {
+			$output = $crud->render();
 		}
 
 
@@ -203,7 +306,7 @@ class Admin extends CI_Controller {
 		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
 		$this->session->set_userdata('section', '3');
 
-		$output = $crud->render();
+
 		$output->titulo = "Administración de incidencias";
 		$this->load->view("admin/panel/index", $output);
 	}
