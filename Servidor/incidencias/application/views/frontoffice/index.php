@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="linees">
-	<a href="<?php print site_url("Admin/index");?>">Panel de control</a>
+	<a href="<?php print site_url("admin/index");?>">Panel de control</a>
 </div>
 <div style="clear: both;"></div>
 <div id="tabla"><table border="1">

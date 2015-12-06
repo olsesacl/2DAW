@@ -16,7 +16,7 @@ class Admin extends CI_Controller {
 
 	public function index() {
 		if( $this->session->userdata('logged_in') ) {
-			redirect("/Admin/incidencias");
+			redirect("/admin/incidencias");
 
 		} else {
 			$view = "admin/login.php";
@@ -38,7 +38,7 @@ class Admin extends CI_Controller {
 	public function cerrar_session(){
 		$this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();
-		redirect("/Frontoffice/");
+		redirect("/frontoffice/");
 	}
 
 	public function usuarios() {

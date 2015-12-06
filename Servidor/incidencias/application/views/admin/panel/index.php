@@ -87,7 +87,7 @@ desired effect
 	<header class="main-header">
 
 		<!-- Logo -->
-		<a href="<?php echo site_url("Admin/index"); ?>" class="logo">
+		<a href="<?php echo site_url("admin/index"); ?>" class="logo">
 			<!-- mini logo for sidebar mini 50x50 pixels -->
 			<span class="logo-mini"><b>A</b>LT</span>
 			<!-- logo for regular state and mobile devices -->
@@ -197,7 +197,7 @@ desired effect
 								</ul>
 							</li>*/ ?>
 							<li class="footer">
-								<a href="<?php echo site_url('Admin/incidencias')?>">Ver todas las incidencias</a>
+								<a href="<?php echo site_url('admin/incidencias')?>">Ver todas las incidencias</a>
 							</li>
 						</ul>
 					</li>
@@ -234,10 +234,10 @@ desired effect
 							<!-- Menu Footer-->
 							<li class="user-footer">
 								<div class="pull-left">
-									<a href="<?php echo site_url('Admin/usuarios/read/'.$this->session->userdata('id'))?>" class="btn btn-default btn-flat">Perfil</a>
+									<a href="<?php echo site_url('admin/usuarios/read/'.$this->session->userdata('id'))?>" class="btn btn-default btn-flat">Perfil</a>
 								</div>
 								<div class="pull-right">
-									<a href="<?php echo site_url('Admin/cerrar_session')?>" class="btn btn-default btn-flat">Cerrar sesion</a>
+									<a href="<?php echo site_url('admin/cerrar_session')?>" class="btn btn-default btn-flat">Cerrar sesion</a>
 								</div>
 							</li>
 						</ul>
@@ -286,9 +286,9 @@ desired effect
 				<li class="<?php if($this->session->userdata('section')==1) print "active";?> treeview">
 					<a href="#"><i class="fa fa-link"></i> <span>Usuarios</span> <i class="fa fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
-						<li><a href="<?php echo site_url('Admin/usuarios')?>">Ver usuarios</a></li>
+						<li><a href="<?php echo site_url('admin/usuarios')?>">Ver usuarios</a></li>
 						<?php if(check_permisos(1)){?>
-							<li><a href="<?php echo site_url('Admin/usuarios/add')?>">Añadir usuario</a></li>
+							<li><a href="<?php echo site_url('admin/usuarios/add')?>">Añadir usuario</a></li>
 						<?php } ?>
 					</ul>
 				</li>
@@ -296,19 +296,19 @@ desired effect
 				<li class="<?php if($this->session->userdata('section')==2) print "active";?> treeview">
 					<a href="#"><i class="fa fa-link"></i> <span>Rol</span> <i class="fa fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
-						<li><a href="<?php echo site_url('Admin/roles')?>">Ver roles</a></li>
-						<li><a href="<?php echo site_url('Admin/roles/add')?>">Añadir rol</a></li>
+						<li><a href="<?php echo site_url('admin/roles')?>">Ver roles</a></li>
+						<li><a href="<?php echo site_url('admin/roles/add')?>">Añadir rol</a></li>
 					</ul>
 				</li>
 				<?php } ?>
 				<li class="<?php if($this->session->userdata('section')==3) print "active";?> treeview">
 					<a href="#"><i class="fa fa-link"></i> <span>Incidencias</span> <i class="fa fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
-						<li><a href="<?php echo site_url('Admin/incidencias')?>">Ver incidencias</a></li>
-						<li><a href="<?php echo site_url('Admin/incidencias/add')?>">Añadir incidencia</a></li>
+						<li><a href="<?php echo site_url('admin/incidencias')?>">Ver incidencias</a></li>
+						<li><a href="<?php echo site_url('admin/incidencias/add')?>">Añadir incidencia</a></li>
 						<?php if(check_permisos(1)){
-							print '<li><a href="'.site_url('Admin/tipos_incidencias').'">Ver tipos incidencias</a></li>';
-							print '<li><a href="'.site_url('Admin/tipos_incidencias/add').'">Añadir tipos de incidencia</a></li>';
+							print '<li><a href="'.site_url('admin/tipos_incidencias').'">Ver tipos incidencias</a></li>';
+							print '<li><a href="'.site_url('admin/tipos_incidencias/add').'">Añadir tipos de incidencia</a></li>';
 						}?>
 					</ul>
 				</li>
