@@ -322,7 +322,7 @@ desired effect
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				Page <?php print $titulo;?>
+				<?php print $titulo;?>
 				<!--<small>Optional description</small>-->
 			</h1>
 			<!--<ol class="breadcrumb">
