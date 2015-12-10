@@ -346,9 +346,10 @@ class Admin extends CI_Controller {
 		$crud->display_as('idrol','Id');
 		$crud->display_as('rol','Codigo rol');
 		$crud->display_as('descripcion','Descripcion');
-		$crud->display_as('nivel','Nivel');
 
-		$crud->columns('idrol', 'rol', 'descripcion', 'nivel');
+
+		$crud->columns('idrol', 'rol', 'descripcion');
+		$crud->fields('idrol', 'rol', 'descripcion');
 
 		//añadimos el el numero de seccion en sesion para que asi se muestre bien la plantilla
 		$this->session->set_userdata('section', '2');
