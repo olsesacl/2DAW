@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head></head>
+<body>
+		<canvas id="canvas" width="625" height="470"></canvas>
+		<script type="text/javascript">
+			var canvas = document.getElementById('canvas');
+			if (canvas.getContext){
+				var ctx = canvas.getContext('2d');
+				draw();
+			}
+			
+			function draw(){
+			
+				var img = new Image();
+				img.src = 'fondo.jpg';
+				img.onload = function() {
+					
+					/*** Ejercicio 2 ***/
+					//Introduce c�digo para cargar imagen de fondo
+					ctx.drawImage(img, 0, 0);
+					
+					dibujaTexto();
+					dibujaHojasArbol();
+					dibujaTronco();
+					
+					/*** Ejercicio 5 ***/
+					//dibujaEstrella(?, ?, 20, 5, 0.5);
+					dibujaEstrella(120, 175, 20, 5, 0.5);
+					
+					
+				};
+			}			
+
+			function dibujaHojasArbol(){
+
+				/*** Ejercicio 3 ***/
+				
+				//Primer nivel del �rbol
+				ctx.fillStyle = "green";
+
+				for(var i = 0; i < 3; i++){
+					ctx.beginPath();
+					ctx.moveTo(40-(20*i),285+(40*i));
+					ctx.lineTo(200+(20*i),285+(40*i));
+					ctx.lineTo(120,175+(40*i));
+					ctx.fill();
+				}
+
+				/** llamada para crear las bolas**/
+				for(var i = 0; i < 3; i++){
+					colocaBola(40-(20*i),285+(40*i));
+					colocaBola(200+(20*i),285+(40*i));
+				}
+
+
+
+			}
+
+			function dibujaTronco(){
+
+				/*** Ejercicio 4 ***/
+				//Dibuja el tronco del �rbol 30x40px
+				ctx.fillStyle = "brown";
+				ctx.beginPath();
+				ctx.fillRect(110,365,30,40);
+
+
+			}
+
+
+			function dibujaEstrella(x, y, r, p, m) {
+			
+				ctx.fillStyle = "gold";
+				ctx.beginPath();
+				ctx.translate(x, y);
+				ctx.moveTo(0, 0 - r);
+				for (var i = 0; i < p; i++) {
+					ctx.rotate(Math.PI / p);
+					ctx.lineTo(0, 0 - (r * m));
+					ctx.rotate(Math.PI / p);
+					ctx.lineTo(0, 0 - r);
+				}
+				ctx.fill();
+				
+			}
+			
+			function colocaBola(x,y){
+			
+				ctx.fillStyle="blue";
+				ctx.beginPath();
+				ctx.arc(x,y,10,0,Math.PI*2,true);
+				ctx.fill();
+			}
+			
+			function dibujaTexto(){
+			
+				/*** Ejercicio 7 ***/
+				//Dibuja texto con degradado
+				var lineargrad = ctx.createLinearGradient(0,20, 0, 70);
+				lineargrad.addColorStop(0.5, "cyan");
+				lineargrad.addColorStop(1, "white");
+
+				ctx.font = "italic 40px fantasy";
+
+				ctx.fillStyle = lineargrad;
+
+				ctx.fillText("Feliz Aprobado !!!", 40, 80);
+
+			}
+			
+	
+		</script>
+	</body>
+</html>
