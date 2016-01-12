@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload = function(){
+
+            var ul = document.createElement("ul");
+
+            var plugins = navigator.plugins;
+
+            for(var i = 0 ; i < plugins.length; i++){
+                add_li(plugins[i].name, ul);
+            }
+            document.body.appendChild(ul);
+
+        }
+
+        function add_li(element, contenedor){
+            var li = document.createElement("li");
+            var texto = document.createTextNode(element);
+            li.appendChild(texto);
+
+            contenedor.appendChild(li);
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -43,8 +43,22 @@
             "forma_pago":"contrareembolso",
             "precio_base":"0",
             "total":"0",
-            "calcular_factura":calcular_factura
+            "calcular_factura":calcular_factura()
         }
+
+               function calcular_factura() {
+                   for (var i = 0; i < this.elementos.length; i++) {
+                       this.informacion.baseImponible += this.elementos[i].cantidad * this.elementos[i].precio;
+                   }
+                   var importeIva = (1 + (this.informacion.iva / 100));
+                   this.informacion.total = (this.informacion.baseImponible * importeIva).toFixed(2);
+               }
+        factura.muestraTotal = function() {
+            this.calculaTotal();
+            alert("TOTAL = " + this.informacion.total + " euros");
+        }
+
+        factura.muestraTotal();
 
 
     </script>
