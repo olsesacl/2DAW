@@ -5,9 +5,15 @@
     <title>Title</title>
     <script>
         function checkBrowser(){
-            if(navigator.userAgent.search("Firefox")>0
-                    || navigator.userAgent.search("Edge")>0
-                    || navigator.userAgent.search("NET")>0 ){
+
+                //if alternativo segun indicaciones puestas en el moodle aunque con esta solucion el navegador Edge lo
+                //detecta como si fuese Chrome, y con la solucion activa actualmente lo detectaria como Edge
+
+             //   var isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
+             //   var isIE = /*@cc_on!@*/false || !!document.documentMode;   // At least IE6
+            //if(isFirefox || isIE){
+
+            if(navigator.userAgent.search(/Firefox|Edge|NET/i)>0){
 
                 //document.write("<br>"+navigator.userAgent);
 
