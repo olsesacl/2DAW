@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva ventana</title>
+    <script>
+        window.onload = function(){
+            document.getElementById("boton").onclick = new_window;
+        };
+
+        function new_window(){
+            var ventana = window.open('', 'ventana', 'width=640, height=480');
+            ventana.document.write('<head><title>Título nueva ventana</title></head>');
+            ventana.document.write('<body>');
+            ventana.document.write('<div id="contenedor">');
+            ventana.document.getElementById("contenedor").innerHTML = "<button onclick='window.close()'>Cerrar Ventana</button>";
+        }
+    </script>
+</head>
+<body>
+
+<button id="boton">Obrir nueva ventana</button>
+
+</body>
+</html>

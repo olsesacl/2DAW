@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dimensiones pantalla</title>
+    <script>
+        window.onload = function() {
+            document.getElementById("ancho").innerHTML += screen.width;
+            document.getElementById("alto").innerHTML += screen.height;
+
+            document.getElementById("new_ventana").onclick = nueva_ventana;
+        };
+
+        function nueva_ventana(){
+            var referencia = window.open("","nueva_ventana","width=300, height=300, location=no");
+            referencia.window.moveTo((screen.width-300)/2, (screen.height-300)/2);
+            referencia.document.body.innerHTML = "Esta ventana ha sido generada desde javascript";
+
+        }
+    </script>
+</head>
+<body>
+<div id="ancho">Ancho pantalla:</div>
+<div id="alto">Alto pantalla:</div>
+<div><button id="new_ventana">Abrir nueva ventana centrada</button></div>
+
+</body>
+</html>

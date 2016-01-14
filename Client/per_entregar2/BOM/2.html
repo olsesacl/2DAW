@@ -5,16 +5,23 @@
     <title>Comprobar Silverlight</title>
 
     <script>
-        document.onload = function() {
+        window.onload = function() {
 
             if (!navigator.plugins["Silverlight Plug-In"]){
-
+                if(confirm("No tienes el plugin Silverlight, quieres ser redirigido para descargarlo?")){
+                    location.assign("https://www.microsoft.com/silverlight/");
+                } else {
+                    document.getElementById("datos").innerHTML = "No tienes el plugin Silverlight requerido";
+                }
+            } else{
+                document.getElementById("datos").innerHTML = "Tienes instalado el Silverlight Plug-In";
             }
 
-        }
+        };
     </script>
 </head>
 <body>
+<div id="datos"></div>
 
 </body>
 </html>

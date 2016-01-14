@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    function abrir()
+    {
+        var ventana=open();
+        ventana.document.write("Estoy escribiendo en la nueva ventana<br>");
+        ventana.document.write("Segunda linea");
+    }
+
+    function abrirParametros()
+    {
+        var ventana=open('','','status=yes,width=400,height=250,menubar=yes, location=yes');
+        ventana.document.write("Esto es lo primero que aparece<br>");
+    }
+
+    function mostrarAlerta()
+    {
+        alert("Esta ventana de alerta ya la utilizamos en otros problemas.");
+    }
+
+    function confirmar()
+    {
+        var respuesta=confirm("Presione alguno de los dos botones");
+        if (respuesta==true)
+            alert("presionó aceptar");
+        else
+            alert("presionó cancelar");
+    }
+
+    function cargarCadena()
+    {
+        var cad=prompt("cargue una cadena:","");
+        alert("Usted ingreso "+cad);
+    }
+    function abrirSinBarra(){
+        var ventana_sin_barra=open('','','status=yes,width=400,height=250,menubar=yes, location=no');
+        ventana_sin_barra.document.write("Esto es lo primero que aparece<br>");
+    }
+
+    function ventanaMoviendose(){
+        var ventana = open('','','width=400, height=250');
+        ventana.document.write("La ventana moviendose, al llegar al final se cerrara");
+        moviendoVentana(ventana);
+    }
+
+    function moviendoVentana(ventana){
+        var widthVentana;
+        var widthPantalla;
+
+        if(ventana.navigator.appCodeName == 'Mozilla'){
+            widthVentana = ventana.window.screenX;
+            widthPantalla = ventana.screen.width;
+
+        } else {
+            widthVentana = ventana.window.screenLeft;
+            widthPantalla = ventana.screen.width;
+        }
+
+        if((widthVentana+400) < widthPantalla){
+            ventana.window.moveBy(1,0);
+            setTimeout(function(){moviendoVentana(ventana)},5);
+        } else {
+            ventana.close();
+        }
+    }
+
+    function abrirnoresize(){
+        var ventana=open('','','width=400,height=250, resizable=no');
+        ventana.document.write("Ventana no redimensionable, esta caracteristica esta limitada por varios navegadores");
+
+    }
+</script>
+
+Este programa permite analizar la llamada a distintas responsabilidades del objeto window.<br>
+<form>
+    <br>
+    <input type="button" value="open()" onClick="abrir()">
+    <br>
+    <input type="button" value="open con parámetros" onClick="abrirParametros()" >
+    <br>
+    <input type="button" value="alert" onClick="mostrarAlerta()">
+    <br>
+    <input type="button" value="confirm" onClick="confirmar()">
+    <br>
+    <input type="button" value="prompt" onClick="cargarCadena()">
+    <br>
+    <input type="button" value="Ventana sin barra de direcciones" onClick="abrirSinBarra()">
+    <br>
+    <input type="button" value="Ventana moviendose" onclick="ventanaMoviendose()">
+    <br>
+    <input type="button" value="Ventana no redimensionable" onclick="abrirnoresize()">
+</form>
+
+</body>
+</html>
