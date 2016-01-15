@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Ejercicio 4 - Prototype</title>
+    <script type="text/javascript">
+        // Funcion que trunca la longitud de una cadena
+        String.prototype.truncar = function(longitud) {
+            longitud = longitud || 10;
+            if(this.length > longitud) {
+                return this.substring(0, longitud);
+            }
+            else {
+                return this;
+            }
+        }
+
+        var cadena = "hola mundo";
+        alert(cadena.truncar(6));
+
+        // Funcion que trunca la longitud de una cadena y añade
+        //  un indicador de cadena truncada
+        String.prototype.truncar = function(longitud, indicador) {
+            longitud = longitud || 10;
+            indicador = indicador || '...';
+
+            if(this.length > longitud) {
+                return this.substring(0, longitud-indicador.length) + indicador;
+            }
+            else {
+                return this;
+            }
+        }
+
+        var cadena = "En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor.";
+        alert(cadena.truncar(50, '... (sigue)'));
+        alert(cadena.truncar(50));
+    </script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Ejercicio 6 - Reflexión y Prototype</title>
+    <script type="text/javascript">
+        // Determina si un objeto implementa un método cuyo nombre
+        //  se pasa como parámetro
+        Object.prototype.implementa = function (nombreMetodo){
+            return this[nombreMetodo] && this[nombreMetodo] instanceof Function;
+        }
+
+        var objeto1 = {
+            muestraMensaje: function(){
+                alert("hola mundo");
+            }
+        };
+
+        var objeto2 = {
+            a: 0,
+            b: 0,
+            suma: function() {
+                return this.a + this.b;
+            }
+        };
+
+        alert(objeto1.implementa("muestraMensaje"));
+        alert(objeto1.implementa("suma"));
+        alert(objeto2.implementa("muestraMensaje"));
+        alert(objeto2.implementa("suma"));
+        alert(objeto1.implementa("implementa"));
+        // Un objeto vacío también debería incluir el método "implementa"
+        alert({}.implementa('implementa'));
+    </script>
+</head>
+
+<body>
+</body>
+</html>
