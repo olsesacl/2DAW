@@ -46,8 +46,9 @@
 
     function ventanaMoviendose(){
         var ventana = open('','','width=400, height=250');
-        ventana.document.write("La ventana moviendose, al llegar al final se cerrara");
-        moviendoVentana(ventana);
+        ventana.document.write("En 2 segundos se movera la ventana");
+        setTimeout(function(){moviendoVentana(ventana)},2000);
+
     }
 
     function moviendoVentana(ventana){
@@ -63,11 +64,14 @@
             widthPantalla = ventana.screen.width;
         }
 
-        if((widthVentana+400) < widthPantalla){
-            ventana.window.moveBy(1,0);
+        //en linux parece que no calcula bien la posicion de la ventana por 2 pixels
+        if((widthVentana+400+2) < widthPantalla){
+            //en chrome de linux no se porque se me baja la ventana, en Windows funciona en todos bien y en Firefox de linux
+            ventana.window.moveTo(widthVentana+1,0);
             setTimeout(function(){moviendoVentana(ventana)},5);
         } else {
-            ventana.close();
+            ventana.document.body.innerHTML = "<button onclick='javascript:window.close()'>Cerrar ventana</button>";
+            //ventana.close();
         }
     }
 
