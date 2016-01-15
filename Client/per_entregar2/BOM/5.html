@@ -6,6 +6,7 @@
 </head>
 <body>
 <script type="text/javascript">
+    var ventana;
 
     function abrir()
     {
@@ -45,13 +46,14 @@
     }
 
     function ventanaMoviendose(){
-        var ventana = open('','','width=400, height=250');
-        ventana.document.write("En 2 segundos se movera la ventana");
-        setTimeout(function(){moviendoVentana(ventana)},2000);
+        ventana = open('','','width=400, height=250');
+        //ventana.document.write("En 2 segundos se movera la ventana");
+        //setTimeout(function(){moviendoVentana(ventana)},2000);
+        ventana.document.write("<button onclick='javascript:window.opener.moviendoVentana()'>Pulsa para que se mueva</button>");
 
     }
 
-    function moviendoVentana(ventana){
+    function moviendoVentana(){
         var widthVentana;
         var widthPantalla;
 
