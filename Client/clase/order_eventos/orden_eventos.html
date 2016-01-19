@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload = function (){
+
+            /**
+             * Al hacer las pruebas he comprodo que el funcionamiento tanto en Chrome como en Firefox es
+             * Primero hace  modo "capture" (true), llendo del elemento padre al hijo
+             * y una vez terminado lo hace modo "bubbling" (false), llendo del elemento hijo al padre
+             */
+
+            document.getElementById("uno").addEventListener("click",muestraAlerta, true);
+            document.getElementById("dos").addEventListener("click",muestraAlerta, false);
+            document.getElementById("tres").addEventListener("click",muestraAlerta, true);
+            document.getElementById("boto").addEventListener("click",muestraAlerta, false);
+        }
+        function muestraAlerta(){
+            alert("Soc l'element " + this.id + " i han fet onclick");
+        }
+    </script>
+</head>
+<body>
+
+<div id="uno">
+    <div id="dos">
+        <div id="tres">
+            <button id="boto">Pulsa aqui</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
