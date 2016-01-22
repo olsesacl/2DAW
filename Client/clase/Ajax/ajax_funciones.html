@@ -18,7 +18,7 @@
 
             if(peticion_http) {
                 peticion_http.onreadystatechange = funcion;
-                peticion_http.open(metodo, url, true);
+                peticion_http.open(metodo, url  + '?nocache=' + Math.random(), true);
                 peticion_http.send(null);
             }
         }
@@ -35,7 +35,8 @@
         function muestraContenido() {
             if(peticion_http.readyState == READY_STATE_COMPLETE) {
                 if(peticion_http.status == 200) {
-                    alert(peticion_http.responseText);
+                    //alert(peticion_http.responseText);
+                    document.write(peticion_http.responseText);
                 }
             }
         }
