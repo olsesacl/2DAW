@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gintonic>
+    <ginebra>Gin tonic de Blue Diamond Gin con moras</ginebra>
+    <descripcion>Blue Diamond Gin, es una ginebra sevillana de color azulado y que destaca por sus aromas y su sabor ligeramente dulze y afrutado con toques a frambuesa y mora. Aprovechando sus características, la serviremos con un par de moras y corteza de lima.</descripcion>
+    <img>gintonic-blue-diamond-gin-moras.jpg</img>
+    <cubata>
+        <ingredientes>
+            <ingrediente>5cl Blue Diamond Gin</ingrediente>
+            <ingrediente>Hielo</ingrediente>
+            <ingrediente>Corteza de lima</ingrediente>
+            <ingrediente>2 moras</ingrediente>
+            <ingrediente>Tónica Fever-Tree</ingrediente>
+        </ingredientes>
+        <elaboracion>
+            <parrafo>Para comenzar, enfriaremos la copa con hielo, removiéndolo hasta que la tengamos a temperatura. Justo después y antes de añadir los ingredientes, eliminamos el exceso de agua que haya podido desprender el hielo. A continuación añadimos 5cl. de Blue Diamond Gin y las dos moras para que se mezclen unos segundos con la ginebra. Añadimos la corteza de lima, presionándola ligeramente sobre la copa para que desprenda todo su aroma antes de dejarla caer en ella.</parrafo>
+            <parrafo>Para finalizar este gintonic verteremos la tónica Fever-Tree lo más cerca del hielo para que conserve todas las propiedades (podemos usar una cucharilla tranzada para añadir la tónica). En esta receta también podemos utilizar otras tónicas neutras como Schweppes Heritage, Original, Indi, Abbondio o Markham </parrafo>
+        </elaboracion>
+    </cubata>
+</gintonic>

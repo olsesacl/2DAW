@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gintonic>
+    <ginebra>Hendrick's Gin</ginebra>
+    <descripcion>En esta receta usaremos el nuevo Bitter Truth Rose Water. Se trata de una agua esencial sin alcohol que no permite dar un toque floral a nuestros cócteles. Lo usaremos en un combinado con Hendrick's Gin, pepino y tónica Fentimans.</descripcion>
+    <img>gintonic-hendrick-s-fentimans.jpg</img>
+    <cubata>
+        <ingredientes>
+            <ingrediente>Hielo</ingrediente>
+            <ingrediente>Hendrick's Gin</ingrediente>
+            <ingrediente>Bitter Truth Rose Water</ingrediente>
+            <ingrediente>Tónica Fentimans</ingrediente>
+            <ingrediente>2 rodajas de pepino</ingrediente>
+        </ingredientes>
+        <elaboracion>
+            <parrafo>Empezamos enfriando la copa balón o vaso ancho con cubitos de hielo. Los removemos por toda la copa para que esta adquiera la temperatura deseada y a continuación eliminamos el exceso de agua. Acabamos de llenar la copa con hielo y añadimos 5cl de ginebra Hendrick's. Justo después añadimos las dos rodajas de pepino y la tónica Fentimans. Esta última la añadimos con mucha suavidad y lo más cerca de los hielos que sea posible para conservar todo el aroma y sabor de la tónica (podéis ayudaros de una cucharilla de gintonic para verter la tónica).</parrafo>
+            <parrafo>El toque final será añadir dos o tres gotas de Bitter Truth Rose Water, que le dará a nuestro gintonic un toque floral sorprendente, fresco y muy agradable. </parrafo>
+        </elaboracion>
+    </cubata>
+</gintonic>

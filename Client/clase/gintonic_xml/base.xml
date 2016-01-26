@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gintonic>
+    <ginebra></ginebra>
+    <descripcion></descripcion>
+    <img></img>
+    <cubata>
+        <ingredientes>
+            <ingrediente></ingrediente>
+            <ingrediente></ingrediente>
+        </ingredientes>
+        <elaboracion>
+            <parrafo></parrafo>
+            <parrafo></parrafo>
+        </elaboracion>
+    </cubata>
+</gintonic>
