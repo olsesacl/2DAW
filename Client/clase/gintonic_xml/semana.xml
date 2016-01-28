@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gintonic>
+    <ginebra>Gintonic Santamanía London Dry Gin</ginebra>
+    <descripcion>Santamanía es una de las últimas ginebras españolas en aparecer en el mercado. Elaborada a partir de alcohol de uva, destaca su entrada ligeramente dulce en boca y su suavidad y frescura con notas cítricas y florales. Se recomienda su servicio con el simple acompañamiento de cortezas de cítricos y un toque de Angostura.</descripcion>
+    <img>perfect-serve-santamania.jpg</img>
+    <cubata>
+        <ingredientes>
+            <ingrediente>Hielo</ingrediente>
+            <ingrediente>Angostura</ingrediente>
+            <ingrediente>Piel de limón</ingrediente>
+            <ingrediente>Piel de lima</ingrediente>
+            <ingrediente>5cl Santamanía London Dry Gin</ingrediente>
+            <ingrediente>Tónica Premium</ingrediente>
+        </ingredientes>
+        <elaboracion>
+            <parrafo>Para preparar el "perfect serve" de Santamanía London Dry gin, empezaremos perfumando la copa con un par de gotas de Angostura y añadiremos el hielo removiéndolo hasta tener la copa a la temperatura deseada. </parrafo>
+            <parrafo>Eliminamos el exceso de líquido y servimos los 5cl. de Santamanía London Dry Gin. Después añadiremos una tónica premium con suavidad para intentar conservar al máximo las propiedades de la tónica (servirla lo más cerca del hielo posible).</parrafo>
+            <parrafo>Finalmente sólo nos queda añadir las cortezas de cítricos seleccionadas, lima y limón. Las añadiremos presionándolas ligeramente encima de la copa antes de añadirlas. </parrafo>
+        </elaboracion>
+    </cubata>
+</gintonic>
