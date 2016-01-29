@@ -11,10 +11,17 @@ window.onload = function(){
     var envio = document.getElementById("enviar");
     envio.addEventListener("click",carga_datos, false);
 
+    var submit = document.getElementsByTagName("form");
+    submit[0].addEventListener("submit", function(evt){ evt.preventDefault(); return false; },false);
+
     //ponemos en recurso la url de la pagina actual
     var recurso = document.getElementById("recurso");
     recurso.value = document.URL;
 };
+
+function nosubmit(){
+    return false;
+}
 
 
 function carga_datos(){
