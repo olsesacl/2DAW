@@ -34,8 +34,10 @@
 			}
 
 			peticion_http.send(parameters);
+			var disponibilidad = document.getElementById("disponibilidad");
 
-			document.getElementById("disponibilidad").innerHTML = "Haciendo comprobacion...";
+			disponibilidad.style.color = "";
+			disponibilidad.innerHTML = "Haciendo comprobacion...";
 		}
 	}
 
@@ -52,10 +54,15 @@
 		if(peticion_http.readyState == READY_STATE_COMPLETE) {
 			if(peticion_http.status == 200) {
 				//alert(peticion_http.responseText);
+
+				var disponibilidad = document.getElementById("disponibilidad");
+
 				if(peticion_http.responseText == "no"){
-					document.getElementById("disponibilidad").innerHTML = "No hay disponibilidad";
+					disponibilidad.style.color = "red";
+					disponibilidad.innerHTML = "No hay disponibilidad";
 				} else {
-					document.getElementById("disponibilidad").innerHTML = "Si hay disponibilidad";
+					disponibilidad.style.color = "green";
+					disponibilidad.innerHTML = "Si hay disponibilidad";
 				}
 			}
 		}
@@ -74,7 +81,7 @@
 	<a id="comprobar" href="#">Comprobar disponibilidad...</a>
 </form>
 
-<div id="disponibilidad"></div>
+<div id="disponibilidad" style="margin:5px"></div>
 
 </body>
 </html>
