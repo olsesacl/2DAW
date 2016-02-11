@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Simple Times</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" language="javascript">
+
+        var READY_STATE_UNINITIALIZED=0;
+        var READY_STATE_LOADING=1;
+        var READY_STATE_LOADED=2;
+        var READY_STATE_INTERACTIVE=3;
+        var READY_STATE_COMPLETE=4;
+        var listaProductos = [];
+        var peticion_http;
+
+        var peticionHttp = null;
+
+        function inicializa_xhr() {
+
+            if(window.XMLHttpRequest) {
+                return new XMLHttpRequest();
+            }
+            else if(window.ActiveXObject) {
+                return new ActiveXObject("Microsoft.XMLHTTP");
+            }
+        }
+
+        //petiicion
+        function cargaProvincias(){
+            if(peticionHttp.readyState == 4) {
+                if(peticionHttp.status == 200) {
+
+                    var lista = document.getElementById("provincia");
+                    //Pedimos el archivo en texto plano
+                    var respuesta_json = peticionHttp.responseText;
+                    //Convertimos el archivo en JSON
+                    var provincia = eval("("+respuesta_json+")");
+
+                    console.log(provincia);
+
+                    for(var codigo in provincia){
+                        lista.innerHTML+="<option value=\""+codigo+"\">"+provincia[codigo]+"</option>";
+                    }
+                }
+            }
+        }
+
+        //Peticion
+        function cargarMunicipios(){
+
+            var lista = document.getElementById("provincia");
+            var provincia = lista.options[lista.selectedIndex].value;
+            if(!isNaN(provincia)) {
+                peticionHttp = inicializa_xhr();
+                if (peticionHttp) {
+                    // Preparamos la funcion de respuesta
+                    peticionHttp.onreadystatechange = muestraMunicipios;
+                    // Realizamos la peticion HTTP (Si mandamos algo POST , si no mandamos GET)
+                    peticionHttp.open("POST", "cargaMunicipiosJSON.php?nocache=" + Math.random(), true);
+                    // Pedimos la cabecera
+                    peticionHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    //Enviamos por URL los parametros que necesitemos
+                    peticionHttp.send("provincia=" + provincia);
+                }
+            }
+        }
+
+        //Abrimos la ventana donde contendra la factura
+        function abrirVentana(){
+
+            var ventana=window.open("","Productos","resizable=no");
+            var linea = "";
+            for(var i =0 ; i<listaProductos.length; i++) {
+                linea += listaProductos[i]+"<br>";
+            }
+
+            ventana.document.write(linea);
+
+        }
+
+        //Peticion
+        function muestraMunicipios(){
+            if(peticionHttp.readyState == 4) {
+                if(peticionHttp.status == 200) {
+                    var lista = document.getElementById("municipio");
+                    lista.innerHTML="";
+                    //Pedimos el archivo en texto plano
+                    var respuesta_json = peticionHttp.responseText;
+                    //Convertimos el archivo en JSON
+                    var municipio = eval("("+respuesta_json+")");
+                    console.log(municipio);
+
+
+                    for(var codigo in municipio){
+
+                        lista.innerHTML+="<option>"+municipio[codigo]+"</option>";
+
+                    }
+
+                    //Una vez cargado el select , llamamos a un metodo para ir cogiendo datos del select
+                    lista.addEventListener("change",cogerDatos);
+
+
+                }
+            }
+        }
+
+        function cogerDatos(){
+
+            var lista = document.getElementById("municipio");
+            var producto = lista.options[lista.selectedIndex].value;
+
+            listaProductos.push(producto);
+
+            console.log(listaProductos);
+
+            //Cuando apretemos el boton , llamamos al metodo para abrir la ventana
+            document.getElementById("btn").addEventListener("click",abrirVentana);
+
+
+        }
+
+        function cargaContenido(nombre) {
+            peticion_http = inicializa_xhr();
+
+            if(peticion_http) {
+                peticion_http.onreadystatechange = muestraContenido;
+                peticion_http.open("GET", "./"+nombre+"?nocache="+Math.random(), true);
+                peticion_http.send(null);
+            }
+        }
+
+        function inicializa_xhr() {
+            if(window.XMLHttpRequest) {
+                return new XMLHttpRequest();
+            }
+            else if(window.ActiveXObject) {
+                return new ActiveXObject("Microsoft.XMLHTTP");
+            }
+        }
+
+        //Aqui cargara e imprimira el select y cargara los datos del select
+        function muestraContenido() {
+
+            if(peticion_http.readyState == READY_STATE_COMPLETE) {
+                if(peticion_http.status == 200) {
+                    var div = document.getElementById("content");
+                    div.innerHTML=peticion_http.responseText;
+
+                    //Cuando cargue la pagina , carga el 1 select
+                    peticionHttp=inicializa_xhr();
+
+                    if(peticionHttp){
+                        // Preparar la funcion de respuesta
+                        peticionHttp.onreadystatechange = cargaProvincias;
+                        // Realizar peticion HTTP
+                        peticionHttp.open('GET', './cargaProvinciasJSON.php?nocache=' + Math.random(), true);
+                        //No enviamos nada por URL
+                        peticionHttp.send(null);
+
+                    }
+
+                    //Cuando note un cambio carga el 2 select
+                    document.getElementById("provincia").addEventListener("change",cargarMunicipios);
+
+                }
+            }
+        }
+
+        function descargaArchivo(fichero) {
+            // Obtener la instancia del objeto XMLHttpRequest
+            if (window.XMLHttpRequest) {
+                peticionHttp = new XMLHttpRequest();
+            }
+            else if (window.ActiveXObject) {
+                peticionHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            // Preparar la funcion de respuesta
+            peticionHttp.onreadystatechange = muestraContenidoXML;
+
+            // Realizar peticion HTTP
+            peticionHttp.open('GET', './' + fichero+"?nocache="+Math.random(), true);
+            peticionHttp.send(null);
+
+        }
+
+
+        function muestraContenidoXML() {
+            var div = document.getElementById("content");
+
+            div.innerHTML="";
+
+            if(peticionHttp.readyState == 4) {
+                if(peticionHttp.status == 200) {
+
+                    //Creamos el objeto de tipo documento XML
+                    var documentoXml = peticionHttp.responseXML;
+                    //Obtenemos la raíz del documento
+                    var root = documentoXml.getElementsByTagName("gin_tonic")[0];
+
+                    var ginebra = root.getElementsByTagName("ginebra")[0].firstChild.nodeValue;
+
+                    var h2 = document.createElement("h2");
+                    var texto = document.createTextNode("Ginebra");
+                    h2.appendChild(texto);
+                    div.appendChild(h2);
+
+                    var p = document.createElement("p");
+                    var texto = document.createTextNode(ginebra);
+                    p.appendChild(texto);
+                    div.appendChild(p);
+
+
+
+                    var descripcion = root.getElementsByTagName("descripcion")[0].firstChild.nodeValue;
+
+                    var h2 = document.createElement("h2");
+                    var texto = document.createTextNode("Descripcion");
+                    h2.appendChild(texto);
+                    div.appendChild(h2);
+
+                    var p = document.createElement("p");
+                    var texto = document.createTextNode(descripcion);
+                    p.appendChild(texto);
+                    div.appendChild(p);
+
+
+                    var cubata = root.getElementsByTagName("cubata")[0];
+                    var ingredientes = cubata.getElementsByTagName("ingredientes")[0];
+                    var ingrediente = ingredientes.getElementsByTagName("ingrediente");
+
+
+                    var h2 = document.createElement("h2");
+                    var texto = document.createTextNode("Ingredientes");
+                    h2.appendChild(texto);
+                    div.appendChild(h2);
+
+                    var ul = document.createElement("ul");
+
+                    //Recorremos todos los elementos Libro del documento
+                    for(var i = 0; i < ingrediente.length; i++){
+
+                        var li = document.createElement("li");
+                        var texto = document.createTextNode(ingrediente[i].firstChild.nodeValue);
+                        li.appendChild(texto);
+                        ul.appendChild(li);
+
+                    }
+
+
+                    div.appendChild(ul);
+
+
+                    var elaboracion = cubata.getElementsByTagName("elaboracion")[0];
+                    var parrafo = elaboracion.getElementsByTagName("parrafo");
+
+
+                    var h2 = document.createElement("h2");
+                    var texto = document.createTextNode("Elaboracion");
+
+                    h2.appendChild(texto);
+                    div.appendChild(h2);
+
+                    var ul = document.createElement("ul");
+                    for(var i = 0; i < parrafo.length; i++){
+
+                        var li = document.createElement("li");
+                        var texto = document.createTextNode(parrafo[i].firstChild.nodeValue);
+                        li.appendChild(texto);
+                        ul.appendChild(li);
+
+                    }
+
+                    div.appendChild(ul);
+
+                }
+
+
+            }
+
+        }
+
+
+        window.onload=cargaContenido("gintonic1.html");
+
+    </script>
+</head>
+<body>
+<div id="main_container">
+    <div id="header">
+        <h1>Simple Times</h1>
+    </div>
+    <div id="navigation">
+        <a onclick="cargaContenido('gintonic1.html')">HTML</a>
+        <a onclick="descargaArchivo('gintonic1.xml')">XML</a>
+        <a onclick="cargaContenido('ciudades.html')">Lista</a>
+ </div>
+
+    <div id="content">
+
+    </div>
+    <div id="footer">&copy; 2006 <a href="mailto:youremailhere@provider.com">Your Name Here</a> | Design By <a href="http://www.zilladesigns.net">Jeremy D.</a> </div>
+</div>
+</body>
+</html>

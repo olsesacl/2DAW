@@ -1,0 +1,130 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <title>Ejercicio 16 - Listas desplegables encadenadas</title>
+
+    <script type="text/javascript">
+
+
+        var peticionHttp = null;
+        function inicializa_xhr() {
+            if (window.XMLHttpRequest) {
+                return new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                return new ActiveXObject("Microsoft.XMLHTTP");
+            }
+        }
+
+        function muestraProvincias() {
+
+            if (peticionHttp.readyState == 4) {
+                if (peticionHttp.status == 200) {
+
+                    //Creamos el objeto de tipo documento XML
+                    var documentoXml = peticionHttp.responseXML;
+                    //Obtenemos la raíz del documento
+                    var escribirProvincia = document.getElementById("provincia");
+                    var provincias = documentoXml.getElementsByTagName("provincias")[0];
+
+                    var provincia = provincias.getElementsByTagName("provincia");
+
+                    for (var i = 0; i < provincia.length; i++) {
+
+                        var codigo = provincia[i].getElementsByTagName("codigo")[0].firstChild.nodeValue;
+                        var nombre = provincia[i].getElementsByTagName("nombre")[0].firstChild.nodeValue;
+
+                        escribirProvincia.innerHTML += "<option value='"+codigo+"'>" + nombre + "</option>";
+                    }
+
+                }
+            }
+        }
+
+
+        function cargaMunicipios() {
+
+           var provincia = document.getElementById("provincia");
+            var provinciaSeleccionada = provincia.options[provincia.selectedIndex].value;
+
+            if (provinciaSeleccionada) {
+                peticionHttp = inicializa_xhr();
+                if (peticionHttp) {
+
+                    // Preparar la funcion de respuesta
+                    peticionHttp.onreadystatechange = muestraMunicipios;
+                    // Realizar peticion HTTP
+                    peticionHttp.open("POST", "http://localhost/ajax/ejercicios_librosweb/cargaMunicipiosXML.php?nocache=" + Math.random(), true);
+
+                    peticionHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    peticionHttp.send("provincia=" + provinciaSeleccionada);
+                }
+            }
+
+
+
+
+
+        }
+
+
+        function muestraMunicipios() {
+
+           if (peticionHttp.readyState == 4) {
+                if (peticionHttp.status == 200) {
+
+                    var escribirMunicipio = document.getElementById("municipio");
+                    //Creamos el objeto de tipo documento XML
+                    var documentoXml = peticionHttp.responseXML;
+                    //Obtenemos la raíz del documento
+
+                    var municipios = documentoXml.getElementsByTagName("municipios")[0];
+                    var municipio = municipios.getElementsByTagName("municipio");
+
+                    escribirMunicipio.options.length = 0;
+
+                    for (var i = 0; i < municipio.length; i++) {
+
+                        var codigo = municipio[i].getElementsByTagName("codigo")[0].firstChild.nodeValue;
+                        var nombre = municipio[i].getElementsByTagName("nombre")[0].firstChild.nodeValue;
+
+                        escribirMunicipio.innerHTML += "<option>" + nombre + "</option>";
+                    }
+
+                }
+            }
+
+        }
+
+        window.onload = function () {
+            peticionHttp = inicializa_xhr();
+
+            if (peticionHttp) {
+                // Preparar la funcion de respuesta
+                peticionHttp.onreadystatechange = muestraProvincias;
+                // Realizar peticion HTTP
+                peticionHttp.open("GET", "http://localhost/ajax/ejercicios_librosweb/cargaProvinciasXML.php?nocache=" + Math.random(), true);
+                peticionHttp.send(null);
+            }
+            document.getElementById("provincia").onchange = cargaMunicipios;
+        }
+
+    </script>
+</head>
+
+<body>
+<h1>Listas desplegables encadenadas</h1>
+
+<form>
+    <label>Provincia</label>
+    <select id="provincia">
+        <option>Cargando...</option>
+    </select>
+    <br/><br/>
+    <label>Municipio</label>
+    <select id="municipio">
+        <option>- selecciona una provincia -</option>
+    </select>
+</form>
+
+</body>
+</html>
