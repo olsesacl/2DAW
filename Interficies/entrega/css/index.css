@@ -9,12 +9,11 @@ Fonts
     font-style: normal; }
 
 body{
-    margin:0;
     width: 995px;
     margin:auto;
     border:1px solid #9D9FA0;
     padding: 0 5px;
-    font-family: arial;
+    font-family: Arial, Helvetica, sans-serif;
 
     -webkit-box-shadow: 0 0 8px 0 rgba(0,0,0,0.95);
     -moz-box-shadow: 0 0 8px 0 rgba(0,0,0,0.95);
@@ -46,7 +45,7 @@ header{
     padding: 0 25px 0 20px;
     height: 45px;
     background: #fbfbfb;
-    margin-right: 0px;
+    margin-right: 0;
     border: 1px solid #d6d4d4;
     align-items: center;
 }
@@ -61,13 +60,13 @@ header{
 #search button:after{
     content: "\f002";
     display: block;
-    font-family: "FontAwesome";
+    font-family: "FontAwesome", Helvetica, sans-serif;
     font-size: 17px;
     width: 100%;
     text-align: center;
 }
 #carrito{
-    width: 25%;
+    width: 250px;
 }
 #carrito > span:first-child {
     padding: 7px 10px 14px 16px;
@@ -85,7 +84,7 @@ header{
 }
 #carrito > span:first-child:before {
     content: "\f07a";
-    font-family: "FontAwesome";
+    font-family: "FontAwesome", Helvetica, sans-serif;
     display: inline-block;
     font-size: 23px;
     line-height: 23px;
@@ -94,7 +93,7 @@ header{
 }
 #carrito > span:first-child:after {
     content: "\f0d7";
-    font-family: "FontAwesome";
+    font-family: "FontAwesome", Helvetica, sans-serif;
     display: inline-block;
     float: right;
     font-size: 18px;
@@ -102,7 +101,50 @@ header{
     padding: 6px 0 0 0;
 }
 #carrito:hover > span:first-child:after{
-    content: "\f0d8" !important;
+    content: "\f0d8";
+}
+#carrito_extendido img {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s linear;
+    transition-delay: 2s;
+}
+#carrito_extendido{
+    background: #484848;
+    width: 250px;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.8s linear;
+    transition-delay: 2s;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+#carrito:hover > #carrito_extendido, #carrito:hover > #carrito_extendido img{
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+
+}
+.products dt{
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    color: #9c9b9b;
+}
+.products .product_name span{
+    color: #fff
+}
+.products .product_name{
+    margin-bottom: 10px;
+}
+.eliminar_producto:before{
+    display: inline-block;
+    content: "\f057";
+    font-family: "FontAwesome";
+    font-size: 18px;
+    line-height: 18px;
+    color: #fff;
 }
 #header_logo{
     width: 25%;
@@ -111,3 +153,4 @@ header{
     width:100%;
     height:auto;
 }
+
