@@ -7,7 +7,9 @@ Fonts
     src: url("fonts/fontawesome-webfont.eot") format("embedded-opentype"), url("fonts/fontawesome-webfont.woff2?v=4.3.0") format("woff2"), url("fonts/fontawesome-webfont.woff?v=4.3.0") format("woff"), url("fonts/fontawesome-webfont.ttf?v=4.3.0") format("truetype"), url("fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular") format("svg");
     font-weight: normal;
     font-style: normal; }
-
+a{
+    text-decoration: none;
+}
 body{
     width: 995px;
     margin:auto;
@@ -102,6 +104,7 @@ header{
 }
 #carrito:hover > span:first-child:after{
     content: "\f0d8";
+
 }
 #carrito_extendido img {
     visibility: hidden;
@@ -117,35 +120,77 @@ header{
     opacity: 0;
     transition: visibility 0s, opacity 0.8s linear;
     transition-delay: 2s;
-    padding: 0 10px;
     box-sizing: border-box;
+}
+#carrito_extendido > * > * > *{
+    padding-left: 15px;
+    padding-right: 15px;
 }
 #carrito:hover > #carrito_extendido, #carrito:hover > #carrito_extendido img{
     visibility: visible;
     opacity: 1;
     transition-delay: 0s;
-
+}
+.products{
+    margin:0;
 }
 .products dt{
     display: flex;
     justify-content: space-between;
     font-size: 15px;
-    color: #9c9b9b;
+    padding: 10px 0;
+    background: url('../img/cart-shadow.png') repeat-x top;
 }
-.products .product_name span{
+.product dl:first-child{
+    background-image:none;
+}
+.products .product_name span, .products .product_name span a{
     color: #fff
+}
+.products .product_name span:hover, .products .product_name span a:hover, .eliminar_producto:hover:before{
+    color: #9c9b9b;
 }
 .products .product_name{
     margin-bottom: 10px;
 }
+.eliminar_producto{
+    height: 18px;
+}
 .eliminar_producto:before{
     display: inline-block;
     content: "\f057";
-    font-family: "FontAwesome";
+    font-family: "FontAwesome", Helvetica, sans-serif;
     font-size: 18px;
     line-height: 18px;
     color: #fff;
+    cursor: pointer;
 }
+#precios_carrito{
+    background: url('../img/cart-shadow.png') repeat-x #3d3d3d;
+    color: #fff;
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-around;
+}
+#confirm_carrito{
+    background: url('../img/cart-shadow.png') repeat-x #333;
+    padding: 20px;
+}
+#confirm_carrito div{
+    padding: 7px 0;
+    border: solid 1px #63c473;
+    background: #43b155;
+    font: bold 13px/17px Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.24);
+}
+#confirm_carrito div:after {
+    content: "";
+    font: normal normal normal 14px/1 FontAwesome;
+    margin-left: 5px;
+}
+
 #header_logo{
     width: 25%;
 }
