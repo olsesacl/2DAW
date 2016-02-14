@@ -218,7 +218,7 @@ header{
     margin: 0;
     padding: 0;
     line-height: 1;
-    display: flex;
+    display: block;
     zoom: 1;
 }
 #cssmenu ul:after {
@@ -306,7 +306,7 @@ header{
     display: none;
 }
 #cssmenu .right{
-    margin-left: auto;
+    float: right;
 }
 @media screen and (max-width: 768px) {
     #cssmenu ul li {
@@ -329,6 +329,9 @@ header{
     }
     #cssmenu ul li a:before {
         display: none;
+    }
+    #cssmenu .right{
+        float: none;
     }
 }
 
