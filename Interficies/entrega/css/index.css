@@ -121,7 +121,7 @@ header{
     transition: visibility 0s, opacity 0.8s linear;
     transition-delay: 2s;
     box-sizing: border-box;
-    z-index: 100;
+    z-index: 10001;
 }
 #carrito_extendido > * > * > *{
     padding-left: 15px;
