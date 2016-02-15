@@ -194,7 +194,9 @@ header{
 }
 
 #header_logo{
-    width: 25%;
+    /*width: 25%;*/
+    width: 350px;
+    height: 100px;
 }
 #header_logo img{
     width:100%;
