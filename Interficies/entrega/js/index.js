@@ -11,7 +11,7 @@ window.onload = function(){
  */
 
 var start_width = 12;           // starting width of each branch
-var frame_time = 20;            // milliseconds per frame
+var frame_time = 40;            // milliseconds per frame
 var straighten_factor = 0.85;   // value from 0 to 1, factor applied to direction_offset every frame
 var curviness = 0.55;            // amount of random direction change each frame
 

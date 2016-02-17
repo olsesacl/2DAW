@@ -469,17 +469,12 @@ footer h4{
     min-width: 260px;
     /* max-width: 640px; */
     margin: auto;
-    /* border: 12px rgba(255,255,240,1) solid; */
-    -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
-    -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
-    box-shadow: 0px 0px 5px rgba(0,0,0,.8);
-    /* margin-top: 20px; */
     position: relative;
 }
 
 #slideshow-inner {
     width: 100%;
-    height: 100%;
+    height: 300px;
     background-color: rgb(0,0,0);
     overflow: hidden;
     position: relative;
@@ -502,7 +497,7 @@ footer h4{
 
 #slideshow-inner>ul>li {
     width: 20%;
-    height: 320px;
+    height: 300px;
     float: left;
     position: relative;
 }
@@ -523,7 +518,7 @@ footer h4{
 #slideshow-wrap label:not(.arrows):not(.show-description-label) {
     position: absolute;
     left: 50%;
-    bottom: -45px;
+    bottom: 2px;
     z-index: 100;
     width: 12px;
     height: 12px;
@@ -541,7 +536,7 @@ footer h4{
     transition: background-color .2s;
 }
 
-#slideshow-wrap label:not(.arrows):active { bottom: -46px }
+#slideshow-wrap label:not(.arrows):active { bottom: 1px }
 
 #slideshow-wrap input[type=radio]#button-1:checked~label[for=button-1] { background-color: rgba(100,100,100,1) }
 
@@ -623,11 +618,11 @@ footer h4{
 
 #slideshow-wrap .description {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 260px;
+    bottom: 0;
+    width: 100%;
     font-family: 'Yanone Kaffeesatz';
     z-index: 500;
+    vertical-align: bottom;
 }
 
 #slideshow-wrap .description input { visibility: hidden }
@@ -660,17 +655,104 @@ footer h4{
 
 #slideshow-wrap .description .description-text {
     background-color: rgba(255,255,230,.5);
-    padding-left: 45px;
-    padding-top: 25px;
-    padding-right: 15px;
-    padding-bottom: 15px;
     position: relative;
-    top: -35px;
-    z-index: 4;
+    z-index: 505;
+    padding: 0 5px 5px 5px;
     opacity: 0;
     -webkit-transition: opacity .2s;
     -moz-transition: opacity .2s;
     -o-transition: opacity .2s;
     transition: opacity .2s;
+    transition-delay: 1s;
     color: rgb(20,20,20);
+}
+#slideshow-wrap .description .description-text p{
+    margin-bottom:0;
+}
+#slideshow-inner:hover .description > .description-text, #slideshow-inner .description:hover > .description-text{
+    opacity: 1;
+    -webkit-transition: opacity .8s;
+    -moz-transition: opacity .8s;
+    -o-transition: opacity .8s;
+    transition: opacity .8s;
+
+}
+
+/*PORTADA LISTADO ARTICULOS */
+#productos{
+    margin-top: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+.producto{
+    margin: 9px 9px 85px 9px;
+}
+.producto:hover{
+    -moz-box-shadow: rgba(0, 0, 0, 0.17) 0 0 13px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.17) 0 0 13px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0 0 13px;
+}
+.producto img{
+    width: 250px;
+}
+.producto .imagen{
+    border: 1px solid #d6d4d4;
+    margin-bottom: 13px;
+    width: 250px;
+    position: relative;
+}
+.producto .datos h5{
+    font-size: 17px;
+    color: #3a3939;
+    font-family: sans-serif;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 9px;
+    margin-top: 26px;
+}
+.producto .imagen .price{
+    background-color: rgba(47, 47, 47, 0.9);
+    padding:9px 0;
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.producto:hover .imagen .price{
+    display:flex;
+}
+.producto .imagen .price .product-price{
+    color: #fff;
+}
+.producto .price .product-price{
+    font: 600 21px/26px "Open Sans", sans-serif;
+    color: #333;
+}
+.producto .price .old-price{
+    font-size: 17px;
+    color: #6f6f6f;
+    text-decoration: line-through;
+}
+.producto .price .price-percent-reduction{
+    background: #f13340;
+    border: 1px solid #d02a2c;
+    font: 600 21px/24px "Open Sans", sans-serif;
+    color: #fff;
+    padding: 0 5px 0 3px;
+}
+#productos .producto .price{
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    padding-bottom: 9px;
+}
+#productos .producto .datos .price{
+    display: -webkit-flex;
+    display: flex;
 }
