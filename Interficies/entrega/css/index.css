@@ -755,3 +755,22 @@ footer h4{
     display: -webkit-flex;
     display: flex;
 }
+
+#productos .producto .datos .add_cart span{
+    font: 700 17px/21px Arial, Helvetica, sans-serif;
+    color: #fff;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    border: 1px solid;
+    border-color: #0079b6 #006fa8 #012740 #006fa8;
+    opacity: 0.5;
+    display: inline-flex;
+}
+#productos .producto .datos .add_cart span:hover{
+    opacity: 0.9;
+}
+#productos .producto .datos .add_cart span span {
+    background: linear-gradient(to bottom, #009ad0 0%, #007ab7 100%);
+    background-repeat: repeat-x;
+    padding: 10px 14px;
+}
