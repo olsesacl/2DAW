@@ -9,7 +9,6 @@
 <body>
 <header>
     <canvas id="header_logo">
-
     </canvas>
     <div id="search">
         <form method="get">
@@ -29,7 +28,7 @@
                 <dl class="products">
                     <dt>
                         <a href="./producto.html"><img alt="Vestido verano" src="img/p/printed-summer-dress.jpg"
-                                                     width="80"/></a>
+                                                       width="80"/></a>
                     <div>
                         <div class="product_name">
                             1x<span title="Vestido verano"><a href="./producto.html">Vestido vera...</a></span>
@@ -41,7 +40,7 @@
                     <dd></dd>
                     <dt>
                         <a href="./producto.html"><img alt="Vestido verano" src="img/p/printed-summer-dress.jpg"
-                                                     width="80"/></a>
+                                                       width="80"/></a>
                     <div>
                         <div class="product_name">
                             1x<span title="Vestido verano"><a href="./producto.html">Vestido vera...</a></span>
@@ -67,56 +66,58 @@
 </header>
 <nav id='cssmenu'>
     <ul>
-        <li class=''><a href='./index.html'><span>Inicio</span></a></li>
+        <li class='active'><a href='./index.html'><span>Inicio</span></a></li>
         <li><a href='./producto.html'><span>Producto</span></a></li>
         <li><a href='./categoria.html'><span>Categoria1</span></a></li>
         <li class='last'><a href='./categoria.html'><span>Categoria2</span></a></li>
         <div class="right">
-            <li class="active"><a href="registro.html">Login / Registrarse</a></li>
+            <li class=""><a href="./registro.html">Login / Registrarse</a></li>
             <li class=""><a href="./contactar.html">Contactar</a></li>
         </div>
     </ul>
 </nav>
-<article id="registro">
-    <h1>Autentificación</h1>
-    <div class="flex">
-        <div>
-            <form action="#" method="post" id="form_registro">
-                <h3>Crear una cuenta</h3>
-                <div>
-                    <p>Escriba su correo electrónico para crear su cuenta</p>
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" name="email" id="email" value="" required placeholder="usuario@dominio.com" onkeyup="this.setAttribute('value', this.value);">
-
-                    <div class="submit">
-                        <button type="submit">
-							<span class="icon-user">
-								Crear una cuenta
-							</span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div>
-            <form action="#" method="post" id="form_nueva_cuenta">
-                <h3>¿Ya está registrado?</h3>
-                <div>
-                    <label for="email2">Correo electrónico</label>
-                    <input type="email" name="email" id="email2" value="" required placeholder="usuario@dominio.com" onkeyup="this.setAttribute('value', this.value);">
-                    <label for="email2">Contraseña</label>
-                    <input type="password" name="pass" id="pass" value="" required onkeyup="this.setAttribute('value', this.value);">
-
-                    <div class="submit">
-                        <button type="submit">
-							<span class="icon-lock">
-								Iniciar sesión
-							</span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
+<article id="cesta">
+    <h1>Productos en su carrito</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Precio unitario</th>
+                <th>Cant.</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2">Total</td>
+                <td colspan="1">61.00€</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td><img src="./img/p/printed-summer-dress.jpg" alt="producto" width="100" height="100"></td>
+                <td>Vestido verano</td>
+                <td>30.50€</td>
+                <td>1</td>
+                <td>30.50€</td>
+            </tr>
+            <tr>
+                <td><img src="./img/p/printed-summer-dress.jpg" alt="producto" width="100" height="100"></td>
+                <td>Vestido verano</td>
+                <td>30.50€</td>
+                <td>1</td>
+                <td>30.50€</td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="compra">
+        <button type="submit">
+            <span class="icon-chevron-right">
+                Enviar
+            </span>
+        </button>
     </div>
 </article>
 <footer>

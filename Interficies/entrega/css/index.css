@@ -28,7 +28,7 @@ body{
     border-bottom-left-radius: 10px;
 
 }
-header{
+body > header{
     display: -webkit-flex;
     display: flex;
     -webkit-align-items: center;
@@ -133,6 +133,7 @@ header{
 }
 .products{
     margin:0;
+    color: #9c9b9b;
 }
 .products dt{
     display: flex;
@@ -260,6 +261,9 @@ header{
 }
 #cssmenu ul li a:hover {
     color: #43b155;
+}
+#cssmenu ul li a:active{
+    top:1px;
 }
 #cssmenu ul li a:hover:before {
     width: 100%;
@@ -812,6 +816,10 @@ footer h4{
     background: linear-gradient(to bottom, #007ab7 0%, #009ad0 100%) repeat-x;
     border-color: #01314e #004b74 #0079b6 #004b74;
 }
+#productos .producto .datos .add_cart span:active{
+    top: 1px;
+    position: relative;
+}
 #productos .producto .datos .more span{
     font: 700 17px/21px Arial, Helvetica, sans-serif;
     color: #333;
@@ -825,6 +833,10 @@ footer h4{
 #productos .producto .datos .more span:hover{
     background: linear-gradient(to bottom, #ededed 0%, #f7f7f7 100%) repeat-x;
     border-color: #9e9e9e #9e9e9e #c8c8c8 #9e9e9e;
+}
+#productos .producto .datos .more span:active{
+    top: 1px;
+    position: relative;
 }
 #productos .producto .datos .links{
     display: none;
@@ -842,16 +854,16 @@ h1{
     font: 600 18px/22px "Open Sans", sans-serif;
     color: #555454;
     text-transform: uppercase;
-    padding: 0 0 17px 0;
-    margin-bottom: 30px;
+    padding: 0 6px 17px 5px;
+    margin: 15px;
     border-bottom: 1px solid #d6d4d4;
     overflow: hidden;
 }
 .flex{
     display: -webkit-flex;
     display: flex;
-    -webkit-align-items: center;
-    align-items: center;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
     -webkit-justify-content: space-around;
     justify-content: space-around;
     flex-flow: row wrap;
@@ -862,7 +874,7 @@ h1{
     padding-right: 15px;
     box-sizing: border-box;
 }
-#registro form{
+#registro form, #contacto form{
     background: #fbfbfb;
     border: 1px solid #d6d4d4;
     padding: 14px 18px 13px 20px;
@@ -870,7 +882,7 @@ h1{
     line-height: 23px;
     font-size: 13px;
 }
-#registro form h3{
+h3{
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
     text-transform: uppercase;
@@ -880,16 +892,18 @@ h1{
     line-height: normal;
     margin-bottom: 12px;
     border-bottom: 1px solid #d6d4d4;
-}
+}#contacto h3{
+    width: 100%;
+ }
 #registro form p{
     font-size: 13px;
     color: #777;
 }
-#registro form label{
+#registro form label, #contacto form label{
     color: #333;
     font-weight: bolder;
 }
-#registro form input{
+#registro form input, #contacto form input{
     max-width: 271px;
     display: block;
     width: 100%;
@@ -899,14 +913,177 @@ h1{
     padding: 0 5px;
     height: 27px;
     border: 1px solid #d6d4d4;
+    margin-bottom: 7px;
 }
-#registro form input:not([value=""]):not(:focus):invalid{
+#registro form input:not([value=""]):not(:focus):invalid, #contacto form input:not([value=""]):not(:focus):invalid{
     border: 1px solid #f13340;
     color: #f13340;
     background: url("../img/form-error.png") 98% 5px no-repeat #fff1f2;
 }
-#registro form input:not([value=""]):not(:focus):valid{
+#registro form input:not([value=""]):not(:focus):valid, #contacto form input:not([value=""]):not(:focus):valid{
     border: 1px solid #46a74e;
     color: #35b33f;
     background: url("../img/form-ok.png") 98% 5px no-repeat #ddf9e1;
+}
+#registro form .submit button, #contacto form .submit button, #cesta button{
+    margin-top: 15px;
+    font-size: 17px;
+    padding: 0;
+    color: #fff;
+    display: inline-block;
+    border-width: 1px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+}
+#registro form .submit button span, #contacto form .submit button span, #cesta button span{
+    display: inline-block;
+    padding: 10px 10px 10px 14px;
+}
+#compra{
+    margin: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+#form_registro .submit button{
+    border-color: #db8600 #d98305 #c86d26 #d98305;
+    background-image: linear-gradient(to bottom, #fdaa02, #fe9702);
+}
+#form_registro .submit button:hover{
+    background: #f89609;
+    border-color: #a6550c #ba6708 #db8600 #ba6708;
+}
+#form_registro .submit button:hover span{
+    border-color: #fec133;
+}
+#form_registro .submit button span{
+    border-color: #fec133 #febc33 #feb233 #febc33;
+    border-width: 1px;
+    border-style: solid;
+}
+#form_nueva_cuenta .submit button, #contacto .submit button, #cesta button{
+    border-color: #399a49 #247f32 #1a6d27 #399a49;
+    background-image: linear-gradient(to bottom, #43b754 0%, #42ac52 100%);
+}
+#form_nueva_cuenta .submit button:hover, #contacto .submit button:hover, #cesta button:hover{
+    border-color: #196f28 #399a49 #399a49 #258033;
+    background-image: linear-gradient(to bottom, #3aa04c 0%, #3aa04a 100%);
+}
+#form_nueva_cuenta .submit button:hover span, #contacto .submit button:hover span, #cesta button:hover span{
+    background: #43b754;
+}
+#form_nueva_cuenta .submit button span, #contacto .submit button span, #cesta button span{
+    border-color: #399a49 #247f32 #1a6d27 #399a49;
+    border-width: 1px;
+    border-style: solid;
+}
+.icon-user:before {
+    content: "";
+    font-family: "FontAwesome", Helvetica, sans-serif;
+    font-size: 24px;
+}
+.icon-lock:before {
+    content: "";
+    font-family: "FontAwesome", Helvetica, sans-serif;
+    font-size: 24px;
+}
+
+#registro form .submit button:active, #contacto form .submit button:active{
+    top: 1px;
+    position: relative;
+}
+/*CONTACTO*/
+#contacto form{
+    margin: 30px;
+    background: url("../img/contact-form.png") repeat-x #fff;
+    -moz-box-shadow: rgba(0, 0, 0, 0.17) 0px 5px 13px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.17) 0px 5px 13px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px 5px 13px;
+    border: 0;
+}
+textarea{
+    display: block;
+    width: 650px;
+    font-size: 13px;
+    color: #9c9b9b;
+    vertical-align: middle;
+    padding: 0 5px;
+    height: 200px;
+    border: 1px solid #d6d4d4;
+    margin-bottom: 7px;
+    resize: none;
+}
+.icon-chevron-right:after{
+    content: "";
+    font-family: "FontAwesome", Helvetica, sans-serif;
+    font-size: 24px;
+    vertical-align: middle;
+}
+/*CATEGORIA*/
+h5{
+    font-weight: bold;
+    color: #333;
+    margin: 0px 0 15px 30px;
+}
+#categoria .cat_desc{
+    position: absolute;
+    color: #d7d7d7;
+    line-height: 19px;
+    margin: 20px;
+}
+.cat_desc ~ img{
+    width: 100%;
+    max-height: 200px;
+}
+.category-name{
+    font: 40px "Open Sans", sans-serif;
+    color: #fff;
+}
+.subcategoria{
+    width: 145px;
+}
+.subcategory-img{
+    padding: 9px;
+    border: 1px solid #d6d4d4;
+}
+.subcategory-img:hover{
+    border: 5px solid #333;
+    padding: 5px;
+}
+.subcategoria h5{
+    color: #515151;
+    font: 600 18px/22px "Open Sans", sans-serif;
+    text-transform: uppercase;
+    margin: 9px;
+    text-align: center;
+}
+#categoria{
+    margin-bottom:25px;
+}
+/*CESTA*/
+#cesta table{
+    width: 970px;
+    margin: 15px;
+    border: 1px solid #d6d4d4;
+    text-align: center;
+    border-collapse: collapse;
+}
+#cesta th{
+    padding: 7px 8px 9px 8px;
+    background: #fbfbfb;
+    color: #333;
+    border: 1px solid #d6d4d4;
+}
+#cesta td{
+    border: 1px solid #d6d4d4;
+}
+#cesta tfoot td:first-child{
+    border:0;
+}
+#cesta td, #cesta th {
+    padding: 9px 10px;
+    text-align: center;
+}
+#cesta td img{
+    border: 1px solid #d6d4d4;
 }
