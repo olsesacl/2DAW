@@ -899,7 +899,7 @@ h3{
     color: #35b33f;
     background: url("../img/form-ok.png") 98% 5px no-repeat #ddf9e1;
 }
-#registro form .submit button, #contacto form .submit button, #cesta button{
+#registro form .submit button, #contacto form .submit button, #cesta button, #producto button{
     margin-top: 15px;
     font-size: 17px;
     padding: 0;
@@ -913,7 +913,7 @@ h3{
 #contacto .submit2{
     display: none;
 }
-#registro form .submit button span, #contacto form .submit button span, #cesta button span{
+#registro form .submit button span, #contacto form .submit button span, #cesta button span, #producto button span{
     display: inline-block;
     padding: 10px 10px 10px 14px;
 }
@@ -938,18 +938,18 @@ h3{
     border-width: 1px;
     border-style: solid;
 }
-#form_nueva_cuenta .submit button, #contacto .submit button, #cesta button{
+#form_nueva_cuenta .submit button, #contacto .submit button, #cesta button, #producto button{
     border-color: #399a49 #247f32 #1a6d27 #399a49;
     background-image: linear-gradient(to bottom, #43b754 0%, #42ac52 100%);
 }
-#form_nueva_cuenta .submit button:hover, #contacto .submit button:hover, #cesta button:hover{
+#form_nueva_cuenta .submit button:hover, #contacto .submit button:hover, #cesta button:hover, #producto button:hover{
     border-color: #196f28 #399a49 #399a49 #258033;
     background-image: linear-gradient(to bottom, #3aa04c 0%, #3aa04a 100%);
 }
-#form_nueva_cuenta .submit button:hover span, #contacto .submit button:hover span, #cesta button:hover span{
+#form_nueva_cuenta .submit button:hover span, #contacto .submit button:hover span, #cesta button:hover span, #producto button:hover span{
     background: #43b754;
 }
-#form_nueva_cuenta .submit button span, #contacto .submit button span, #cesta button span{
+#form_nueva_cuenta .submit button span, #contacto .submit button span, #cesta button span, #producto button span{
     border-color: #399a49 #247f32 #1a6d27 #399a49;
     border-width: 1px;
     border-style: solid;
@@ -964,8 +964,13 @@ h3{
     font-family: "FontAwesome", Helvetica, sans-serif;
     font-size: 24px;
 }
+.icon-cart:before {
+    content: "\f07a";
+    font-family: "FontAwesome", Helvetica, sans-serif;
+    font-size: 24px;
+}
 
-#registro form .submit button:active, #contacto form .submit button:active{
+#registro form .submit button:active, #contacto form .submit button:active, #producto button:active{
     top: 1px;
     position: relative;
 }
@@ -1064,6 +1069,66 @@ h5{
 #cesta td img{
     border: 1px solid #d6d4d4;
 }
+/*PRODUCTO*/
+#producto > div{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    flex-flow: column wrap;
+}
+#producto > div > div:first-child{
+    width: 950px;
+    margin:30px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+#producto > div > div:first-child > img{
+    border: 1px solid #dbdbdb;
+}
+#producto > div > div:first-child > img:hover{
+    -webkit-box-shadow: 0 0 8px 0 rgba(0,0,0,0.95);
+    -moz-box-shadow: 0 0 8px 0 rgba(0,0,0,0.95);
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.95);
+}
+#producto #precio{
+    background: #f6f6f6;
+    border: 1px solid #d2d0d0;
+    border-top: 1px solid #b0afaf;
+    border-bottom: 1px solid #b0afaf;
+    padding: 13px;
+}
+#producto #precio h1{
+    font-size: 40px;
+    padding-top: 10px;
+}
+
+#descripcion-producto{
+    width: 30%;
+}
+#descripcion-producto h1{
+    padding-bottom: 16px;
+    font-size: 20px;
+    color: #3a3939;
+    border: none;
+}
+#descripcion-producto p label{
+    color: #333;
+    font-weight: bold;
+    margin-right: 5px;
+}
+#descripcion-producto p, #descripcion-producto li{
+    font-size: 13px;
+    color: #777;
+    text-align: justify;
+}
 
 @media screen and (max-width: 768px) {
     #cssmenu ul li {
@@ -1127,6 +1192,4 @@ h5{
     #contacto .submit2{
         display: block;
     }
-
-
 }
