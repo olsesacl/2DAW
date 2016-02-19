@@ -1192,4 +1192,23 @@ h5{
     #contacto .submit2{
         display: block;
     }
+    #producto > div > div:first-child{
+        flex-flow: column wrap;
+        -webkit-align-items: center;
+        align-items: center;
+        width: 100%;
+
+    }
+    #producto > div > div:first-child > div{
+        width: 100%;
+
+    }
+    #producto #precio, #producto .submit{
+        text-align:  center;
+    }
+    #cesta table{
+        width: 95%;
+    }
+
+
 }
