@@ -1,0 +1,180 @@
+
+/*
+This design was created to be very simple and easy to edit for beginners. This is achieved by comments spread throughout the HTML file and the CSS that indicate where different parts of the design's code are located. If you have any questions, email me at toxicityj@gmail.com or head over to http://www.zilladesigns.net
+*/
+
+
+
+/*BODY*/
+body {
+    background-color:#A5BDD2;
+    font-family:"trebuchet ms" , arial, sans-serif;
+    color:#325878;
+}
+
+a {
+    color:#325878;
+    text-decoration:none;
+}
+
+a:hover {
+    color:#C2DFF3;
+}
+
+/*CONTAINER STYLES*/
+
+#main {
+    width:700px;
+    margin:auto;
+}
+
+#header {
+    background-image: url("./images/header.jpg");
+    width:100%;
+    height:265px;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:right;
+}
+
+#description {
+    width:195px;
+    border:1px #325878 solid;
+    margin:0px 5px 5px 0px;
+}
+
+#left {
+    width:205px;
+    float:left;
+    margin-top:20px;
+}
+
+#right {
+    width:481px;
+    float:right;
+    margin:20px 0px 0px 5px;
+    margin-top:20px;
+    border:1px #325878 solid;
+}
+
+#search {
+    width:205px;
+    border:1px #325878 solid;
+    margin:5px 0px 0px 0px;
+    text-align:right;
+}
+
+#copyright {
+    width:100%;
+    border:1px #325878 solid;
+    margin:5px 0px 0px 0px;
+    text-align:center;
+}
+
+
+/*TEXT STYLES*/
+
+h1 {
+    color:#C2DFF3;
+    font-size:35px;
+    padding-right:5px;
+}
+
+h2 {
+    font-size:24px;
+    padding-left:5px;
+    margin:0px;
+}
+
+p {
+    margin:2px 0 0 5px;
+}
+
+.description_text {
+    padding:5px;
+    text-align:justify;
+}
+
+.content {
+    padding:0px 5px 0px 5px;
+    text-align:justify;
+    color:#000000;
+}
+
+.copy {
+    font-size:10px;
+}
+
+/*NAVIGATION STYLES*/
+#navbuttons {
+    width:700px;
+    height:28px;
+    background-color:#517193;
+    text-align:center;
+}
+
+#navbuttons ul {
+    display:inline;
+    list-style:none;
+}
+
+#navbuttons li {
+    font-family:Tahoma, Arial, Helvetica, sans-serif;
+    display:inline;
+    background-color:#517193;
+    list-style:none;
+    float:left;
+    border-left:1px #325878 solid;
+    padding:0px 20px 0px 20px;
+    line-height:28px;
+}
+
+#navbuttons li a {
+    color:#88A4C0;
+    text-decoration:none;
+}
+#navbuttons li a:hover {
+    color:#C2DFF3;
+}
+
+#navbuttons li.first {
+    border-left:none;
+}
+
+#navbuttons li.last {
+    border-right:1px solid #325878;
+}
+
+/*MISC*/
+
+
+.searchbutton {
+    background-color:#517193;
+    border:#708DAE;
+    margin:0px 2px 2px 0px;
+    height:20px;
+    color:#88A4C0;
+}
+
+.searchbutton:hover {
+    color:#C2DFF3;
+}
+
+.searchbox {
+    width:195px;
+    margin:2px;
+    color:#C2DFF3;
+    background-color:#728FAF;
+}
+
+.red{
+    background:red;
+}
+.green{
+    background:green;
+}
+.font_super{
+    font-size: 50px;
+}
+.bold{
+    font-weight: bolder;
+}
