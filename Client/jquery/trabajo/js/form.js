@@ -19,17 +19,14 @@ $(function() {
             yearSuffix: ''
         };
         $.datepicker.setDefaults($.datepicker.regional['es']);
+        $('#form').prop('disabled', true);
+        $('#submit').click(validar);
     });
     $( "#fecha" ).datepicker();
 });
 
-window.onload=function() {
-    $('#form').submit(validar);
-    $('#submit').click(validar);
-};
 
 function validar(){
-    this.disabled=true;
 
     $('.validate_ko').remove();
 
@@ -42,7 +39,6 @@ function validar(){
     errors += validar_date();
     errors += validarEmail();
 
-    this.disabled=false;
     if(errors == 0){
         //alert('El formulario se va a enviar');
         return true;
@@ -55,12 +51,15 @@ function validar(){
 
 function validar_text(){
     var errors = 0;
+    $(this).attr("class","");
 
-    $('#form .text').each(function() {
+    $('#form input, #form textarea').each(function() {
         if($(this).val() == null || $(this).val().length == 0 || /^\s+$/.test($(this).val())){
             errors++;
 
             mostrar_error($(this), "El campo no puede estar vacio");
+        }else {
+            $(this).attr("class","ok");
         }
     });
     return errors;
