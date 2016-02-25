@@ -1,0 +1,67 @@
+<!doctype html>
+<!--
+Design by Free Responsive Templates
+http://www.free-responsive-templates.com
+Released for free under a Creative Commons Attribution 3.0 Unported License (CC BY 3.0)
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peña ciclista Dolor de Cul</title>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/ports.css" rel="stylesheet" type="text/css">
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="./js/jquery-1.10.1.min.js"></script>
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="./js/jquery.mousewheel-3.0.6.pack.js"></script>
+    <!-- Add fancyBox main JS and CSS files -->
+    <script type="text/javascript" src="./js/jquery.fancybox.js?v=2.1.5"></script>
+    <link rel="stylesheet" type="text/css" href="./css/jquery.fancybox.css?v=2.1.5" media="screen" />
+    <!-- Add Button helper (this is optional) -->
+    <link rel="stylesheet" type="text/css" href="./css/jquery.fancybox-buttons.css?v=1.0.5" />
+    <script type="text/javascript" src="./js/jquery.fancybox-buttons.js?v=1.0.5"></script>
+    <link rel="stylesheet" type="text/css" href="./css/jquery-ui.min.css" />
+    <script type="text/javascript" src="./js/jquery-ui.min.js"></script>
+    <script src="js/puertos.js" ></script>
+
+
+</head>
+<body>
+<div class="wrapper">
+	<header>
+    	<div class="logo"><h1><a href="">Dolor de Cul</a></h1></div>
+        <nav>
+            <ul id="navlist">
+                <li><a href="index.html ">Inicio</a></li>
+                <li id="active"><a href="puertos.html">Puertos</a></li>
+                <li><a href="ciclistas.html">Ciclistas</a></li>
+                <li><a href="inscripcion.html">Inscripción</a></li>
+            </ul>
+        </nav>
+        <div class="clearfloat"></div>
+    </header>
+    <section>
+        <div class="horSeparator"></div>
+        <label for="selector_ports">Ports a mostrar</label>
+        <select id="selector_ports" name="selector_ports">
+            <option value="1" selected>Tots els ports</option>
+            <option value="2">Pirineus</option>
+            <option value="3">Alps</option>
+            <option value="4">Resta de cordilleres</option>
+        </select>
+    </section>
+    <section>
+    	<div class="horSeparator"></div>
+        <div id="ports"></div>
+
+        <div class="horSeparator"></div>
+    </section>
+
+</div>
+<footer>
+</footer>
+</body>
+</html>

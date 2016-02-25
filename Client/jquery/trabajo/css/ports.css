@@ -1,0 +1,48 @@
+td.title{
+    text-align: center !important;
+    background: #fff;
+    color: #677a83;
+    font-weight: bolder;
+    font-size: 22px;
+    padding: 5px;
+}
+
+table{
+    width: 100%;
+    margin-bottom: 35px;
+}
+td, th{
+    text-align: center;
+    padding: 10px;
+    /*width: 33%;*/
+    font-weight: bold;
+}
+tr>td:first-child, tr>th:first-child{
+    width: 35%;
+}
+tr :first-child{
+    text-align: left;
+}
+
+tr:nth-child(2n){
+    background: #C8CFD2;
+}
+tr:nth-child(2n+1){
+    background: #8dc35a;
+    color:#ffffff;
+}
+.text_port{
+    padding: 15px;
+    text-align: justify !important;
+    font-weight: 100 !important;
+}
+.mostrar_mas{
+    cursor: pointer;
+}
+.hidden{
+    display:none;
+}
+.red{
+    background: #9f191f !important;
+    color: #ffffff !important;
+}
