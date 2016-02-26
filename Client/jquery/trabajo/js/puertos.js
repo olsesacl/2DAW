@@ -39,37 +39,59 @@ $(document).ready(function() {
             }
         }
     });
-});
 
-window.onload = function(){
-    cambiar_ports();
-    document.getElementById('selector_ports').onchange = cambiar_ports;
-};
+    $.ajax({
+        url: "./cargaselectXML.php",
+        type:  'post',
+        dataType: "xml",
+        beforeSend: function() {
+            $('#selector_ports option').remove();
+            $('#selector_ports').append('<option>Cargando...</option>')
+        },
+        success: function(result){
+            var puerto = $(result).find( "puerto" );
+            puerto.each(function() {
+                $('#selector_ports').append(
+                    '<option value="'+ $(this).find('codigo').text() +'">'+
+                    $(this).find('nombre').text() +
+                    '</option>'
+                );
+            });
+            $('#selector_ports option:first-child').remove();
+            $('#selector_ports option:first-child').attr('selected','selected');
+            cambiar_ports();
+        }});
+
+
+    $('#selector_ports').change(cambiar_ports);
+
+});
 
 function cambiar_ports(){
 
-    //hacemos una busqueda porque en el arranque no enviamos el objeto y asi prevenir errores
-    var id =document.getElementById('selector_ports').value;
+    var id =$('#selector_ports').val();
 
-    var div_ports = document.getElementById("ports");
+    var div_ports = $("#ports");
     //eliminem el contingut del div abans de replenar en les dades corresponents
-    div_ports.innerHTML = '';
+    div_ports.html('<div class="cargando">Cargando</div>');
 
     var dades = '';
 
     if(id == 1){
 
-        for(var i = 2; i <5; i++){
-          dades += mostrar(i);
-        }
+        $('#selector_ports option').each(function () {
+            if($(this).val()!=1){
+                dades += mostrar($(this).val());
+            }
+
+        });
 
     } else {
         dades = mostrar(id);
     }
+    div_ports.css("display", "none");
+    div_ports.html(dades).slideDown("slow");
 
-    div_ports.innerHTML = dades;
-
-   // $('[data-tooltip]').
 
     $('[data-tooltip]').each(function () {
 

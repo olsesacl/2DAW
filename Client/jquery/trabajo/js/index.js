@@ -31,8 +31,14 @@ function carrusel_random(){
         var random = numeroAleatorio(0,5);
     }while(random == anterior);
 
+   /* carrusel.after('<img src="./images/'+ fotos[random]+'" data-now="'+ random+ '" style="display: none;">');
+
+    carrusel.fadeOut(0).next('img').fadeIn(1000, function(){
+        carrusel.remove();
+    });*/
+
     carrusel.attr('data-now', random);
-    carrusel.fadeTo(400, 0.30, function() {
+    carrusel.fadeTo(400, 0.20, function() {
         carrusel.attr('src', './images/' + fotos[random]);
     }).fadeTo(400,1);
     setTimeout(carrusel_random, 5000);

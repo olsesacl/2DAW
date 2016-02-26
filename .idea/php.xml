@@ -5,9 +5,4 @@
       <BehatSettings behat_path="$PROJECT_DIR$" />
     </behat_settings>
   </component>
-  <component name="PhpProjectServersManager">
-    <servers>
-      <server host="localhost" id="9ab32dd0-24f0-4409-8314-b617e5ec4a84" name="localhost" />
-    </servers>
-  </component>
 </project>
