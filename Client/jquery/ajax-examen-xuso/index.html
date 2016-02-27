@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="Description" content="A free open source web design by Christina Chun.  Free for anyone to use as long as credits are intact. " />
+<meta name="Keywords" content="Open source web design by Christina Chunopen source web design,, christina chun, christinachun.com, www.christinachun.com" />
+<meta name="Copyright" content="Christina Chun" />
+<meta name="Designed By" content="ChristinaChun.com" />
+<meta name="Language" content="English" />
+<title>Red Hot Chili</title>
+
+<!-- EXAMEN HECHO POR JUAN JESUS GREGORI -->
+
+<style type="text/css" title="layout" media="screen"> @import url("style.css"); </style>
+	<script type="text/javascript" language="javascript">
+
+		var READY_STATE_UNINITIALIZED = 0;
+		var READY_STATE_LOADING = 1;
+		var READY_STATE_LOADED = 2;
+		var READY_STATE_INTERACTIVE = 3;
+		var READY_STATE_COMPLETE = 4;
+
+		var peticion_http;
+		var listar = "";
+
+		//----------------------html
+		//Descargamos el archivo HTML
+		function descargaArchivoHTML(nombre) {
+			peticion_http = inicializa_xhr();
+
+			if(peticion_http) {
+				peticion_http.onreadystatechange = muestraContenidoHTML;
+				peticion_http.open("GET", "./"+nombre+"?nocache="+Math.random(), true);
+				peticion_http.send(null);
+			}
+
+		}
+		function cargaContenido(url, metodo, funcion) {
+			peticion_http = inicializa_xhr();
+
+			if (peticion_http) {
+				peticion_http.onreadystatechange = funcion;
+				peticion_http.open(metodo, url, true);
+				peticion_http.send(null);
+			}
+		}
+
+		function inicializa_xhr() {
+
+			if (window.XMLHttpRequest) {
+				return new XMLHttpRequest();
+			}else if (window.ActiveXObject) {
+				return new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		}
+
+		function muestraContenidoHTML() {
+
+			if (peticion_http.readyState == READY_STATE_COMPLETE) {
+
+				if (peticion_http.status == 200) {
+					// alert(peticion_http.responseText);
+					var parrafo = document.getElementById("contingutajax");
+					parrafo.innerHTML = peticion_http.responseText;
+				}
+			}
+		}
+
+
+
+		function descargaArchivoXML(nombre) {
+
+			if (window.XMLHttpRequest) {
+				peticion_http = new XMLHttpRequest();
+			} else if (window.ActiveXObject) {
+				peticion_http = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			peticion_http.onreadystatechange = muestraContenidoXML;
+			peticion_http.open('GET', './' + nombre + '?nocache=' + Math.random(), true);
+			peticion_http.send(null);
+		}
+
+		function muestraContenidoXML() {
+
+			if(peticion_http.readyState == READY_STATE_COMPLETE) {
+
+				if(peticion_http.status == 200) {
+					//Creamos el objeto de tipo documento XML
+					var documentoXml = peticion_http.responseXML;
+
+					//Obtenemos la raíz del documento
+					var root = documentoXml.getElementsByTagName("receta")[0];
+
+					//Inicializo texto, que es donde pondre todo
+					var texto = "";
+
+					var titulo = root.getElementsByTagName("titulo")[0].firstChild.nodeValue;
+					texto += "<h1>" + titulo + "</h1>";
+
+					var imagen = root.getElementsByTagName("foto")[0].firstChild.nodeValue;
+					texto += "<div align='center'><img src='./" + imagen + "'></div>";
+
+					texto += "<h3>Listado ingredientes</h3>";
+
+					var ingredientes = root.getElementsByTagName("ingredientes")[0];
+					var ingrediente = ingredientes.getElementsByTagName("ingrediente");
+					//alert(ingrediente.length);
+
+					texto += "<ul>";
+					for(var i = 0; i < ingrediente.length; i++){
+						texto += "<li>"+ ingrediente[i].firstChild.nodeValue +"</li>";
+					}
+					texto += "</ul>";
+
+					texto += "<h3>Proceso de elaboración</h3>";
+
+					var elaboracion = root.getElementsByTagName("elaborar")[0];
+					var parrafo = elaboracion.getElementsByTagName("paso");
+
+					texto += "<ul>";
+					for(var i = 0; i < parrafo.length; i++){
+						texto += "<li>"+ parrafo[i].firstChild.nodeValue +"</li>";
+					}
+					texto += "</ul>";
+
+					document.getElementById("contingutajax").innerHTML = texto;
+				}
+			}
+		}
+
+		//SELECTS
+		function descargaSelects(nombre) {
+			cargaContenido(nombre + "?nocache=" + Math.random(), "GET", cargaEspecialidades);
+		}
+
+		function cargaEspecialidades() {
+			if (peticion_http.readyState == READY_STATE_COMPLETE) {
+
+				if (peticion_http.status == 200) {
+					var parrafo = document.getElementById("contingutajax");
+					parrafo.innerHTML = peticion_http.responseText;
+					peticion_http = inicializa_xhr();
+
+					if (peticion_http) {
+						peticion_http.onreadystatechange = muestraEspecialidades;
+						peticion_http.open("POST", "./cargaEspecialidadesXML.php?nocache=" + Math.random(), true);
+						peticion_http.send(null);
+					}
+					document.getElementById("especialidades").addEventListener("change", cargaPlatos);
+				}
+			}
+		}
+
+		function muestraEspecialidades() {
+
+			if (peticion_http.readyState == 4) {
+
+				if (peticion_http.status == 200) {
+					var muestroEspe = document.getElementById("especialidades");
+					var documentoXml = peticion_http.responseXML;
+					var especialidades = documentoXml.getElementsByTagName("especialidades")[0];
+					var especialidad = especialidades.getElementsByTagName("especialidad");
+
+					for (var i = 0; i < especialidad.length; i++) {
+						var codigo = especialidad[i].getElementsByTagName("codigo")[0].firstChild.nodeValue;
+						var nombre = especialidad[i].getElementsByTagName("nombre")[0].firstChild.nodeValue;
+						muestroEspe.innerHTML += "<option value='" + codigo + "'>" + nombre + "</option>";
+					}
+				}
+			}
+		}
+
+
+		function cargaPlatos() {
+			var especialidades = document.getElementById("especialidades");
+			var especialidadSel = especialidades.options[especialidades.selectedIndex].value;
+
+			if (especialidadSel) {
+				peticion_http = inicializa_xhr();
+
+				if (peticion_http) {
+					peticion_http.onreadystatechange = muestraPlatos;
+					peticion_http.open("POST", "./cargaPlatosXML.php?nocache=" + Math.random(), true);
+					peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					peticion_http.send("especialidad=" + especialidadSel);
+				}
+			}
+		}
+
+		function muestraPlatos() {
+
+			if (peticion_http.readyState == 4) {
+
+				if (peticion_http.status == 200) {
+					var escribirPlato= document.getElementById("platos");
+					var documentoXml = peticion_http.responseXML;
+					var platos = documentoXml.getElementsByTagName("platos")[0];
+					var plato = platos.getElementsByTagName("plato");
+					escribirPlato.options.length = 0;
+					escribirPlato.innerHTML += "<option>" + "--elige un plato--" + "</option>";
+
+					for (var i = 0; i < plato.length; i++) {
+						var codigo = plato[i].getElementsByTagName("codigo")[0].firstChild.nodeValue;
+						var nombre = plato[i].getElementsByTagName("nombre")[0].firstChild.nodeValue;
+						escribirPlato.innerHTML += "<option>" + nombre + "</option>";
+					}
+					document.getElementById("platos").addEventListener("change", guardar);
+				}
+			}
+		}
+
+
+		function guardar() {
+			var plato = document.getElementById("platos");
+			var platoSeleccionado = plato.options[plato.selectedIndex].value;
+			listar = listar + platoSeleccionado + "<br>";
+			document.getElementById("mensaje").innerHTML="El plato "+plato.value+ " ha sido añadido.";
+			document.getElementById("anyadir").addEventListener("click", abrirVentana);
+		}
+
+
+
+		function abrirVentana(){
+			//Creamos la variable de la ventana a abrir , en una nueva pestaña _blank
+			var ventana=window.open("Imprimir cena","_blank");
+			//Variable para el array
+			var linea = "";
+
+			linea += listar;
+			ventana.document.write(linea);
+		}
+
+		window.onload = descargaArchivoHTML("principal.html");
+
+	</script>
+</head>
+
+<body>
+<div id="container">
+	<div class="contentheader"></div>		
+		<div class="maincontainer">
+			<div id="cabecera" align="center">
+				<h1>RESTAURANTE EL COCHINILLO PICANTE</h1><br />
+				<img src="images/cochinillo.jpg" />
+			</div>
+			<div id="menu">
+				<div id="nav">
+					<a href="#" id="home" onclick='descargaArchivoHTML("principal.html")'>Inicio</a>
+					| <a href="#" id="plato" onclick='descargaArchivoXML("platodeldia.xml")'>Plato del dia</a>
+					| <a href="#" id="carta" onclick='descargaSelects("carta.html")'>La carta</a>
+				</div>
+			</div>
+				<div id="content" class="content">
+					<hr /><br />
+						<div id="contingutajax">
+							
+						</div>
+				</div>
+		</div>
+</div>
+			<div class="bottom"></div>
+			<div class="footer">
+			EXAMEN AJAX 2DAW</div>
+			<div class="valid">
+			<a href="http://validator.w3.org/check?uri=referer" title="Valid"><img src="images/valid.gif" width="35" height="65" alt="Valid" /></a>
+			</div>
+</body>
+</html>

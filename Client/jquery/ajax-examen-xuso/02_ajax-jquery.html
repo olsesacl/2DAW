@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8" />
+<meta name="Description" content="A free open source web design by Christina Chun.  Free for anyone to use as long as credits are intact. " />
+<meta name="Keywords" content="Open source web design by Christina Chunopen source web design,, christina chun, christinachun.com, www.christinachun.com" />
+<meta name="Copyright" content="Christina Chun" />
+<meta name="Designed By" content="ChristinaChun.com" />
+<meta name="Language" content="English" />
+<title>Red Hot Chili</title>
+
+<!-- All Images Created And Copyrighted By Christina Chun Unless Noted Otherwise.  All rights Reserved. -->
+
+<style type="text/css" title="layout" media="screen"> @import url("style.css"); </style>
+<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+<script type="text/javascript">
+
+
+
+
+
+$(document).ready(function(){
+	
+	//variables
+	var contingut=$('#contingutajax');
+	var url_principal="principal.html?nocache="+Math.random();
+	var url_plato="platodeldia.xml?nocache="+Math.random();
+	var url_carta="carta.html?nocache="+Math.random();
+	var url_especialidades="cargaEspecialidadesXML.php?nocache="+Math.random();
+	var url_platos="cargaplatosXML.php?nocache="+Math.random();
+	var cena="";
+
+	function platoDelDia(docXML){
+			  var cadena_http="";
+			  var titulo = $(docXML).find('titulo').text();
+			  cadena_http+="<h1>"+titulo+"</h1>";
+			  var foto=$(docXML).find('foto').text();
+			  cadena_http+="<img src="+foto+"></img>";
+			  cadena_http+="<h2>Ingredientes:</h2><ul>";
+			  $(docXML).find('ingrediente').each(function(){
+				cadena_http+="<li>"+$(this).text()+"</li>"
+			  });
+			  cadena_http+="</ul><h2>Preparaci�n:</h2><ul>";
+			  $(docXML).find('paso').each(function(){
+				cadena_http+="<li>"+$(this).text()+"</li>";
+			  });
+			  cadena_http+="</ul>";
+			  contingut.html(cadena_http);
+	}
+
+	function cargaEspecialidades(){
+		$.get(url_especialidades, function(docXML){
+			var especialidades=$('#especialidades');
+			var cadena_html="<option>- Selecciona -</option>";
+			var nombre="";
+			var codigo="";
+			$(docXML).find('especialidad').each(function(){
+				nombre=$(this).find('nombre').text();
+				codigo=$(this).find('codigo').text();
+				cadena_html+="<option "+"value="+"'"+codigo+"'>"+nombre+"</option>";
+			});
+			especialidades.html(cadena_html);
+			especialidades.change(cargaPlatos);
+		}, "xml");
+	}
+
+	function pintaPlatos(docXML){
+		var platos=$('#platos');
+			var cadena_html="<option value=0>- Selecciona -</option>";
+			var nombre="";
+			var codigo="";
+			$(docXML).find('plato').each(function(){
+				nombre=$(this).find('nombre').text();
+				codigo=$(this).find('codigo').text();
+				cadena_html+="<option "+"value="+"'"+nombre+"'>"+nombre+"</option>";
+			});
+			platos.html(cadena_html);
+
+			$('#platos').change(function(){
+				var eleccion = $('#platos').val();
+				if(eleccion!=0){
+					$('#mensaje').html("El plato "+eleccion+" ha sido a�adido a su cena");
+					cena+=eleccion+"</br>";
+				}
+			});
+
+			$('#anyadir').click(function(){
+
+					var ventana = window.open();
+					ventana.document.write(cena);
+
+			});
+	}
+
+	function cargaPlatos(){
+
+				var especialidad = $('#especialidades').val();
+
+
+				if(!isNaN(especialidad)){
+						var cadena = "{especialidad:"+especialidad+"}";
+						var parametros = {"especialidad" : especialidad};
+						$.ajax({
+								data:  parametros,
+								dataType:  "xml",
+								url:   url_platos,
+								type:  'post',
+								success:  pintaPlatos,
+								error:  function (response){
+									alert("error obtenint el recurs"+url_platos);
+								}
+						});
+				}
+	}
+
+		
+	//events
+	$('#home').click(function(){
+		contingut.load(url_principal);
+	});
+	
+	$('#plato').click(function(){
+		contingut.html("");	
+		var peticion_plato=$.get(url_plato, platoDelDia, "xml");
+	});
+	
+	$('#carta').click(function(){
+		contingut.html("");	
+		contingut.load(url_carta, cargaEspecialidades);
+	});
+	
+	contingut.load(url_principal);
+	
+});	
+	
+	
+</script>
+
+
+</head>
+
+<body>
+<div id="container">
+	<div class="contentheader"></div>		
+		<div class="maincontainer">
+			<div id="cabecera" align="center">
+				<h1>RESTAURANTE EL COCHINILLO PICANTE</h1><br />
+				<img src="images/cochinillo.jpg" />
+			</div>
+			<div id="menu">
+				<div id="nav"><a href="#" id="home">Inicio</a> | <a href="#" id="plato">Plato del dia</a> | <a href="#" id="carta">La carta</a>  </div>
+			</div>
+				<div id="content" class="content">
+					<hr /><br />
+						<div id="contingutajax">
+							
+						</div>
+				</div>
+		</div>
+</div>
+			<div class="bottom"></div>
+			<div class="footer">
+			EXAMEN AJAX 2DAW</div>
+			<div class="valid">
+			<a href="http://validator.w3.org/check?uri=referer" title="Valid"><img src="images/valid.gif" width="35" height="65" alt="Valid" /></a>
+			</div>
+</body>
+</html>

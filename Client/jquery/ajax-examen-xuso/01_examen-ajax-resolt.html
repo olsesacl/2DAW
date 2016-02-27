@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="Description" content="A free open source web design by Christina Chun.  Free for anyone to use as long as credits are intact. " />
+<meta name="Keywords" content="Open source web design by Christina Chunopen source web design,, christina chun, christinachun.com, www.christinachun.com" />
+<meta name="Copyright" content="Christina Chun" />
+<meta name="Designed By" content="ChristinaChun.com" />
+<meta name="Language" content="English" />
+<title>Red Hot Chili</title>
+
+<!-- All Images Created And Copyrighted By Christina Chun Unless Noted Otherwise.  All rights Reserved. -->
+
+<style type="text/css" title="layout" media="screen"> @import url("style.css"); </style>
+
+<script type="text/javascript" language="javascript">
+ 
+var READY_STATE_UNINITIALIZED=0; 
+var READY_STATE_LOADING=1; 
+var READY_STATE_LOADED=2;
+var READY_STATE_INTERACTIVE=3; 
+var READY_STATE_COMPLETE=4;
+ 
+var peticion_http;
+var peticion_http2;
+
+var cena="";
+ 
+function cargaContenido(url, metodo, funcion) {
+  peticion_http = inicializa_xhr();
+ 
+  if(peticion_http) {
+    peticion_http.onreadystatechange = funcion;
+    peticion_http.open(metodo, url, true);
+    peticion_http.send(null);
+  }
+}
+ 
+function inicializa_xhr() {
+  if(window.XMLHttpRequest) {
+    return new XMLHttpRequest();
+  }
+  else if(window.ActiveXObject) {
+    return new ActiveXObject("Microsoft.XMLHTTP");
+  }
+}
+ 
+function muestraContenido() {
+  if(peticion_http.readyState == READY_STATE_COMPLETE) {
+    if(peticion_http.status == 200) {
+      document.getElementById("contingutajax").innerHTML=peticion_http.responseText;
+    }
+  }
+}
+
+function muestraContenidoXML() {
+  if(peticion_http.readyState == READY_STATE_COMPLETE) {
+    if(peticion_http.status == 200) {
+    	var docXML=peticion_http.responseXML;
+    	var contenido=document.getElementById("contingutajax");
+      //document.getElementById("content").innerHTML=peticion_http.responseText;
+      var titulo = docXML.getElementsByTagName("titulo")[0].firstChild.nodeValue;
+      contenido.innerHTML="<h1>"+titulo+"</h1>";
+      
+      var foto = docXML.getElementsByTagName("foto")[0].firstChild.nodeValue;
+      contenido.innerHTML+="<img src="+foto+"></img>";
+      
+      contenido.innerHTML+="<h2>Ingredientes:</h2>";
+      var ingredientes = docXML.getElementsByTagName("ingrediente");
+      contenido.innerHTML+="<ul>";
+      for(var i=0; i<ingredientes.length; i++){
+      	contenido.innerHTML+="<li>"+ingredientes[i].firstChild.nodeValue+"</li>";
+      }
+      contenido.innerHTML+="</ul>";
+      
+      contenido.innerHTML+="<h2>Preparación:</h2>";
+      var pasos = docXML.getElementsByTagName("paso");
+      contenido.innerHTML+="<ul>";
+      for(var j=0; j<pasos.length; j++){
+      	contenido.innerHTML+="<li>"+pasos[j].firstChild.nodeValue+"</li>";
+      }
+      contenido.innerHTML+="</ul>";
+    
+      
+    }
+  }
+}
+
+function carga_especialidades(){
+
+			peticion_http2 = inicializa_xhr();
+			
+			peticion_http2.onreadystatechange = muestra_especialidades;
+			peticion_http2.open("GET", "cargaEspecialidadesXML.php?nocache="+Math.random(), true);
+			peticion_http2.send(null);
+
+		}
+		
+		function muestra_especialidades(){
+			
+			if(peticion_http2.readyState == READY_STATE_COMPLETE && peticion_http.status == 200){
+				var respuesta_http2 = peticion_http2.responseXML;
+				//alert(respuesta_http2);
+				var provincias = respuesta_http2.getElementsByTagName("especialidad");
+				var html = "";
+				for(var i=0; i<provincias.length; i++){
+					var nombre=provincias[i].getElementsByTagName("nombre")[0].firstChild.nodeValue;
+					var codigo=provincias[i].getElementsByTagName("codigo")[0].firstChild.nodeValue;
+					html += "<option "+"value="+"'"+codigo+"'>"+nombre+"</option>";
+				}
+				var elemento = document.getElementById("especialidades");
+				elemento.innerHTML="<option>- Selecciona -</option>"+html;
+			}
+			elemento.addEventListener("change", rellena_platos, false);
+		}
+
+function carga_platos(){
+			var llista = document.getElementById("especialidades");
+			var index = llista.selectedIndex;
+			var especialidad = llista.options[index].value;
+			
+			if(!isNaN(especialidad)){
+				if(peticion_http2){
+					peticion_http2.onreadystatechange=muestra_platos;
+					var cadena = "especialidad="+especialidad;
+					peticion_http2.open("POST", "cargaplatosXML.php?nocache="+Math.random(), true);
+					peticion_http2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					peticion_http2.send(cadena);
+				}
+			}
+			
+		}
+		
+		function muestra_platos(){
+
+			if(peticion_http2.readyState == READY_STATE_COMPLETE && peticion_http2.status == 200){
+				var respuesta_http2 = peticion_http2.responseXML;
+				var platos = respuesta_http2.getElementsByTagName("plato");
+				var html = "";
+				for(var i=0; i<platos.length; i++){
+					var nombre=platos[i].getElementsByTagName("nombre")[0].firstChild.nodeValue;
+					var codigo=platos[i].getElementsByTagName("codigo")[0].firstChild.nodeValue;
+					html += "<option "+"value="+"'"+nombre+"'>"+nombre+"</option>";
+				}
+				var elemento = document.getElementById("platos");
+				elemento.innerHTML="<option>- Selecciona -</option>"+html;
+				var boton = document.getElementById("anyadir");
+				elemento.addEventListener("change", anyade_cena, false);
+				boton.addEventListener("click", rellena_cena, false);
+			}
+		}
+		
+function rellena_platos(){
+	carga_platos();
+}
+
+function anyade_cena(){
+	var llista = document.getElementById("platos");
+	var index = llista.selectedIndex;
+	var plato = llista.options[index].value;
+	if(index!=0){
+		document.getElementById("mensaje").innerHTML="El plato "+plato+" ha sido añadido a su cena!";
+		cena+=plato+"</br>";
+	}
+	
+}
+
+function rellena_cena(){
+	var ventana = window.open();
+	ventana.document.write(cena);
+}
+ 
+function descargaPrincipal() {
+  cargaContenido("principal.html"+'?nocache='+Math.random(), "GET", muestraContenido);
+}
+
+function descargaCarta(){
+	cargaContenido("carta.html"+'?nocache='+Math.random(), "GET", muestraContenido);
+	carga_especialidades();
+	muestra_especialidades();
+}
+
+function descargaPlato(){
+	cargaContenido("platodeldia.xml"+'?nocache='+Math.random(), "GET", muestraContenidoXML);
+}
+ 
+window.onload = function(){
+	descargaPrincipal();
+	/*document.getElementById("martinmiller").onclick = function(){
+		descargaGinebra("martinmiller.html");
+	}*/
+	document.getElementById("home").onclick=descargaPrincipal;
+	document.getElementById("carta").onclick=descargaCarta;
+	document.getElementById("plato").onclick=descargaPlato;
+}
+ 
+</script>
+
+</head>
+
+<body>
+<div id="container">
+	<div class="contentheader"></div>		
+		<div class="maincontainer">
+			<div id="cabecera" align="center">
+				<h1>RESTAURANTE EL COCHINILLO PICANTE</h1><br />
+				<img src="images/cochinillo.jpg" />
+			</div>
+			<div id="menu">
+				<div id="nav"><a href="#" id="home">Inicio</a> | <a href="#" id="plato">Plato del dia</a> | <a href="#" id="carta">La carta</a>  </div>
+			</div>
+				<div id="content" class="content">
+					<hr /><br />
+						<div id="contingutajax">
+							
+						</div>
+				</div>
+		</div>
+</div>
+			<div class="bottom"></div>
+			<div class="footer">
+			EXAMEN AJAX 2DAW</div>
+			<div class="valid">
+			<a href="http://validator.w3.org/check?uri=referer" title="Valid"><img src="images/valid.gif" width="35" height="65" alt="Valid" /></a>
+			</div>
+</body>
+</html>
