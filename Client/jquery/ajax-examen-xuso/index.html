@@ -181,7 +181,7 @@
 
 				if (peticion_http) {
 					peticion_http.onreadystatechange = muestraPlatos;
-					peticion_http.open("POST", "./cargaPlatosXML.php?nocache=" + Math.random(), true);
+					peticion_http.open("POST", "./cargaplatosXML.php?nocache=" + Math.random(), true);
 					peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 					peticion_http.send("especialidad=" + especialidadSel);
 				}

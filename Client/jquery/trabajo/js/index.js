@@ -2,14 +2,14 @@ $( document ).ready(function() {
     carrusel_random();
     $('#mostrar_ocultar').siblings('div').click(mostrar_ocultar);
 
-    var cuenta_atras = document.getElementById('cuenta_atras').getElementsByTagName('li');
+    var cuenta_atras = $('#cuenta_atras li');
 
-    for(var i=0; i < cuenta_atras.length; i++){
-        countdown(cuenta_atras[i]);
+    cuenta_atras.each(function(){
+        countdown($(this));
 
         //soles faig el event onmouseover perque queda millor que fent que desaparega la imatge cada vegada
-        cuenta_atras[i].onmouseover = ganador;
-    }
+        $(this).mouseover(ganador);
+    })
 });
 
 function mostrar_ocultar(){
@@ -50,7 +50,7 @@ function numeroAleatorio(min, max) {
 }
 
 function countdown(id) {
-    var fecha = new Date( id.getAttribute('data-year'), id.getAttribute('data-month'), id.getAttribute('data-day'), '00', '00', '00');
+    var fecha = new Date( id.attr('data-year'), id.attr('data-month'), id.attr('data-day'), '00', '00', '00');
     var hoy = new Date();
     var dias = 0;
     var horas = 0;
@@ -75,7 +75,7 @@ function countdown(id) {
             setTimeout(function() {countdown(id)}, 1000);
         }
     }
-    id.firstElementChild.innerHTML = 'Quedan ' + dias + ' Días, ' + horas + ' Horas, ' + minutos + ' Mins, ' + segundos + ' Seg';
+    id.first().html('Quedan ' + dias + ' Días, ' + horas + ' Horas, ' + minutos + ' Mins, ' + segundos + ' Seg');
 }
 
 function checkzero(min){
@@ -88,10 +88,10 @@ function ganador(){
     var title = ['Alberto Contador ganador de laultima edicion', 'Chris Froome ganador de la ultima edicion', 'Fabio' +
     ' Aru ganador de la ultima edicion'];
 
-    var ganador = document.getElementById('ganador');
+    var volta = $(this).attr('data-volta');
 
-    var volta = this.getAttribute('data-volta');
-
-    ganador.style.background = "url('./images/"+img[volta]+"')";
-    ganador.firstElementChild.innerHTML = title[volta];
+    $('#ganador').fadeTo(200, 0.20, function() {
+        $('#ganador').css("background", "url('./images/"+img[volta]+"')");
+        $('#ganador h2:first-child').html(title[volta]);
+    }).fadeTo(200,1);
 }

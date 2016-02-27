@@ -40,7 +40,6 @@ function validar(){
     errors += validarEmail();
 
     if(errors == 0){
-        //alert('El formulario se va a enviar');
         return true;
     }
     else return false;
@@ -67,8 +66,7 @@ function validar_text(){
 
 function validar_nif() {
 
-    var input = $('#dni');
-    var dni = input.val();
+    var dni = $('#dni').val();
 
     //comprobamos esto, pero el error ya habra salido, asi que si no fuese valido de antes no mostrariamos el error
     if(!(dni == null || dni.length == 0 || /^\s+$/.test(dni))){
@@ -79,7 +77,7 @@ function validar_nif() {
         var letra='TRWAGMYFPDXBNJZSQVHLCKET';
         letra=letra.substring(numero,numero+1);
         if (letra!=let.toUpperCase()){
-            mostrar_error(input, "El DNI no es valido");
+            mostrar_error($('#dni'), "El DNI no es valido");
             return 1;
         }
     }
