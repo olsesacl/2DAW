@@ -47,8 +47,8 @@ input{
 p{
 	text-align: justify;
 }
-#mostrar_ocultar ~ p{display: none;}
-#mostrar_ocultar ~ div{
+#mostrar_ocultar{display: none;}
+#mostrar_ocultar + div{
 	cursor: pointer;
 	color:#3B85CA;
 }

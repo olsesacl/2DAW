@@ -1,6 +1,6 @@
 $( document ).ready(function() {
     carrusel_random();
-    $('#mostrar_ocultar').siblings('div').click(mostrar_ocultar);
+    $('#mostrar_ocultar').next().click(mostrar_ocultar);
 
     var cuenta_atras = $('#cuenta_atras li');
 
@@ -13,13 +13,15 @@ $( document ).ready(function() {
 });
 
 function mostrar_ocultar(){
-    $('#mostrar_ocultar ~ p').slideToggle('slow');
+    $('#mostrar_ocultar').slideToggle('slow', function(){
+        if($('#mostrar_ocultar:hidden').length==0){
+            $('#mostrar_ocultar').next().text("Leer menos");
+        } else {
+            $('#mostrar_ocultar').next().text("Leer más");
+        }
+    });
 
-    if($('#mostrar_ocultar ~ p:hidden')){
-        $(this).text("Leer menos");
-    } else {
-        $(this).text("Leer más");
-    }
+
 }
 function carrusel_random(){
 

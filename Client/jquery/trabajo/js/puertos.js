@@ -107,39 +107,39 @@ function mostrar(id){
             dades = '<table><tr><td class="title" colspan="6">' + $(result).find("nombre_zona").text() + '</td></tr>';
             dades +='<tr><th>Nom</th><th>Distancia</th><th>Altura</th><th>Galeria</th><th>Altimetria</th><th>Más datos</th></tr>';
            $(result).find( "puerto" ).each(function() {
-                    dades +="<tr data-tooltip='" + $(this).find("misatge").text() + "' data-color='" + $(this).find("color_misatge").text() + "' title=''>";
+                    dades +="<tr class='tooltip' title=\"" + $(this).find("misatge").html() + "\" data-color='" + $(this).find("color_misatge").text() + "' title=''>";
                     dades +="<td>" + $(this).find("nom").text() + "</td>";
                     dades +="<td>" + $(this).find("distancia").text() + "km</td>";
                     dades +="<td>" + $(this).find("altura").text() + "m</td>";
 
                     //fotos
+               //primero ponemos el td vacio, el cual rellenaremos con el ajax
+               dades += "<td data-fotos='fotos_"+id+"_"+i+"'></td>";
                var dirfoto = "./images/ports/"+ id +"/"+ i +"/";
-
+                var j = i;
                    $.ajax({
                        url: "./cargarimagenes.php",
                        type:  'post',
                        data : { dir : dirfoto },
                        dataType: "xml",
-                       async:false,
                        success: function(fotos) {
                            var first = 1;
                            var foto_dades='';
                            $(fotos).find( "foto" ).each(function() {
                                if(first == 1){
-                                   foto_dades +="<td><a href='"+ dirfoto + $(this).text()+"' class='fancybox' data-fancybox-group='fotos_"+ id +"_"+ i +"' data-fancybox-title='Unas cuantas fotos para disfrutar'><img src='./images/galerias.png'></a><div>";
+                                   foto_dades +="<a href='"+ dirfoto + $(this).text()+"' class='fancybox' data-fancybox-group='fotos_"+ id +"_"+ j +"' data-fancybox-title='Unas cuantas fotos para disfrutar'><img src='./images/galerias.png'></a><div>";
                                    first =0;
                                } else {
-                                   foto_dades +="<div href='"+ dirfoto + $(this).text()+"' class='fancybox' data-fancybox-group='fotos_"+ id +"_"+ i +"' data-fancybox-title='Unas cuantas fotos para disfrutar'></div>";
+                                   foto_dades +="<div href='"+ dirfoto + $(this).text()+"' class='fancybox' data-fancybox-group='fotos_"+ id +"_"+ j +"' data-fancybox-title='Unas cuantas fotos para disfrutar'></div>";
                                }
                            });
+                           foto_dades +="</div>";
 
-                           dades += foto_dades;
+                           //aqui rellenamos el td con toda la información de las fotos
+                           $("td[data-fotos='fotos_"+id+"_"+j+"']").html(foto_dades);
                        }
                    });
 
-                    dades +="</div>";
-
-                    dades +="</td>";
                     dades += "<td><a class='fancybox-altimetria'  href='./images/ports/"+ id +"/"+ i +"/altimetria.jpg'><img src='./images/altimetria.png'></a></td> ";
                     dades +="<td><span class='mostrar_mas' onclick=\"$('#text_"+ id +"_"+ i +"').fadeToggle('slow');\">Mostrar más</span></td>";
                     dades +="</tr>";
@@ -150,11 +150,20 @@ function mostrar(id){
 
             $("#ports .cargando").fadeOut("fast").remove();
             $("#ports").append($("<div>").css("display", "none"));
-            $("#ports > div:last-child").html(dades).slideDown("slow")
+            $("#ports > div:last-child").html(dades).slideDown("slow");
 
+           $('.tooltip[data-color!=red]').tooltipster({
+                multiple: true,
 
+            });
+            $('.tooltip[data-color=red]').tooltipster({
+                multiple: true,
+                theme: 'tooltipster-red',
+                animation:"grow"
 
-            $('[data-tooltip]').each(function () {
+            });
+
+            /*$('[data-tooltip]').each(function () {
 
                 var clase = $(this).data('color');
 
@@ -171,7 +180,7 @@ function mostrar(id){
 
 
                 });
-            });
+            });*/
         }});
 
 

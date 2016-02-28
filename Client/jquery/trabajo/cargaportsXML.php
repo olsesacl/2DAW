@@ -6,7 +6,7 @@ $ports["2"]["port"]["1"]["nom"] = "Tourmalet";
 $ports["2"]["port"]["1"]["distancia"] = "23";
 $ports["2"]["port"]["1"]["altura"] = "2115";
 $ports["2"]["port"]["1"]["color_misatge"] = "";
-$ports["2"]["port"]["1"]["misatge"] = "Obert de Juny a Setembre. La resta de l&#39;any està tancat al tràfic per presència de neu";
+$ports["2"]["port"]["1"]["misatge"] = "Obert de Juny a Setembre. La resta de l'any està tancat al tràfic per presència de neu";
 $ports["2"]["port"]["1"]["datos"] = "Con sus 2 115 metros de altitud, el puerto del Tourmalet es uno de los puertos míticos del Tour de Francia. Los aficionados a la bici, los senderistas y los automovilistas que lo recorran podrán disfrutar de unas hermosas vistas de las montañas pirenaicas. En el descenso hacia la estación de Barèges, se puede visitar el jardín botánico del Tourmalet (abierto entre mediados de mayo y mediados de septiembre), dedicado a más de 2500 especies pirenaicas. ¡Es una forma excelente de familiarizarse con la flora local!";
 
 $ports["2"]["port"]["2"]["nom"] = "Envalira";
@@ -35,14 +35,14 @@ $ports["3"]["port"]["2"]["nom"] = "Stelvio";
 $ports["3"]["port"]["2"]["distancia"] = "22";
 $ports["3"]["port"]["2"]["altura"] = "2758";
 $ports["3"]["port"]["2"]["color_misatge"] = "";
-$ports["3"]["port"]["2"]["misatge"] = "Obert de Juny a Setembre. La resta de l&#39;any està tancat al tràfic per presència de neu";
+$ports["3"]["port"]["2"]["misatge"] = "Obert de Juny a Setembre. La resta de l'any està tancat al tràfic per presència de neu";
 $ports["3"]["port"]["2"]["datos"] = "Con mucho orgullo estamos delante de uno de los grandes colosos del ciclismo, el passo dello Stelvio. Con su altura a la estratosfera el paso representa desde 1953 la Cima Coppi del Giro de Italia, es decir, el distintivo de puerto de mayor altitud de cada edición. Grabado en la retina tenemos los amantes del cicloturismo las míticas tornanti, icono de la historia viva del ciclismo.<br />El Stelvio (Stilfserjoch en alemán) es con sus 2758 mts. el paso de montaña asfaltado de mayor altitud de los Alpes Orientales, y el segundo más alto de los Alpes sólo por detrás del Col de l’Iseran francés, de 2770 mts. El puerto une el valle de Valtellina con Bormio (SS38) y es fronterizo con Suiza por el passo dell'Umbrail.";
 
 $ports["3"]["port"]["3"]["nom"] = "Passo di Gavia";
 $ports["3"]["port"]["3"]["distancia"] = "16";
 $ports["3"]["port"]["3"]["altura"] = "2618";
 $ports["3"]["port"]["3"]["color_misatge"] = "";
-$ports["3"]["port"]["3"]["misatge"] = "Obert de Juny a Setembre. La resta de l&#39;any està tancat al tràfic per presència de neu";
+$ports["3"]["port"]["3"]["misatge"] = "Obert de Juny a Setembre. La resta de l'any està tancat al tràfic per presència de neu";
 $ports["3"]["port"]["3"]["datos"] = "Citados en uno de los olimpos del ciclismo, hoy nos toca ascender una de las cimas más míticas del ciclismo mundial en general y del Giro de Italia en particular como es el passo di Gavia, con características de coloso tanto por dureza como por porcentajes.<br />Después de una primera ascensión el 1960 con el puerto sin asfaltar que lo situó en el mundo, no fue hasta el 5 de junio de 1988 cuando sumando a su intrínseca dureza, se unió una impresionante tormenta de nieve. En una etapa que seguramente nunca se debió disputar, el frío y la agonía se reflejaba en unos destrozados ciclistas. Después de aquella proeza ha vuelto a ser cima Coppi del Giro de Italia en numerosas ocasiones.<br />El passo di Gavia es un puerto de montaña situado en los Alpes réticos italianos y es el décimo paso de montaña más alto de Europa con una altura de 2621 mts. La vía SS300 une Bormio al noroeste con Ponte di Legno al sur. Esta vertiente fue pavimentada por completo en la década de los noventa.";
 
 $ports["4"]["nombre_zona"] = "Resta del món";
