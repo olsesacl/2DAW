@@ -1,4 +1,4 @@
-td.title{
+#ports td.title{
     text-align: center !important;
     background: #fff;
     color: #677a83;
@@ -7,36 +7,45 @@ td.title{
     padding: 5px;
 }
 
-table{
+#ports table{
     width: 100%;
     margin-bottom: 35px;
 }
-td, th{
+#ports td, #ports th{
     text-align: center;
     padding: 10px;
     /*width: 33%;*/
     font-weight: bold;
 }
-tr>td:first-child, tr>th:first-child{
+#ports tr>td:first-child,#ports  tr>th:first-child{
     width: 35%;
 }
-tr :first-child{
+#ports tr :first-child{
     text-align: left;
 }
-
-tr:nth-child(2n){
-    background: #C8CFD2;
+#ports tr td:last-child {
+    min-width: 110px;
 }
-tr:nth-child(2n+1){
+#ports tr:nth-child(2n){
+    background: #C8CFD2;
+    padding:0;
+}
+#ports tr:nth-child(2n) td{
+    padding:0;
+}
+#ports tr:nth-child(2n) td div{
+    padding:10px;
+}
+#ports tr:nth-child(2n+1){
     background: #8dc35a;
     color:#ffffff;
 }
-.text_port{
+#ports .text_port{
     padding: 15px;
     text-align: justify !important;
     font-weight: 100 !important;
 }
-.mostrar_mas{
+#ports .mostrar_mas{
     cursor: pointer;
 }
 .hidden{

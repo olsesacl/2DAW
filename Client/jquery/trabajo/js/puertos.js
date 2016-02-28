@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function carga(){
     $(".fancybox").fancybox({
         padding: 0,
 
@@ -65,13 +65,12 @@ $(document).ready(function() {
 
     $('#selector_ports').change(cambiar_ports);
 
-});
+};
 
 function cambiar_ports(){
 
     var id =$('#selector_ports').val();
 
-    var div_ports = $("#ports");
     //eliminem el contingut del div abans de replenar en les dades corresponents
     $("#ports").hide().html('');
     $("#ports").show();
@@ -127,10 +126,10 @@ function mostrar(id){
                            var foto_dades='';
                            $(fotos).find( "foto" ).each(function() {
                                if(first == 1){
-                                   foto_dades +="<a href='"+ dirfoto + $(this).text()+"' class='fancybox' data-fancybox-group='fotos_"+ id +"_"+ j +"' data-fancybox-title='Unas cuantas fotos para disfrutar'><img src='./images/galerias.png'></a><div>";
+                                   foto_dades +="<a href='"+ dirfoto + $(this).text()+"' class='fancybox' data-fancybox-group='fotos_"+ id +"_"+ j +"' data-fancybox-title='"+$(this).text().split(".")[0].split("-")[1]+"'><img src='./images/galerias.png'></a><div>";
                                    first =0;
                                } else {
-                                   foto_dades +="<div href='"+ dirfoto + $(this).text()+"' class='fancybox' data-fancybox-group='fotos_"+ id +"_"+ j +"' data-fancybox-title='Unas cuantas fotos para disfrutar'></div>";
+                                   foto_dades +="<div href='"+ dirfoto + $(this).text()+"' class='fancybox' data-fancybox-group='fotos_"+ id +"_"+ j +"' data-fancybox-title='"+$(this).text().split(".")[0].split("-")[1]+"'></div>";
                                }
                            });
                            foto_dades +="</div>";
@@ -141,9 +140,9 @@ function mostrar(id){
                    });
 
                     dades += "<td><a class='fancybox-altimetria'  href='./images/ports/"+ id +"/"+ i +"/altimetria.jpg'><img src='./images/altimetria.png'></a></td> ";
-                    dades +="<td><span class='mostrar_mas' onclick=\"$('#text_"+ id +"_"+ i +"').fadeToggle('slow');\">Mostrar más</span></td>";
+                    dades +="<td><span class='mostrar_mas' data-ref=\"#text_"+ id +"_"+ i +"\">Mostrar más</span></td>";
                     dades +="</tr>";
-                   dades +="<tr id='text_"+ id +"_"+ i +"' style='display:none;'><td colspan='6' class='text_port'>"+ $(this).find("datos").text() +"</td></tr>";
+                   dades +="<tr><td colspan='6' class='text_port'><div id='text_"+ id +"_"+ i +"' style='display:none;'>"+ $(this).find("datos").text() +"</div></td></tr>";
                     i++;
                 });
                 dades +="</table>"
@@ -151,6 +150,19 @@ function mostrar(id){
             $("#ports .cargando").fadeOut("fast").remove();
             $("#ports").append($("<div>").css("display", "none"));
             $("#ports > div:last-child").html(dades).slideDown("slow");
+
+            $(".mostrar_mas").unbind("click").click(function(){
+                var variable = $(this);
+
+                $($(this).attr("data-ref")).slideToggle('slow', function(){
+                    if(variable.text()=="Mostrar más"){
+                        variable.text("Mostrar menos");
+                    } else {
+                        variable.text("Mostrar más");
+                    }
+                });
+
+            });
 
            $('.tooltip[data-color!=red]').tooltipster({
                 multiple: true,
@@ -162,27 +174,5 @@ function mostrar(id){
                 animation:"grow"
 
             });
-
-            /*$('[data-tooltip]').each(function () {
-
-                var clase = $(this).data('color');
-
-                $(this).tooltip({
-                    tooltipClass: clase,
-                    position: {
-                        my: "right center",
-                        at: "left+10 center",
-
-                    },
-                    content: function () {
-                        return $(this).data('tooltip');
-                    }
-
-
-                });
-            });*/
         }});
-
-
-
 }

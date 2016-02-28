@@ -1,7 +1,7 @@
 var temporizador;
 var selector_carrusel = 0;
 
-$( document ).ready(function() {
+function carga() {
     carrusel_random();
 
 
@@ -30,7 +30,7 @@ $( document ).ready(function() {
 
     });
 
-});
+};
 
 function carrusel_random(){
 

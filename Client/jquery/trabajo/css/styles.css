@@ -214,22 +214,17 @@ ul#navlist {
 #navlist li {
 	display: inline;
 	list-style-type: none;
-}
-#navlist a { 
 	padding: 3px 10px; 
 	font-family: 'Lobster', sans-serif;
 	font-size: 36px;
 	color: #677a83;
+	cursor: pointer;
 }
-#navlist a:link, #navlist a:visited {
-	color: #677a83;
-	text-decoration: none;
-}
-#navlist a:hover {
+#navlist li:hover {
 	color: #8dc35a;
 	text-decoration: none;
 }
-#navlist #active a {
+#navlist li#active {
 	color: #8dc35a;
 	text-decoration: none;
 }
