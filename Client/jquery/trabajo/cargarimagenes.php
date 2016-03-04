@@ -18,11 +18,13 @@ if (is_dir($path)) {
     closedir($dir);
 # Ordenamos la lista
     sort($list);
-}
-foreach($list as $foto) {
 
-    if($foto != "altimetria.jpg"){
-        $elementos_xml[] = "<foto>" . $foto . "</foto>";
+    foreach($list as $foto) {
+
+        if($foto != "altimetria.jpg"){
+            $elementos_xml[] = "<foto>" . $foto . "</foto>";
+        }
     }
+    echo "<fotos>\n".implode("\n", $elementos_xml)."</fotos>";
 }
-echo "<fotos>\n".implode("\n", $elementos_xml)."</fotos>";
+
