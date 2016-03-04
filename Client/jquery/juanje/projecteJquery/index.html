@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+
+<head>
+  <title>Dolor de cul - Index</title>
+  <meta name="description" content="free website template" />
+  <meta name="keywords" content="enter your keywords here" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/polaroid.css" />
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="js/funciones.js"></script>
+  <!--<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>-->
+
+  <script type="text/javascript">
+      $(document).ready(function(){
+          //slider extraído de:
+          //http://www.oloblogger.com/2013/04/mas-sencillo-slider-jquery.html
+
+          $(function(){
+              $("#giro").mouseover(function(){
+                  texto1=$("#giro").html();
+                  $("#campeones").attr("src","images/contador.jpg");
+                  $("#campeones_caption").html("Alberto Contador ganador del Giro de Italia 2015");
+
+              });
+              $("#tour").mouseover(function(){
+                  texto2=$("#tour").html();
+                  $("#campeones").attr("src","images/froome.jpg");
+                  $("#campeones_caption").html("Chris Froome ganador del Tour de Francia 2015");
+              });
+              $("#vuelta").mouseover(function(){
+                  texto3=$("#vuelta").html();
+                  $("#campeones").attr("src","images/aru.jpg");
+                  $("#campeones_caption").html("Fabio Aru ganador de la Vuelta 2015");
+              });
+          });
+
+          $("#leer_mas").click(function(){
+              $("#adicional").slideToggle(2000);
+          });
+
+          setInterval(cuentaAtras,1000);
+          function cuentaAtras() {
+              var fecha1 = new Date('2016','03','30','12','00','00');
+              var fecha2 = new Date('2016','06','02','12','00','00');
+              var fecha3 = new Date('2016','08','03','12','00','00');
+
+              for (var i = 1; i <= 3; i++) {
+                  var hoy = new Date();
+                  var dias = 0;
+                  var horas = 0;
+                  var minutos = 0;
+                  var segundos = 0;
+                  var arrayFechas = [fecha1, fecha2, fecha3];
+
+                  if (arrayFechas[i - 1] > hoy) {
+                      var diferencia = (arrayFechas[i - 1].getTime() - hoy.getTime()) / 1000
+                      dias = Math.floor(diferencia / 86400)
+                      diferencia = diferencia - (86400 * dias)
+                      horas = Math.floor(diferencia / 3600)
+                      diferencia = diferencia - (3600 * horas)
+                      minutos = Math.floor(diferencia / 60)
+                      diferencia = diferencia - (60 * minutos)
+                      segundos = Math.floor(diferencia)
+
+                      $("#contador"+i).html('Quedan ' + dias + ' D&iacute;as, ' + horas + ' Horas, ' + minutos + ' Minutos, ' + segundos + ' Segundos');
+                  }
+              }
+          };
+
+          setInterval(cambiarImgDecorativa,2000);
+          function cambiarImgDecorativa(){
+              aleat = Math.floor(Math.random()*4);
+              $("#polaroids").fadeOut(0).attr("src","images/polaroids"+aleat+".jpg").fadeIn(1000);
+          };
+      });
+
+  </script>
+
+   </head>
+
+   <body>
+     <div id="main">
+       <div id="site_content">
+         <div id="site_heading">
+           <h1>Dolor de cul</h1>
+           <h2>Peña ciclista</h2>
+         </div><!--close site_heading-->
+	  <div id="header">
+	    <div id="menubar">
+          <ul id="menu">
+            <li><a href="index.html"><div class="current">Inicio</div></a></li>
+            <li><a href="puertos.html"><div>Puertos</div></a></li>
+            <li><a href="ciclistas.html"><div>Ciclistas</div></a></li>
+            <li><a href="formulario.html"><div>Formulario</div></a></li>
+          </ul>
+        </div><!--close menubar-->
+      </div><!--close header-->	  
+	  <div id="banner_image">
+          <div id="contenedor_imagenes">
+            <div><img  src="images/bike-banner0.jpg"  /><p>El ciclismo</p></div>
+            <div><img  src="images/bike-banner1.jpg"  /><p>es más que</p></div>
+            <div><img  src="images/bike-banner2.jpg"  /><p>una pasión.</p></div>
+            <div><img  src="images/bike-banner3.jpg"  /><p>LOVE CYCLING</p></div>
+
+		</div><!--close contenedor_imagenes-->
+	  </div><!--close banner_image-->
+        <div class="sidebar_container_puertos">
+           <div class="sidebar_container">
+               <div id="giro" class="sidebar">
+                   <div class="sidebar_item">
+                       <h2>Giro Italia</h2>
+                       <h4 id="contador1"></h4>
+
+                   </div><!--close sidebar_item-->
+               </div><!--close sidebar-->
+               <div id="tour" class="sidebar">
+                   <div class="sidebar_item">
+                       <h2>Tour Francia</h2>
+                       <h4 id="contador2"></h4>
+                   </div><!--close sidebar_item-->
+               </div><!--close sidebar-->
+               <div id="vuelta" class="sidebar">
+                   <div class="sidebar_item">
+                       <h2>Vuelta España</h2>
+                       <h4 id="contador3"></h4>
+                   </div><!--close sidebar_item-->
+               </div><!--close sidebar-->
+           </div><!--close sidebar_container-->
+      <div id="content">
+
+                <div id="campeones_div">
+                    <a href="#"><img id="campeones" alt="image" src="images/yeahhh.jpg" /></a>
+                    <span id="campeones_caption">Esto sí que es un campeón</span>
+                </div>
+      </div>
+	  </div><!--close content-->
+           <div style="clear: both"></div>
+
+           <div id="about">
+               <div id="izda"><h1>Bienvenido a la web de la peña Dolor de cul</h1>
+                   <p>Año a año nos vamos afianzando como PEÑA, en la actualidad contamos con cerca de 130 socios de diversas edades y géneros..
+                <span id="adicional" class="oculto">
+                    En el año 2013 tenemos previsto organizar los siguientes eventos deportivos relacionados con la bicicleta:<br>
+                     -Quedada MTB<br>
+                     -Quedada Carretera<br>
+                     -Organizar DIA Bicicleta en Mota del Cuervo<br>
+                     -Comida campestre de los socios<br>
+                     -Carrera de Escuelas de Ciclismo<br>
+                     -Carrera MTB perteneciente al Circuito Diputación Cuenca<br>
+                     -Excursión Ciclista Popular<br>
+                     -Cena Peña Ciclista Herrada<br>
+                     Realizar salidas mas o menos organizadas entre los socios y no socios, tanto de carretera como MTB.<br>
+                     Varios de nuestros socios suelen participar en carreras, marchas y eventos deportivos en todo el calendario nacional, tanto de MTB, CICLISMO DE CARRETERA como TRIATLON, dejando a nuestra PEÑA en buen lugar.<br>
+                     Ir a visitar a nuestros PROS, los hermanos HERRADAS a las carreras para darles ánimos en directo.
+                </span><!--close adicional--></p>
+
+                   <a  id="leer_mas">Leer m&aacute;s</a></div>
+               <div style="float: right;"><h1><div id="polaroid">
+                   <figure>
+                       <img id="polaroids" src="images/polaroids2.jpg" width="200" height="200" alt="Equipo cicling" />
+                       <figcaption>Nosotros</figcaption>
+                   </figure>
+               </div><!--end polaroid--></h1></div>
+           </div>
+
+    </div><!--close site_content-->	
+    <div id="footer">
+        website template by <a href="http://jotaj.blogspot.com.es/">Blog de Jotaj</a>
+    </div><!--close footer-->
+  </div><!--close main-->	
+</body>
+</html>

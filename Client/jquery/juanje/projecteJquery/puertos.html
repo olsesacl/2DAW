@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+
+<head>
+    <title>Dolor de cul - Puertos</title>
+    <meta name="description" content="free website template" />
+    <meta name="keywords" content="enter your keywords here" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/tabla.css" />
+    <link rel="stylesheet" type="text/css" href="css/polaroid.css" />
+    <link rel="stylesheet" type="text/css" href="css/opentip.css" />
+    <link rel="stylesheet" href="css/lightbox.min.css" type="text/css" media="screen" />
+    <!-- <link type="text/css" rel="stylesheet" href="css/jquery.qtip.css"
+    <script type="text/javascript" src="js/prototype.js"></script>
+    <script type="text/javascript" src="js/scriptaculous.js?load=effects,builder"></script>
+    />-->
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/opentip-jquery-excanvas.min.js" charset="utf-8"></script>
+
+    <!-- <script type="text/javascript" src="js/jquery.easing.min.js"></script>-->
+    <script type="text/javascript" src="js/funciones.js"></script>
+
+    <script type="text/javascript" src="js/lightbox.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        var url_select="cargaSelectXML.php?nocache="+Math.random();
+
+        $.get(url_select, function(docXML){
+             var puertos=$('#puertos');
+             var cadena_html="<option>- Selecciona -</option>";
+             var nombre="";
+             var codigo="";
+             $(docXML).find('puerto').each(function(){
+                 nombre=$(this).find('nombre').text();
+                 codigo=$(this).find('codigo').text();
+                 cadena_html+="<option "+"value="+"'"+codigo+"'>"+nombre+"</option>";
+             });
+             puertos.html(cadena_html);
+             puertos.change(cargaPuertos);
+        }, "xml");
+
+        $('#montañas').change(llamarTabla);
+    });
+
+        function cargaPuertos(){
+            var puertos_elegidos = $('#puertos').val();
+
+            if(!isNaN(puertos_elegidos)){
+                var parametros = {"elegidos" : puertos_elegidos};
+                $.ajax({
+                    data:  parametros,
+                    dataType:  "xml",
+                    url:   "cargaPortsXML.php?nocache="+Math.random(),
+                    type:  'post',
+                    success:  ponPuertos,
+                    error:  function (response){
+                        alert("error obtenint el recurs cargaPortsXML.php");
+                    }
+                });
+            }
+        }
+
+    function ponPuertos(docXML){
+        var montañas = $('#montañas');
+        var cadena_html = "<option value='0' >- Selecciona -</option>";
+        var nombre="";
+        var codigo="";
+        $(docXML).find('puerto').each(function(){
+            nombre=$(this).find('nombre').text();
+            codigo=$(this).find('codigo').text();
+            cadena_html+="<option "+"value="+"'"+codigo+"'>"+nombre+"</option>";
+        });
+        montañas.html(cadena_html);
+
+    }
+
+    function llamarTabla(){
+        var valor = $("#montañas").val();
+        $.get("./xml/"+valor+".xml?nocache="+Math.random(), dibujaTabla, "xml");
+    }
+
+    function dibujaTabla(docXML){
+        var cadena_http="";
+        cadena_http = "<table id='pirineos_tabla' border='1'>";
+            cadena_http += "<tr><th>Nombre</th><th>Longitud</th><th>Altitud</th><th>Altimetría</th><th>Galería</th><th>Opciones</th></tr>";
+            var tooltip = $(docXML).find('tooltip').text();
+            cadena_http+="<tr data-ot="+tooltip+">";
+            var nombre = $(docXML).find('nombre').text();
+            cadena_http+="<td>"+nombre+"</td>";
+            var distancia = $(docXML).find('distancia').text();
+            cadena_http+="<td>"+distancia+"</td>";
+            var altura = $(docXML).find('altura').text();
+            cadena_http+="<td>"+altura+"</td>";
+
+            var foto=$(docXML).find('altimetria').text();
+            cadena_http+='<td><a href="'+foto+'" data-lightbox="lightbox" title="Altimetria '+nombre+'"><img width="32" height="32" src="images/alto.png"/></a></td><td>';
+
+            var i=1;
+            $(docXML).find('imagen').each(function(){
+
+                cadena_http+='<a href="'+$(this).text()+'" data-lightbox="lightbox[conjunto1]" title="Imágenes '+nombre+'">';
+
+                if(i ==1){
+                    cadena_http+='<img width="32" height="32" src="images/gallery.png"/>';
+                }
+                cadena_http+='</a>';
+                i++;
+            });
+            var mensaje=$(docXML).find('mensaje').text();
+            cadena_http+='</td><td><button class="info">Información de la prueba</button></td>';
+
+            cadena_http += '<tr border="1" align="center" >';
+            cadena_http +='<td colspan="6" ><div style="display:none;"  id="info">'+mensaje+'</div></td></tr>';
+
+
+        cadena_http += "</tr></table>";
+        $('#tabla').html(cadena_http);
+        $(".info").click(function(){
+            $("#info").toggle(2000);
+        });
+        $.getScript("./js/lightbox.js", function(){
+        });
+    }
+
+/*
+    });
+
+        /*
+        function ShowHide(fila) {
+            if ((document.getElementById(fila).style.display) == 'table-row') {
+                document.getElementById(fila).style.display = 'none';
+            }
+            else {
+                document.getElementById(fila).style.display = 'table-row';
+            }
+        }*/
+
+    </script>
+
+</head>
+
+<body>
+<div id="main">
+    <div id="site_content">
+        <div id="site_heading">
+            <h1>Dolor de cul</h1>
+            <h2>Peña ciclista</h2>
+        </div><!--close site_heading-->
+        <div id="header">
+            <div id="menubar">
+                <ul id="menu">
+                    <li><a href="index.html"><div>Inicio</div></a></li>
+                    <li><a href="puertos.html"><div class="current">Puertos</div></a></li>
+                    <li><a href="ciclistas.html"><div>Ciclistas</div></a></li>
+                    <li><a href="formulario.html"><div>Formulario</div></a></li>
+                </ul>
+            </div><!--close menubar-->
+        </div><!--close header-->
+        <div id="banner_image">
+            <div id="contenedor_imagenes">
+                <div><img  src="images/bike-banner0.jpg"  /><p>El ciclismo</p></div>
+                <div><img  src="images/bike-banner1.jpg"  /><p>es más que</p></div>
+                <div><img  src="images/bike-banner2.jpg"  /><p>una pasión.</p></div>
+                <div><img  src="images/bike-banner3.jpg"  /><p>LOVE CYCLING</p></div>
+
+            </div><!--close contenedor_imagenes-->
+        </div><!--close banner_image-->
+
+        <div class="sidebar_container_puertos">
+            <div id="selects">
+                <select id="puertos">
+                    <option>Cargando...</option>
+                </select>
+
+                <select id="montañas">
+                    <option>Cargando...</option>
+                </select>
+            </div>
+            <div id="tabla" class="tabla">
+
+            </div>
+
+
+
+        </div><!--close sidebar_container_puertos-->
+    </div><!--close site_content-->
+    <div id="footer">
+        website template by <a href="http://jotaj.blogspot.com.es/">Blog de Jotaj</a>
+    </div><!--close footer-->
+</div><!--close main-->
+</body>
+</html>

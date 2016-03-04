@@ -1,0 +1,19 @@
+.tabla{
+    text-align: center;
+
+    width: 691px;
+    margin: 0 auto;
+}
+
+.tabla table {
+    margin: 20px auto 0 auto;
+    background-color: white;
+}
+
+.tabla tr {
+    height: 35px;
+}
+
+.tabla th {
+    width: 110px;
+}

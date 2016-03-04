@@ -1,0 +1,23 @@
+<puerto>
+	<nombre>Alpe d'Huez</nombre>
+	<distancia>14 km</distancia>
+	<altura>1845 m </altura>
+	<mensaje>
+		Alpe d'Huez es una montaña de los Alpes franceses de 1850 m de altitud. La estación de esquí presente en dicha montaña se comenzó a construir en 1930. En 1936, se instala el primer remonte mecánico de tipo telesquí. Alpe d'Huez debe gran parte de su fama a su relación con la carrera ciclista del Tour de Francia.
+	</mensaje>
+	<imagenes>
+		<altimetria>images/altimetria/huez.jpg</altimetria>
+		<carrusel>
+			<imagen>images/gallery/huez1.jpg</imagen>
+			<imagen>images/gallery/huez2.jpg</imagen>
+			<imagen>images/gallery/huez3.jpg</imagen>
+			<imagen>images/gallery/huez4.jpg</imagen>
+		</carrusel>
+	</imagenes>
+	<tooltip>
+		Extremar las precauciones con las nieblas repentinas, visibilidat muy defectuosa
+	</tooltip>
+	<color>
+		rojo
+	</color>
+</puerto>

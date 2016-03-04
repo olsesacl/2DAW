@@ -1,0 +1,23 @@
+<puerto>
+	<nombre>Tourmalet</nombre>
+	<distancia>23 km</distancia>
+	<altura>2115 m </altura>
+	<mensaje>
+		El Col du Tourmalet, o simplemente Tourmalet, es un paso localizado en el centro de los Pirineos franceses. Tiene una altitud de 2.115 metros sobre el nivel del mar.
+	</mensaje>
+	<imagenes>
+		<altimetria>images/altimetria/tourmalet.jpg</altimetria>
+		<carrusel>
+			<imagen>images/gallery/tourmalet1.jpg</imagen>
+			<imagen>images/gallery/tourmalet2.jpg</imagen>
+			<imagen>images/gallery/tourmalet3.jpg</imagen>
+			<imagen>images/gallery/tourmalet4.jpg</imagen>
+		</carrusel>
+	</imagenes>
+	<tooltip>
+		Abierto de Junio a Septiembre. El resto del año está cerrado al tráfico por presencia de nieve.
+	</tooltip>
+	<color>
+		azul
+	</color>
+</puerto>

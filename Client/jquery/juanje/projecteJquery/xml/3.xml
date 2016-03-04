@@ -1,0 +1,23 @@
+<puerto>
+	<nombre>Aubisque</nombre>
+	<distancia>22 km</distancia>
+	<altura>1709 m </altura>
+	<mensaje>
+		El Col d'Aubisque o puerto del Aubisque (en occitano, Cth d'Aubisca), también conocido simplemente como Aubisque, es un puerto de montaña de los Pirineos situado a 1.709 msnm, en el departamento de Pirineos Atlánticos, en la región francesa de Aquitania. Se encuentra a unos 30 km al sur de Pau y Tarbes.
+	</mensaje>
+	<imagenes>
+		<altimetria>images/altimetria/aubisque.jpg</altimetria>
+		<carrusel>
+			<imagen>images/gallery/aubisque1.jpg</imagen>
+			<imagen>images/gallery/aubisque2.jpg</imagen>
+			<imagen>images/gallery/aubisque3.jpg</imagen>
+			<imagen>images/gallery/aubisque4.jpg</imagen>
+		</carrusel>
+	</imagenes>
+	<tooltip>
+		Precaución con los osos salvajes
+	</tooltip>
+	<color>
+		rojo
+	</color>
+</puerto>

@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+  <title>Dolor de cul - Formulario</title>
+  <meta name="description" content="free website template" />
+  <meta name="keywords" content="enter your keywords here" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/form.css" />
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+
+  <script type="text/javascript" src="js/jquery-1.12.1.js"></script>
+ <!-- <script type="text/javascript" src="js/jquery.easing.min.js"></script>-->
+  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $( "#nacimi" ).datepicker();
+
+        $('#form_submit').click(validar);
+        $('#formulario').prop('disabled',true); //para desabilitar el submit del formulario y que no envíe sin mi consentimiento muajjajaja
+
+
+    });
+
+
+
+
+
+
+        function enviar(){
+            alert("flipas esto funciona");
+        }
+
+        function validar(){
+            var valido = true;
+
+            if(validar_texto("nombre")==false){
+                valido = false;
+            }
+            if(validarEmail("email")==false){
+                valido = false;
+            }
+
+            if(validarPagina("website")==false){
+                valido = false;
+            }
+
+            if(validarTextArea("message")==false){
+                valido = false;
+            }
+
+            if(validarFecha("nacimi")==false){
+                valido = false;
+            }
+
+            if(valido==true){
+                enviar();
+            }
+        }
+
+        function validar_texto(ide){
+            var texto = $('#'+ide).val();
+            var aviso = $('#'+ide+"_lab");
+            if (texto.length<=4){
+                aviso.html("Campo obligatorio");
+                $('#'+ide).attr("class","mal");
+                return false;
+            }else{
+                $('#'+ide).attr("class","good");
+                aviso.html(" ");
+            }
+        }
+
+        function validarPagina (ide){
+            var pagina  = $('#'+ide).val();
+            var aviso = $('#'+ide+"_lab");
+            var expre = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
+            if (!expre.test(pagina)){
+                aviso.html("Campo obligatorio");
+                $('#'+ide).attr("class","mal");
+                return false;
+            }else{
+                $('#'+ide).attr("class","good");
+                aviso.html(" ");
+            }
+        }
+
+        function validarEmail (ide){
+            var email = $('#'+ide).val();
+            var aviso = $('#'+ide+"_lab");
+            var expre = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!expre.test(email)){
+                aviso.html("Campo obligatorio");
+                $('#'+ide).attr("class","mal");
+                return false;
+            }else{
+                $('#'+ide).attr("class","good");
+                aviso.html(" ");
+            }
+        }
+
+        function validarTextArea(ide){
+
+            var texto = $('#'+ide).val();
+            var aviso = $('#'+ide+"_lab");
+
+            var textoAreaDividido = texto.split(" ");
+            var numeroPalabras = textoAreaDividido.length;
+
+            if (texto.length<15){
+                //alert("menos de 15");
+                aviso.html("Texto demasiado pequeño, escribe un poco más campeón/a.");
+                $('#'+ide).attr("class","mal");
+                return false;
+            }else if(numeroPalabras>200){
+                aviso.html("Te has pasado, demasiadas palabras. Máximo 200 palabras.");
+                $('#'+ide).attr("class","mal");
+
+                return false;
+            }else{
+                $('#'+ide).attr("class","good");
+                aviso.html(" ");
+            }
+        }
+
+        function validarFecha(ide) {
+            var nacim = $('#' + ide).val();
+            var aviso = $('#' + ide + "_lab");
+            var expre = /^\d{9}$/;
+            if (!expre.test(nacim)) {
+                var nacimient = Date.parse(nacim);
+                //alert(Date.parse(nacim));
+                //var d1 = Date.parse("01/12/2004"); // returns a valid JavaScript date
+                //var d2 = Date.parse("30/02/2004"); // returns null
+                if (isNaN(nacimient)) {
+                    aviso.html("Campo obligatorio, escribe bien la fecha.");
+                    $('#'+ide).attr("class","mal");
+                    return false;
+                } else {
+                    $('#'+ide).attr("class","good");
+                    aviso.html(" ");
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+  <div id="main">	
+	<div id="site_content">
+      <div id="site_heading">
+          <h1>Dolor de cul</h1>
+          <h2>Peña ciclista</h2>
+	  </div><!--close site_heading-->
+        <div id="header">
+            <div id="menubar">
+                <ul id="menu">
+                    <li><a href="index.html"><div>Inicio</div></a></li>
+                    <li><a href="puertos.html"><div>Puertos</div></a></li>
+                    <li><a href="ciclistas.html"><div>Ciclistas</div></a></li>
+                    <li><a href="formulario.html"><div class="current">Formulario</div></a></li>
+                </ul>
+            </div><!--close menubar-->
+        </div><!--close header-->
+        <div id="banner_image">
+            <div id="contenedor_imagenes">
+                <div><img  src="images/bike-banner0.jpg"  /><p>El ciclismo</p></div>
+                <div><img  src="images/bike-banner1.jpg"  /><p>es más que</p></div>
+                <div><img  src="images/bike-banner2.jpg"  /><p>una pasión.</p></div>
+                <div><img  src="images/bike-banner3.jpg"  /><p>LOVE CYCLING</p></div>
+
+            </div><!--close contenedor_imagenes-->
+        </div><!--close banner_image-->
+
+      <div class="sidebar_container_form">
+          <div id="formu">
+          <form class="contact_form" id="formulario" enctype="multipart/form-data" method="post" action="">
+              <div>
+                  <ul>
+                      <li>
+                          <h2>Contactos</h2>
+                          <span class="required_notification">* Datos requeridos</span>
+                      </li>
+                      <li>
+                          <label for="nombre">Nombre:</label>
+                          <input  id="nombre" name="nombre" type="text" placeholder="Juan Jesús" required />
+                          <label id="nombre_lab" class="avis_form"> </label>
+                      </li>
+                      <li>
+                          <label for="email">Email:</label>
+                          <input type="email" name="email" id="email" placeholder="juanje@gmail.com" required />
+                          <span class="form_hint">Formato correcto: "name@something.com"</span>
+                          <label id="email_lab" class="avis_form"> </label>
+                      </li>
+                      <li>
+                          <label for="website">Sitio web:</label>
+                          <input type="url" id="website" name="website" placeholder="http://jotaj.blogspot.com.es/" required pattern="(http|https)://.+" />
+                          <span class="form_hint">Formato correcto: "http://jotaj.blogspot.com.es/"</span>
+                          <label id="website_lab" class="avis_form"> </label>
+                      </li>
+                      <li>
+                          <label for="message">Mensaje:</label>
+                          <textarea id="message" name="message" cols="40" rows="6" placeholder="Debes escribir al menos 15 letras"  ></textarea>
+                          <label id="message_lab" class="avis_form"> </label>
+                      </li>
+                      <li>
+                          <label for="nacimi">Nacimiento:</label>
+                          <input type="text" id="nacimi" name="nacimi" placeholder="21/12/1980" required>
+                          <span class="form_hint">Formato correcto: "DD/MM/AAA"</span>
+                          <label id="nacimi_lab" class="avis_form"> </label>
+
+                      </li>
+                      <li>
+                          <button id="form_submit" class="submit" type="submit" >Enviar mensaje</button>
+                      </li>
+                  </ul>
+              </div>
+          </form>
+          </div>
+      </div><!--close sidebar_container_form-->
+	  
+    </div><!--close site_content-->	
+    <div id="footer">
+        website template by <a href="http://jotaj.blogspot.com.es/">Blog de Jotaj</a>
+    </div><!--close footer-->	
+  </div><!--close main-->	
+</body>
+</html>

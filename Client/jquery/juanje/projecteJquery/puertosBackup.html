@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+
+<head>
+<title>Dolor de cul - Puertos</title>
+<meta name="description" content="free website template" />
+<meta name="keywords" content="enter your keywords here" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/tabla.css" />
+
+    <!--
+<link rel="stylesheet" type="text/css" href="css/opentip.css" />
+<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+<link type="text/css" rel="stylesheet" href="css/jquery.qtip.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="./js/opentip-jquery-excanvas.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="js/funciones.js"></script>
+<script type="text/javascript" src="js/prototype.js"></script>
+<script type="text/javascript" src="js/scriptaculous.js?load=effects,builder"></script>
+<script type="text/javascript" src="js/lightbox.js"></script>-->
+
+    <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        var url_select="cargaSelectXML.php?nocache="+Math.random();
+
+
+            $.get(url_select, function(docXML){
+                var puertos=$('#puertos');
+                var cadena_html="<option>- Selecciona -</option>";
+                var nombre="";
+                var codigo="";
+                $(docXML).find('puerto').each(function(){
+                    nombre=$(this).find('nombre').text();
+                    codigo=$(this).find('codigo').text();
+                    cadena_html+="<option "+"value="+"'"+codigo+"'>"+nombre+"</option>";
+                });
+                puertos.html(cadena_html);
+                puertos.change(cargaPuertos);
+            }, "xml");
+
+
+    });
+
+        function cargaPuertos(){
+
+            var puertos_elegidos = $('#puertos').val();
+
+            if(!isNaN(puertos_elegidos)){
+                var parametros = {"elegidos" : puertos_elegidos};
+                $.ajax({
+                    data:  parametros,
+                    dataType:  "xml",
+                    url:   "./cargaPortsXML.php",
+                    type:  'post',
+                    success:  ponPuertos,
+                    error:  function (response){
+                        alert("error obtenint el recurs cargaPortsXML.php");
+                    }
+                });
+            }
+        }
+
+        function ponPuertos(objetoXML){
+
+        }
+
+/*
+
+
+    });
+
+        /*
+        function ShowHide(fila) {
+            if ((document.getElementById(fila).style.display) == 'table-row') {
+                document.getElementById(fila).style.display = 'none';
+            }
+            else {
+                document.getElementById(fila).style.display = 'table-row';
+            }
+        }*/
+
+    </script>
+
+</head>
+
+<body>
+<div id="main">
+    <div id="site_content">
+        <div id="site_heading">
+            <h1>Dolor de cul</h1>
+            <h2>Peña ciclista</h2>
+        </div><!--close site_heading-->
+        <div id="header">
+            <div id="menubar">
+                <ul id="menu">
+                    <li><a href="index.html"><div>Inicio</div></a></li>
+                    <li><a href="puertos.html"><div class="current">Puertos</div></a></li>
+                    <li><a href="ciclistas.html"><div>Ciclistas</div></a></li>
+                    <li><a href="formulario.html"><div>Formulario</div></a></li>
+                </ul>
+            </div><!--close menubar-->
+        </div><!--close header-->
+        <div id="banner_image">
+            <div id="contenedor_imagenes">
+                <div><img  src="images/bike-banner0.jpg"  /><p>El ciclismo</p></div>
+                <div><img  src="images/bike-banner1.jpg"  /><p>es más que</p></div>
+                <div><img  src="images/bike-banner2.jpg"  /><p>una pasión.</p></div>
+                <div><img  src="images/bike-banner3.jpg"  /><p>LOVE CYCLING</p></div>
+
+            </div><!--close contenedor_imagenes-->
+        </div><!--close banner_image-->
+
+        <div class="sidebar_container_puertos">
+            <select id="puertos">
+                <option>Cargando...</option>
+            </select>
+
+            <div id="pirineos_div" class="tabla">
+                <table id="pirineos_tabla" border="1">
+
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Longitud</th>
+                        <th>Altitud</th>
+                        <th>Altimetría</th>
+                        <th>Galería</th>
+                        <th>Opciones</th>
+                    </tr>
+
+
+
+                    <tr data-ot="Abierto de Junio a Septiembre. El resto del año está cerrado al tráfico por presencia de nieve">
+                        <td>Tourmalet</td>
+                        <td>23Km</td>
+                        <td>2115m</td>
+                        <td>
+                            <a href="images/altimetria/tourmalet.jpg" rel="lightbox" title="Altimetria Tourmalet"><img width="32" height="32" src="images/alto.png"/></a>
+                        </td>
+                        <td>
+                            <a href="images/gallery/tourmalet1.jpg" rel="lightbox[conjunto1]" title="Imágenes Tourmalet"><img width="32" height="32" src="images/gallery.png"/></a>
+                            <a href="images/gallery/tourmalet2.jpg" rel="lightbox[conjunto1]" title="Imágenes Tourmalet"></a>
+                            <a href="images/gallery/tourmalet3.jpg" rel="lightbox[conjunto1]" title="Imágenes Tourmalet"></a>
+                            <a href="images/gallery/tourmalet4.jpg" rel="lightbox[conjunto1]" title="Antoon van Schende 1936"></a>
+                        </td>
+                        <td><button onclick='ShowHide("tourmalet_info")'>Información de la prueba</button></td>
+                    </tr>
+
+
+                    <tr border='1' align="center" style="display:none;"  id='tourmalet_info'>
+                        <td colspan="6" >El Col du Tourmalet, o simplemente Tourmalet, es un paso localizado en el centro de los Pirineos franceses. Tiene una altitud de 2.115 metros sobre el nivel del mar.</td>
+                    </tr>
+
+                    <tr data-ot="Extremar les precaucions amb les boires repentines, visibilitat molt defectuosa" data-ot-style="alert">
+                        <td>Envalira</td>
+                        <td>23Km</td>
+                        <td>2404m</td>
+                        <td>
+                            <a href="images\altimetria/envalira.jpg" rel="lightbox" title="Altimetria Envalira"><img width="32" height="32" src="images/alto.png"/></a>
+                        </td>
+                        <td>
+                            <a href="images/gallery/envalira1.jpg" rel="lightbox[conjunto2]" title="Imágenes Envalira"><img width="32" height="32" src="images/gallery.png"/></a>
+                            <a href="images/gallery/envalira2.jpg" rel="lightbox[conjunto2]" title="Imágenes Envalira"></a>
+                            <a href="images/gallery/envalira3.jpg" rel="lightbox[conjunto2]" title="Imágenes Envalira"></a>
+                            <a href="images/gallery/envalira4.jpg" rel="lightbox[conjunto2]" title="Imágenes Envalira"></a>
+                        </td>
+                        <td><button onclick='ShowHide("envalira_info")'>Información de la prueba</button></td>
+                    </tr>
+                    <tr border='1' align="center" style="display:none;"  id='envalira_info'>
+                        <td colspan="6" >El puerto de Envalira es el puerto de montaña con carretera más alto de los Pirineos, con 2.409 metros de altura sobre el nivel del mar, situado en Andorra entre las localidades de Soldeu y Pas de la Casa y el único acceso desde Andorra hacia Francia.</td>
+                    </tr>
+                    <tr data-ot="Precaución con los osos salvajes" data-ot-style="alert">
+                        <td>Aubisque</td>
+                        <td>22Km</td>
+                        <td>1709m</td>
+                        <td>
+                            <a href="images\altimetria/aubisque.jpg" rel="lightbox" title="Altimetria Aubisque"><img width="32" height="32" src="images/alto.png"/></a>
+                        </td>
+                        <td>
+                            <a href="images/gallery/aubisque1.jpg" rel="lightbox[conjunto3]" title="Imágenes Envalira"><img width="32" height="32" src="images/gallery.png"/></a>
+                            <a href="images/gallery/aubisque2.jpg" rel="lightbox[conjunto3]" title="Imágenes Envalira"></a>
+                            <a href="images/gallery/aubisque3.jpg" rel="lightbox[conjunto3]" title="Imágenes Envalira"></a>
+                            <a href="images/gallery/aubisque4.jpg" rel="lightbox[conjunto3]" title="Imágenes Envalira"></a>
+                        </td>
+                        <td><button onclick='ShowHide("aubisque_info")'>Información de la prueba</button></td>
+                    </tr>
+                    <tr border='1' align="center" style="display:none;"  id='aubisque_info'>
+                        <td colspan="6" >El Col d'Aubisque o puerto del Aubisque (en occitano, Còth d'Aubisca), también conocido simplemente como Aubisque, es un puerto de montaña de los Pirineos situado a 1.709 msnm, en el departamento de Pirineos Atlánticos, en la región francesa de Aquitania. Se encuentra a unos 30 km al sur de Pau y Tarbes.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="alpes_div" class="tabla">
+                <table id="alpes_tabla" border="1">
+
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Longitud</th>
+                        <th>Altitud</th>
+                        <th>Altimetría</th>
+                        <th>Galería</th>
+                        <th>Opciones</th>
+                    </tr>
+
+                    <tr data-ot="Extremar las precauciones con las nieblas repentinas, visibilidat muy defectuosa" data-ot-style="alert">
+                        <td>Alpe d'Huez</td>
+                        <td>14Km</td>
+                        <td>1845m</td>
+                        <td>
+                            <a href="images/altimetria/huez.jpg" rel="lightbox" title="Altimetria Alpe d'Huez"><img width="32" height="32" src="images/alto.png"/></a>
+                        </td>
+                        <td>
+                            <a href="images/gallery/huez1.jpg" rel="lightbox[conjunto4]" title="Imágen Alpe d'Huez 1"><img width="32" height="32" src="images/gallery.png"/></a>
+                            <a href="images/gallery/huez2.jpg" rel="lightbox[conjunto4]" title="Imágen Alpe d'Huez 2"></a>
+                            <a href="images/gallery/huez3.jpg" rel="lightbox[conjunto4]" title="Imágen Alpe d'Huez 3"></a>
+                            <a href="images/gallery/huez4.jpg" rel="lightbox[conjunto4]" title="Imágen Alpe d'Huez 4"></a>
+                        </td>
+                        <td><button onclick='ShowHide("huez_info")'>Información de la prueba</button></td>
+                    </tr>
+
+
+                    <tr border='1' align="center" style="display:none;"  id='huez_info'>
+                        <td colspan="6" >Alpe d'Huez es una montaña de los Alpes franceses de 1850 m de altitud. La estación de esquí presente en dicha montaña se comenzó a construir en 1930. En 1936, se instaló el primer remonte mecánico de tipo telesquí. Alpe d'Huez debe gran parte de su fama a su relación con la carrera ciclista del Tour de Francia.</td>
+                    </tr>
+                    <tr data-ot="Abierto de Junio a Septiembre. El resto del año está cerrado al tráfico por presencia de nieve">
+                        <td>Stelvio</td>
+                        <td>22Km</td>
+                        <td>2758m</td>
+                        <td>
+                            <a href="images\altimetria/stelvio.jpg" rel="lightbox" title="Altimetria Stelvio"><img width="32" height="32" src="images/alto.png"/></a>
+                        </td>
+                        <td>
+                            <a href="images/gallery/stelvio1.jpg" rel="lightbox[conjunto5]" title="Imágen Stelvio 1"><img width="32" height="32" src="images/gallery.png"/></a>
+                            <a href="images/gallery/stelvio2.jpg" rel="lightbox[conjunto5]" title="Imágen Stelvio 2"></a>
+                            <a href="images/gallery/stelvio3.jpg" rel="lightbox[conjunto5]" title="Imágen Stelvio 3"></a>
+                            <a href="images/gallery/stelvio4.jpg" rel="lightbox[conjunto5]" title="Imágen Stelvio 4"></a>
+                        </td>
+                        <td><button onclick='ShowHide("stelvio_info")'>Información de la prueba</button></td>
+                    </tr>
+                    <tr border='1' align="center" style="display:none;"  id='stelvio_info'>
+                        <td colspan="6" >El Paso Stelvio (en italiano: Passo dello Stelvio, alemán: Stilfser Joch), situado en Italia, a 2.757 msnm, es el paso de montaña pavimentado de mayor elevación de los Alpes orientales, y el segundo más alto de los Alpes, únicamente por detrás del Col de l'Iseran (2770 msnm). Debe parte de su fama a ser uno de los puertos más duros de la competición ciclista más importante del país, el Giro de Italia. Su longitud es de 24 km, con un desnivel medio del 7,6%,1 y debe su nombre a la localidad próxima de Stelvio.</td>
+                    </tr>
+                    <tr data-ot="Abierto de Junio a Septiembre. El resto del año está cerrado al tráfico por presencia de nieve">
+                        <td>Passo di Gavia</td>
+                        <td>16Km</td>
+                        <td>2618m</td>
+                        <td>
+                            <a href="images\altimetria/gavia.jpg" rel="lightbox" title="Altimetria Passo di Gavia"><img width="32" height="32" src="images/alto.png"/></a>
+                        </td>
+                        <td>
+                            <a href="images/gallery/gavia1.jpg" rel="lightbox[conjunto6]" title="Imágen Passo di Gavia 1"><img width="32" height="32" src="images/gallery.png"/></a>
+                            <a href="images/gallery/gavia2.jpg" rel="lightbox[conjunto6]" title="Imágen Passo di Gavia 2"></a>
+                            <a href="images/gallery/gavia3.jpg" rel="lightbox[conjunto6]" title="Imágen Passo di Gavia 3"></a>
+                            <a href="images/gallery/gavia4.jpg" rel="lightbox[conjunto6]" title="Imágen Passo di Gavia 4"></a>
+                        </td>
+                        <td><button onclick='ShowHide("gavia_info")'>Información de la prueba</button></td>
+                    </tr>
+                    <tr border='1' align="center" style="display:none;"  id='gavia_info'>
+                        <td colspan="6" >El Paso Gavia (en italiano: Passo di Gavia), es un paso de montaña ubicado en los Alpes Réticos meridionales a 2.621 msnm. Es uno de los pasos de montaña más altos de Europa y se encuentra en la frontera de las provincias de Sondrio y Brescia (Lombardía), conectando Ponte di Legno con Bormio, a través de la carretera estatal 300.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="resto_div" class="tabla">
+                <table id="resto_tabla" border="1">
+
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Longitud</th>
+                        <th>Altitud</th>
+                        <th>Altimetría</th>
+                        <th>Galería</th>
+                        <th>Opciones</th>
+                    </tr>
+
+
+
+                    <tr data-ot="Posibilidad de vientos extremos en la cima">
+                        <td>Mont Ventoux</td>
+                        <td>22Km</td>
+                        <td>1912m</td>
+                        <td>
+                            <a href="images/altimetria/ventoux.jpg" rel="lightbox" title="Altimetria Mont Ventoux"><img width="32" height="32" src="images/alto.png"/></a>
+                        </td>
+                        <td>
+                            <a href="images/gallery/ventoux1.jpg" rel="lightbox[conjunto7]" title="Imágen Mont Ventoux 1"><img width="32" height="32" src="images/gallery.png"/></a>
+                            <a href="images/gallery/ventoux2.jpg" rel="lightbox[conjunto7]" title="Imágen Mont Ventoux 2"></a>
+                            <a href="images/gallery/ventoux3.jpg" rel="lightbox[conjunto7]" title="Imágen Mont Ventoux 3"></a>
+                            <a href="images/gallery/ventoux4.jpg" rel="lightbox[conjunto7]" title="Imágen Mont Ventoux 4"></a>
+                        </td>
+                        <td><button onclick='ShowHide("ventoux_info")'>Información de la prueba</button></td>
+                    </tr>
+
+
+                    <tr border='1' align="center" style="display:none;"  id='ventoux_info'>
+                        <td colspan="6" >El Mont Ventoux es una montaña de la región de Provenza, en el sureste de Francia, a unos 20 kilómetros al noreste de Carpentras. En la vertiente norte, la montaña limita con el departamento de Drôme. Es con diferencia la montaña más alta de la región y se le ha dado el nombre de "gigante de la Provenza".</td>
+                    </tr>
+
+                    <tr data-ot="Este puerto tiene rampas por encima del 23%, la probabilidad de poner el pie en tierra es alta">
+                        <td>Angliru</td>
+                        <td>12Km</td>
+                        <td>1555m</td>
+                        <td>
+                            <a href="images\altimetria/angliru.jpg" rel="lightbox" title="Altimetria Angliru"><img width="32" height="32" src="images/alto.png"/></a>
+                        </td>
+                        <td>
+                            <a href="images/gallery/angliru1.jpg" rel="lightbox[conjunto8]" title="Imágen Angliru 1"><img width="32" height="32" src="images/gallery.png"/></a>
+                            <a href="images/gallery/angliru2.jpg" rel="lightbox[conjunto8]" title="Imágen Angliru 2"></a>
+                            <a href="images/gallery/angliru3.jpg" rel="lightbox[conjunto8]" title="Imágen Angliru 3"></a>
+                            <a href="images/gallery/angliru4.jpg" rel="lightbox[conjunto8]" title="Imágen Angliru 4"></a>
+                        </td>
+                        <td><button onclick='ShowHide("angliru_info")'>Información de la prueba</button></td>
+                    </tr>
+                    <tr border='1' align="center" style="display:none;"  id='angliru_info'>
+                        <td colspan="6" >El Angliru (en asturiano: L'Angliru) es un puerto de montaña del Principado de Asturias, en España.
+                            Es una zona de pastos y abrevadero de ganado, que recibe el nombre por sinécdoque del lago El Angliru y que está situada en el corazón de la sierra del Aramo, en el concejo de Riosa (Asturias, España).</td>
+                    </tr>
+                    <tr data-ot="Extremar las precauciones amb les boires repentines, visibilitat molt defectuosa" data-ot-style="alert">
+                        <td>Lagos de Covadonga</td>
+                        <td>14Km</td>
+                        <td>1134m</td>
+                        <td>
+                            <a href="images\altimetria/covadonga.jpg" rel="lightbox" title="Altimetria Lagos de Covadonga"><img width="32" height="32" src="images/alto.png"/></a>
+                        </td>
+                        <td>
+                            <a href="images/gallery/covadonga1.jpg" rel="lightbox[conjunto9]" title="Imágen Lagos de Covadonga 1"><img width="32" height="32" src="images/gallery.png"/></a>
+                            <a href="images/gallery/covadonga2.jpg" rel="lightbox[conjunto9]" title="Imágen Lagos de Covadongaa 2"></a>
+                            <a href="images/gallery/covadonga3.jpg" rel="lightbox[conjunto9]" title="Imágen Lagos de Covadonga 3"></a>
+                            <a href="images/gallery/covadonga4.jpg" rel="lightbox[conjunto9]" title="Imágen Lagos de Covadonga 4"></a>
+                        </td>
+                        <td><button onclick='ShowHide("cova_info")'>Información de la prueba</button></td>
+                    </tr>
+                    <tr border='1' align="center" style="display:none;"  id='cova_info'>
+                        <td colspan="6" >El Paso Gavia (en italiano: Passo di Gavia), es un paso de montaña ubicado en los Alpes Réticos meridionales a 2.621 msnm. Es uno de los pasos de montaña más altos de Europa y se encuentra en la frontera de las provincias de Sondrio y Brescia (Lombardía), conectando Ponte di Legno con Bormio, a través de la carretera estatal 300.</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div><!--close sidebar_container_puertos-->
+    </div><!--close site_content-->
+    <div id="footer">
+        website template by <a href="http://jotaj.blogspot.com.es/">Blog de Jotaj</a>
+    </div><!--close footer-->
+</div><!--close main-->
+</body>
+</html>

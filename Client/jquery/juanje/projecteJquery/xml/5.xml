@@ -1,0 +1,23 @@
+<puerto>
+	<nombre>Stelvio</nombre>
+	<distancia>22 km</distancia>
+	<altura>2758 m </altura>
+	<mensaje>
+		El Paso Stelvio (en italiano: Passo dello Stelvio, alemán: Stilfser Joch), situado en Italia, a 2.757 msnm, es el paso de montaña pavimentado de mayor elevación de los Alpes orientales, y el segundo más alto de los Alpes, únicamente por detrás del Col de l'Iseran (2770 msnm). Debe parte de su fama a ser uno de los puertos más duros de la competición ciclista más importante del país, el Giro de Italia. Su longitud es de 24 km, con un desnivel medio del 7,6%,1 y debe su nombre a la localidad próxima de Stelvio.
+	</mensaje>
+	<imagenes>
+		<altimetria>images/altimetria/stelvio.jpg</altimetria>
+		<carrusel>
+			<imagen>images/gallery/stelvio1.jpg</imagen>
+			<imagen>images/gallery/stelvio2.jpg</imagen>
+			<imagen>images/gallery/stelvio3.jpg</imagen>
+			<imagen>images/gallery/stelvio4.jpg</imagen>
+		</carrusel>
+	</imagenes>
+	<tooltip>
+		Abierto de Junio a Septiembre. El resto del año está cerrado al tráfico por presencia de nieve
+	</tooltip>
+	<color>
+		azul
+	</color>
+</puerto>

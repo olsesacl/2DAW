@@ -1,0 +1,23 @@
+<puerto>
+	<nombre>Envalira</nombre>
+	<distancia>23 km</distancia>
+	<altura>2404 m </altura>
+	<mensaje>
+		El puerto de Envalira es el puerto de montaña con carretera más alto de los Pirineos, con 2.409 metros de altura sobre el nivel del mar, situado en Andorra entre las localidades de Soldeu y Pas de la Casa y el único acceso desde Andorra hacia Francia.
+	</mensaje>
+	<imagenes>
+		<altimetria>images/altimetria/envalira.jpg</altimetria>
+		<carrusel>
+			<imagen>images/gallery/envalira1.jpg</imagen>
+			<imagen>images/gallery/envalira2.jpg</imagen>
+			<imagen>images/gallery/envalira3.jpg</imagen>
+			<imagen>images/gallery/envalira4.jpg</imagen>
+		</carrusel>
+	</imagenes>
+	<tooltip>
+		Extremar les precaucions amb les boires repentines, visibilitat molt defectuosa
+	</tooltip>
+	<color>
+		rojo
+	</color>
+</puerto>

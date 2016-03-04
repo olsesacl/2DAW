@@ -1,0 +1,23 @@
+<puerto>
+	<nombre>Lagos de Covadonga</nombre>
+	<distancia>14 km</distancia>
+	<altura>1134 m </altura>
+	<mensaje>
+		El conjunto de los lagos de Covadonga (llamados Llagos de Cuadonga o Llagos d'Enol en asturiano) está formado por dos pequeños lagos, el Enol y el Ercina de origen glacial situados en la parte asturiana del Parque Nacional de los Picos de Europa, en el macizo occidental de dicha cadena montañosa. Existe un tercer lago, el Bricial, que sólo tiene agua durante el deshielo, pero también pertenece al conjunto.1 En Asturias son conocidos simplemente como los lagos.
+	</mensaje>
+	<imagenes>
+		<altimetria>images/altimetria/covadonga.jpg</altimetria>
+		<carrusel>
+			<imagen>images/gallery/covadonga1.jpg</imagen>
+			<imagen>images/gallery/covadonga2.jpg</imagen>
+			<imagen>images/gallery/covadonga3.jpg</imagen>
+			<imagen>images/gallery/covadonga4.jpg</imagen>
+		</carrusel>
+	</imagenes>
+	<tooltip>
+		Extremar las precauciones con las nieblas repentinas, visibilidad muy defectuosa
+	</tooltip>
+	<color>
+		rojo
+	</color>
+</puerto>

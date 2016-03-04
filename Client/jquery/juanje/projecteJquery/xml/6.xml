@@ -1,0 +1,23 @@
+<puerto>
+	<nombre>Passo di Gavia</nombre>
+	<distancia>16 km</distancia>
+	<altura>2618 m </altura>
+	<mensaje>
+		El Paso Gavia (en italiano: Passo di Gavia), es un paso de montaña ubicado en los Alpes Róticos meridionales a 2.621 msnm. Es uno de los pasos de montaña más altos de Europa y se encuentra en la frontera de las provincias de Sondrio y Brescia (Lombarda), conectando Ponte di Legno con Bormio, a través de la carretera estatal 300.
+	</mensaje>
+	<imagenes>
+		<altimetria>images/altimetria/gavia.jpg</altimetria>
+		<carrusel>
+			<imagen>images/gallery/gavia1.jpg</imagen>
+			<imagen>images/gallery/gavia2.jpg</imagen>
+			<imagen>images/gallery/gavia3.jpg</imagen>
+			<imagen>images/gallery/gavia4.jpg</imagen>
+		</carrusel>
+	</imagenes>
+	<tooltip>
+		Abierto de Junio a Septiembre. El resto del año está cerrado al tráfico por presencia de nieve
+	</tooltip>
+	<color>
+		azul
+	</color>
+</puerto>

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+
+<head>
+    <title>Dolor de cul - Ciclistas</title>
+    <meta name="description" content="free website template" />
+    <meta name="keywords" content="enter your keywords here" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            var tiempo = null;
+
+            $(".ciclistas").each(function(){
+                $(this).hover(function() {
+                    id = $(this).attr("id");
+                    cambiaImagenes(id);
+                    tiempo = setInterval(function(){cambiaImagenes(id)}, 3000);
+                },
+                function() {
+                    clearInterval(tiempo);
+                });
+            });
+
+        });
+
+        function cambiaImagenes(ide){
+            var aleat = Math.floor(Math.random()*4);
+            $("#ciclistas_img").fadeTo(100,0.1,function(){
+                $("#ciclistas_img").attr("src","images/ciclistes/"+ide+aleat+".jpg")
+            }).fadeTo(500,1);
+        }
+    </script>
+
+</head>
+
+<body>
+<div id="main">
+    <div id="site_content">
+        <div id="site_heading">
+            <h1>Dolor de cul</h1>
+            <h2>Peña ciclista</h2>
+        </div><!--close site_heading-->
+        <div id="header">
+            <div id="menubar">
+                <ul id="menu">
+                    <li><a href="index.html"><div>Inicio</div></a></li>
+                    <li><a href="puertos.html"><div>Puertos</div></a></li>
+                    <li><a href="ciclistas.html"><div class="current">Ciclistas</div></a></li>
+                    <li><a href="formulario.html"><div>Formulario</div></a></li>
+                </ul>
+            </div><!--close menubar-->
+        </div><!--close header-->
+        <div id="banner_image">
+            <div id="contenedor_imagenes">
+                <div><img  src="images/bike-banner0.jpg"  /><p>El ciclismo</p></div>
+                <div><img  src="images/bike-banner1.jpg"  /><p>es más que</p></div>
+                <div><img  src="images/bike-banner2.jpg"  /><p>una pasión.</p></div>
+                <div><img  src="images/bike-banner3.jpg"  /><p>LOVE CYCLING</p></div>
+
+            </div><!--close contenedor_imagenes-->
+        </div><!--close banner_image-->
+
+        <div class="sidebar_container_puertos">
+
+            <section class="ciclistas" id="pantani" ><h1 style="color: white; margin-bottom: 10px">Marco Pantani</h1>Marco Pantani (Cesena, Italia, 13 de enero de 1970 - Rímini, Italia, 14 de febrero de 2004) fue un ciclista profesional italiano entre los años 1992 y 2003. Ganó un Giro de Italia, un Tour de Francia y también una medalla de bronce en el Mundial de ciclismo de ruta del año 1995. <br><br>
+            </section>
+            <section class="ciclistas" id="contador"  ><h1 style="color: white; margin-bottom: 10px">Alberto Contador</h1>Alberto Contador Velasco (Madrid, 6 de diciembre de 1982)1 es un ciclista de ruta español que ha corrido profesionalmente en los equipos ONCE/Liberty Seguros, Discovery Channel, Astana y Tinkoff-Saxo, del que forma parte desde 2011.<br><br>
+            </section>
+            <section class="ciclistas" id="indurain"  ><h1 style="color: white; margin-bottom: 10px">Miguel Induráin</h1>Miguel Induráin Larraya3 4 (Villava, Navarra, 16 de julio de 19645 ) es un exciclista español, profesional entre 1985 y 1996. Fue ganador del Tour de Francia durante cinco años consecutivos (de 1991 a 1995) y del Giro de Italia en dos ocasiones consecutivas (1992 y 1993).<br><br>
+            </section>
+            <div style="clear: both"></div>
+
+            <div id="ciclistas_div"> <img id="ciclistas_img" src="images/ciclistes/pantani1.jpg"  alt="Equipo cicling" /></div>
+        </div>
+
+
+    </div><!--close site_content-->
+    <div id="footer">
+        website template by <a href="http://jotaj.blogspot.com.es/">Blog de Jotaj</a>
+    </div><!--close footer-->
+</div><!--close main-->
+</body>
+</html>

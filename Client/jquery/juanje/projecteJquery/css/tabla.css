@@ -1,0 +1,23 @@
+.tabla{
+    text-align: center;
+    width: 691px;
+    margin: 0 auto;
+    height: 300px;
+}
+
+.tabla table {
+    margin: 20px auto 0 auto;
+    background-color: white;
+}
+
+.tabla tr {
+    height: 35px;
+}
+
+.tabla th {
+    width: 110px;
+}
+.tabla tr:last-child{
+    height:0;
+}
+

@@ -1,0 +1,23 @@
+<puerto>
+	<nombre>Mont Ventoux</nombre>
+	<distancia>22 km</distancia>
+	<altura>1912 m </altura>
+	<mensaje>
+		El Mont Ventoux es una montaña de la región de Provenza, en el sureste de Francia, a unos 20 kilómetros al noreste de Carpentras. En la vertiente norte, la montaña limita con el departamento de Drome. Es con diferencia la montaña más alta de la región y se le ha dado el nombre de gigante de la Provenza.
+	</mensaje>
+	<imagenes>
+		<altimetria>images/altimetria/ventoux.jpg</altimetria>
+		<carrusel>
+			<imagen>images/gallery/ventoux1.jpg</imagen>
+			<imagen>images/gallery/ventoux2.jpg</imagen>
+			<imagen>images/gallery/ventoux3.jpg</imagen>
+			<imagen>images/gallery/ventoux4.jpg</imagen>
+		</carrusel>
+	</imagenes>
+	<tooltip>
+		Posibilidad de vientos extremos en la cima
+	</tooltip>
+	<color>
+		azul
+	</color>
+</puerto>

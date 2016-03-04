@@ -1,0 +1,23 @@
+<puerto>
+	<nombre>Angliru</nombre>
+	<distancia>12 km</distancia>
+	<altura>1555 m </altura>
+	<mensaje>
+		El Angliru (en asturiano: L'Angliru) es un puerto de montaña del Principado de Asturias, en España. Es una zona de pastos y abrevadero de ganado, que recibe el nombre por sinócdoque del lago El Angliru y que está situada en el corazón de la sierra del Aramo, en el concejo de Riosa (Asturias, España).
+	</mensaje>
+	<imagenes>
+		<altimetria>images/altimetria/angliru.jpg</altimetria>
+		<carrusel>
+			<imagen>images/gallery/angliru1.jpg</imagen>
+			<imagen>images/gallery/angliru2.jpg</imagen>
+			<imagen>images/gallery/angliru3.jpg</imagen>
+			<imagen>images/gallery/angliru4.jpg</imagen>
+		</carrusel>
+	</imagenes>
+	<tooltip>
+		Este puerto tiene rampas por encima del 23%, la probabilidad de poner el pie en tierra es alta
+	</tooltip>
+	<color>
+		azul
+	</color>
+</puerto>
