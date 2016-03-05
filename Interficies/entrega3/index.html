@@ -16,71 +16,78 @@
 </head>
 <body>
 <div class="container" id="contenido">
-<header class="row">
-    <canvas id="header_logo" class="col-lg-4 hidden-sm hidden-md col-xs-12">
-    </canvas>
-    <div id="search" class="col-lg-4 col-sm-6 hidden-xs clearfix">
-        <form id="searchbox" method="get" action="//fo.demo.prestashop.com/es/search">
-            <input type="hidden" name="controller" value="search">
-            <input type="hidden" name="orderby" value="position">
-            <input type="hidden" name="orderway" value="desc">
-            <input class="search_query form-control ac_input" type="text" id="search_query_top" name="search_query" placeholder="Buscar" value="" autocomplete="off">
-            <button type="submit" name="submit_search" class="btn btn-default button-search">
-                <span>Buscar</span>
-            </button>
-        </form>
-    </div>
-    <div class="col-lg-4 col-sm-6 col-xs-12">
-        <div id="carrito" >
-            <a href="carrito.html">
+    <header class="row">
+        <canvas id="header_logo" class="col-lg-4 hidden-sm hidden-md col-xs-12">
+        </canvas>
+        <div id="search" class="col-lg-4 col-sm-6 hidden-xs clearfix">
+            <form id="searchbox" method="get" action="//fo.demo.prestashop.com/es/search">
+                <input type="hidden" name="controller" value="search">
+                <input type="hidden" name="orderby" value="position">
+                <input type="hidden" name="orderway" value="desc">
+                <input class="search_query form-control ac_input" type="text" id="search_query_top" name="search_query"
+                       placeholder="Buscar" value="" autocomplete="off">
+                <button type="submit" name="submit_search" class="btn btn-default button-search">
+                    <span>Buscar</span>
+                </button>
+            </form>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-xs-12">
+            <div id="carrito">
+                <a href="carrito.html">
                 <span>
                     <b>Carrito:</b>
                     <span>2 producto</span>
                 </span>
-            </a>
-            <div id="carrito_extendido" class="hidden-xs">
-                <div>
-                    <dl class="products">
-                        <dt>
-                            <a href="./producto.html"><img alt="Vestido verano" src="img/p/printed-summer-dress.jpg" class="col-lg-4 col-sm-4 col-xs-4"/></a>
-                            <div class="col-lg-4 col-sm-4 col-xs-4">
+                </a>
+                <div id="carrito_extendido" class="hidden-xs">
+                    <div>
+                        <dl class="products">
+                            <dt>
+                                <a href="./producto.html" class="col-lg-2 col-sm-5">
+                                    <img alt="Vestido verano" src="img/p/printed-summer-dress.jpg"
+                                         class="col-lg-12 col-sm-12 col-xs-12"/>
+                                </a>
+                            <div class="col-lg-6 col-sm-5 text-left">
                                 <div class="product_name">
                                     1x<span title="Vestido verano"><a href="./producto.html">Vestido vera...</a></span>
                                 </div>
                                 <div>30.50€</div>
                             </div>
-                            <div class="eliminar_producto col-lg-4 col-sm-4 col-xs-4"></div>
-                        </dt>
-                        <dd></dd>
-                        <dt>
-                            <a href="./producto.html"><img alt="Vestido verano" src="img/p/printed-summer-dress.jpg" class="col-lg-4 col-sm-4 col-xs-4"/></a>
-                        <div class="col-lg-4 col-sm-4 col-xs-4">
-                            <div class="product_name">
-                                1x<span title="Vestido verano"><a href="./producto.html">Vestido vera...</a></span>
+                            <div class="eliminar_producto col-lg-4 col-sm-2 text-right"></div>
+                            </dt>
+                            <dd></dd>
+                            <dt>
+                                <a href="./producto.html" class="col-lg-2 col-sm-5">
+                                    <img alt="Vestido verano" src="img/p/printed-summer-dress.jpg"
+                                         class="col-lg-12 col-sm-12 col-xs-12"/>
+                                </a>
+                            <div class="col-lg-6 col-sm-5 text-left">
+                                <div class="product_name">
+                                    1x<span title="Vestido verano"><a href="./producto.html">Vestido vera...</a></span>
+                                </div>
+                                <div>30.50€</div>
                             </div>
-                            <div>30.50€</div>
+                            <div class="eliminar_producto col-lg-4 col-sm-2 text-right"></div>
+                            </dt>
+                            <dd></dd>
+                        </dl>
+                        <div id="precios_carrito" class="col-lg-12 col-sm-12 col-xs-12">
+                            <span class="col-lg-6 col-sm-6 col-xs-6">Total:</span>
+                            <span class="col-lg-6 col-sm-6 col-xs-6">61.00€</span>
                         </div>
-                        <div class="eliminar_producto col-lg-4 col-sm-4 col-xs-4"></div>
-                        </dt>
-                        <dd></dd>
-                    </dl>
-                    <div id="precios_carrito" class="col-lg-12 col-sm-12 col-xs-12">
-                        <span class="col-lg-6 col-sm-6 col-xs-6">Total:</span>
-                        <span class="col-lg-6 col-sm-6 col-xs-6">61.00€</span>
+
+                        <a href="carrito.html">
+
+                            <div id="confirm_carrito">
+                                <button type="button" class="btn btn-success col-xs-offset-3 col-xs-6">Confirmar
+                                </button>
+                            </div>
+                        </a>
                     </div>
-
-                    <a href="carrito.html">
-
-                        <div id="confirm_carrito" >
-                            <button type="button" class="btn btn-success">Confirmar</button>
-                        </div>
-                        <div class="clearfix visible-xs"></div>
-                    </a>
                 </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
     <nav class="navbar navbar-inverse" role="navigation">
         <!-- El logotipo y el icono que despliega el menú se agrupan
              para mostrarlos mejor en los dispositivos móviles -->
@@ -107,241 +114,269 @@
             </ul>
         </div>
     </nav>
-<aside class="row">
-    <div id="slideshow-wrap" class="col-lg-12 hidden-sm hidden-xs">
-        <input type="radio" id="button-1" name="controls" checked="checked"/>
-        <label for="button-1"></label>
-        <input type="radio" id="button-2" name="controls"/>
-        <label for="button-2"></label>
-        <input type="radio" id="button-3" name="controls"/>
-        <label for="button-3"></label>
-        <input type="radio" id="button-4" name="controls"/>
-        <label for="button-4"></label>
-        <input type="radio" id="button-5" name="controls"/>
-        <label for="button-5"></label>
-        <label for="button-1" class="arrows" id="arrow-1">></label>
-        <label for="button-2" class="arrows" id="arrow-2">></label>
-        <label for="button-3" class="arrows" id="arrow-3">></label>
-        <label for="button-4" class="arrows" id="arrow-4">></label>
-        <label for="button-5" class="arrows" id="arrow-5">></label>
-        <div id="slideshow-inner">
-            <ul>
-                <li id="slide1">
-                    <a href="./categoria.html"><img src="./img/carrusel/banner1.jpg" class="img-responsive"/></a>
-                    <div class="description">
-                        <div class="description-text">
-                            <h2>Flower power</h2>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</p>
+    <aside class="row">
+        <div id="slideshow-wrap" class="col-lg-12 hidden-sm hidden-xs">
+            <input type="radio" id="button-1" name="controls" checked="checked"/>
+            <label for="button-1"></label>
+            <input type="radio" id="button-2" name="controls"/>
+            <label for="button-2"></label>
+            <input type="radio" id="button-3" name="controls"/>
+            <label for="button-3"></label>
+            <input type="radio" id="button-4" name="controls"/>
+            <label for="button-4"></label>
+            <input type="radio" id="button-5" name="controls"/>
+            <label for="button-5"></label>
+            <label for="button-1" class="arrows" id="arrow-1">></label>
+            <label for="button-2" class="arrows" id="arrow-2">></label>
+            <label for="button-3" class="arrows" id="arrow-3">></label>
+            <label for="button-4" class="arrows" id="arrow-4">></label>
+            <label for="button-5" class="arrows" id="arrow-5">></label>
+            <div id="slideshow-inner">
+                <ul>
+                    <li id="slide1">
+                        <a href="./categoria.html"><img src="./img/carrusel/banner1.jpg" class="img-responsive"/></a>
+                        <div class="description">
+                            <div class="description-text">
+                                <h2>Flower power</h2>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut</p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li id="slide2">
-                    <a href="./producto.html"><img src="./img/carrusel/banner2.jpg" class="img-responsive"/></a>
-                    <div class="description">
-                        <div class="description-text">
-                            <h2>Golden sunset</h2>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</p>
+                    </li>
+                    <li id="slide2">
+                        <a href="./producto.html"><img src="./img/carrusel/banner2.jpg" class="img-responsive"/></a>
+                        <div class="description">
+                            <div class="description-text">
+                                <h2>Golden sunset</h2>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut</p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li id="slide3">
-                    <a href="#"><img src="./img/carrusel/banner3.jpg" class="img-responsive"/></a>
-                    <div class="description">
-                        <div class="description-text">
-                            <h2>Golden sunset</h2>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</p>
+                    </li>
+                    <li id="slide3">
+                        <a href="#"><img src="./img/carrusel/banner3.jpg" class="img-responsive"/></a>
+                        <div class="description">
+                            <div class="description-text">
+                                <h2>Golden sunset</h2>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut</p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li id="slide4">
-                    <a href="#"><img src="./img/carrusel/banner4.jpg" class="img-responsive"/></a>
-                    <div class="description">
-                        <div class="description-text">
-                            <h2>Golden sunset</h2>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</p>
+                    </li>
+                    <li id="slide4">
+                        <a href="#"><img src="./img/carrusel/banner4.jpg" class="img-responsive"/></a>
+                        <div class="description">
+                            <div class="description-text">
+                                <h2>Golden sunset</h2>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut</p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li id="slide5">
-                    <a href="#"><img src="./img/carrusel/banner5.jpg" class="img-responsive"/></a>
-                    <div class="description">
-                        <div class="description-text">
-                            <h2>Golden sunset</h2>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</p>
+                    </li>
+                    <li id="slide5">
+                        <a href="#"><img src="./img/carrusel/banner5.jpg" class="img-responsive"/></a>
+                        <div class="description">
+                            <div class="description-text">
+                                <h2>Golden sunset</h2>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut</p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</aside>
-<article class="row">
-    <div id="productos">
-        <div class="producto">
-            <div class="efecto" tabindex="0">Pulsame</div>
-            <div class="imagen">
-                <img src="./img/p/printed-summer-dress.jpg">
-                <div class="price">
-                    <span class="product-price">16.40€</span>
-                    <span class="old-price">20.50€</span>
-                    <span class="price-percent-reduction">-20%</span>
-                </div>
+                    </li>
+                </ul>
             </div>
-            <div class="datos">
-                <h5>Vestido de verano</h5>
-                <div class="price">
-                    <span class="product-price">16.40€</span>
-                    <span class="old-price">20.50€</span>
-                    <span class="price-percent-reduction">-20%</span>
+        </div>
+    </aside>
+    <article id="productos" class="row">
+        <div class="col-lg-4 col-sm-5 col-sm-offset-1 col-lg-offset-0">
+            <div class="producto">
+                <div class="efecto" tabindex="0">Pulsame</div>
+                <div class="imagen">
+                    <img src="./img/p/printed-summer-dress.jpg" class="img-responsive center-block">
+                    <div class="price text-center">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
                 </div>
-                <div class="links">
-                    <a href="./carrito.html" class="add_cart"><span>Añadir al carrito</span></a>
-                    <a href="./producto.html" class="more"><span>Más</span></a>
+                <div class="datos">
+                    <h5 class="text-center">Vestido de verano</h5>
+                    <div class="price clearfix">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
+                    <div class="links clearfix">
+                        <a href="./carrito.html" class="add_cart"><span class="col-xs-7 text-center btn btn-primary">Añadir al carrito</span></a>
+                        <a href="./producto.html" class="more"><span class="col-xs-offset-1 col-xs-4 text-center btn btn-default">Más</span></a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="producto">
-            <div class="efecto" tabindex="0">Pulsame</div>
-            <div class="imagen">
-                <img src="./img/p/printed-summer-dress.jpg">
-                <div class="price">
-                    <span class="product-price">16.40€</span>
+        <div class="col-lg-4 col-sm-5">
+            <div class="producto">
+                <div class="efecto" tabindex="0">Pulsame</div>
+                <div class="imagen">
+                    <img src="./img/p/printed-summer-dress.jpg" class="img-responsive center-block">
+                    <div class="price text-center">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
                 </div>
-            </div>
-            <div class="datos">
-                <h5>Vestido de verano</h5>
-                <div class="price">
-                    <span class="product-price">16.40€</span>
-                </div>
-                <div class="links">
-                    <a href="./carrito.html" class="add_cart"><span>Añadir al carrito</span></a>
-                    <a href="./producto.html" class="more"><span>Más</span></a>
-                </div>
-            </div>
-        </div>
-        <div class="producto">
-            <div class="efecto" tabindex="0">Pulsame</div>
-            <div class="imagen">
-                <img src="./img/p/printed-summer-dress.jpg">
-                <div class="price">
-                    <span class="product-price">16.40€</span>
-                </div>
-            </div>
-            <div class="datos">
-                <h5>Vestido de verano</h5>
-                <div class="price">
-                    <span class="product-price">16.40€</span>
-                </div>
-                <div class="links">
-                    <a href="./carrito.html" class="add_cart"><span>Añadir al carrito</span></a>
-                    <a href="./producto.html" class="more"><span>Más</span></a>
+                <div class="datos">
+                    <h5 class="text-center">Vestido de verano</h5>
+                    <div class="price clearfix">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
+                    <div class="links clearfix">
+                        <a href="./carrito.html" class="add_cart"><span class="col-xs-7 text-center btn btn-primary">Añadir al carrito</span></a>
+                        <a href="./producto.html" class="more"><span class="col-xs-offset-1 col-xs-4 text-center btn btn-default">Más</span></a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="producto">
-            <div class="efecto" tabindex="0">Pulsame</div>
-            <div class="imagen">
-                <img src="./img/p/printed-summer-dress.jpg">
-                <div class="price">
-                    <span class="product-price">16.40€</span>
-                    <span class="old-price">20.50€</span>
-                    <span class="price-percent-reduction">-20%</span>
+        <div class="col-lg-4 col-sm-5 col-sm-offset-1 col-lg-offset-0">
+            <div class="producto">
+                <div class="efecto" tabindex="0">Pulsame</div>
+                <div class="imagen">
+                    <img src="./img/p/printed-summer-dress.jpg" class="img-responsive center-block">
+                    <div class="price text-center">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
                 </div>
-            </div>
-            <div class="datos">
-                <h5>Vestido de verano</h5>
-                <div class="price">
-                    <span class="product-price">16.40€</span>
-                    <span class="old-price">20.50€</span>
-                    <span class="price-percent-reduction">-20%</span>
-                </div>
-                <div class="links">
-                    <a href="./carrito.html" class="add_cart"><span>Añadir al carrito</span></a>
-                    <a href="./producto.html" class="more"><span>Más</span></a>
-                </div>
-            </div>
-        </div>
-        <div class="producto">
-            <div class="efecto" tabindex="0">Pulsame</div>
-            <div class="imagen">
-                <img src="./img/p/printed-summer-dress.jpg">
-                <div class="price">
-                    <span class="product-price">16.40€</span>
-                    <span class="old-price">20.50€</span>
-                    <span class="price-percent-reduction">-20%</span>
-                </div>
-            </div>
-            <div class="datos">
-                <h5>Vestido de verano</h5>
-                <div class="price">
-                    <span class="product-price">16.40€</span>
-                    <span class="old-price">20.50€</span>
-                    <span class="price-percent-reduction">-20%</span>
-                </div>
-                <div class="links">
-                    <a href="./carrito.html" class="add_cart"><span>Añadir al carrito</span></a>
-                    <a href="./producto.html" class="more"><span>Más</span></a>
+                <div class="datos">
+                    <h5 class="text-center">Vestido de verano</h5>
+                    <div class="price clearfix">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
+                    <div class="links clearfix">
+                        <a href="./carrito.html" class="add_cart"><span class="col-xs-7 text-center btn btn-primary">Añadir al carrito</span></a>
+                        <a href="./producto.html" class="more"><span class="col-xs-offset-1 col-xs-4 text-center btn btn-default">Más</span></a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="producto">
-            <div class="efecto" tabindex="0">Pulsame</div>
-            <div class="imagen">
-                <img src="./img/p/printed-summer-dress.jpg">
-                <div class="price">
-                    <span class="product-price">16.40€</span>
-                    <span class="old-price">20.50€</span>
-                    <span class="price-percent-reduction">-20%</span>
+        <div class="col-lg-4 col-sm-5">
+            <div class="producto">
+                <div class="efecto" tabindex="0">Pulsame</div>
+                <div class="imagen">
+                    <img src="./img/p/printed-summer-dress.jpg" class="img-responsive center-block">
+                    <div class="price text-center">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
+                </div>
+                <div class="datos">
+                    <h5 class="text-center">Vestido de verano</h5>
+                    <div class="price clearfix">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
+                    <div class="links clearfix">
+                        <a href="./carrito.html" class="add_cart"><span class="col-xs-7 text-center btn btn-primary">Añadir al carrito</span></a>
+                        <a href="./producto.html" class="more"><span class="col-xs-offset-1 col-xs-4 text-center btn btn-default">Más</span></a>
+                    </div>
                 </div>
             </div>
-            <div class="datos">
-                <h5>Vestido de verano</h5>
-                <div class="price">
-                    <span class="product-price">16.40€</span>
-                    <span class="old-price">20.50€</span>
-                    <span class="price-percent-reduction">-20%</span>
+        </div>
+        <div class="col-lg-4 col-sm-5 col-sm-offset-1 col-lg-offset-0">
+            <div class="producto">
+                <div class="efecto" tabindex="0">Pulsame</div>
+                <div class="imagen">
+                    <img src="./img/p/printed-summer-dress.jpg" class="img-responsive center-block">
+                    <div class="price text-center">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
                 </div>
-                <div class="links">
-                    <a href="./carrito.html" class="add_cart"><span>Añadir al carrito</span></a>
-                    <a href="./producto.html" class="more"><span>Más</span></a>
+                <div class="datos">
+                    <h5 class="text-center">Vestido de verano</h5>
+                    <div class="price clearfix">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
+                    <div class="links clearfix">
+                        <a href="./carrito.html" class="add_cart"><span class="col-xs-7 text-center btn btn-primary">Añadir al carrito</span></a>
+                        <a href="./producto.html" class="more"><span class="col-xs-offset-1 col-xs-4 text-center btn btn-default">Más</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-5">
+            <div class="producto">
+                <div class="efecto" tabindex="0">Pulsame</div>
+                <div class="imagen">
+                    <img src="./img/p/printed-summer-dress.jpg" class="img-responsive center-block">
+                    <div class="price text-center">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
+                </div>
+                <div class="datos">
+                    <h5 class="text-center">Vestido de verano</h5>
+                    <div class="price clearfix">
+                        <span class="product-price col-xs-4">16.40€</span>
+                        <span class="old-price col-xs-4">20.50€</span>
+                        <span class="col-xs-4"><span class="price-percent-reduction">-20%</span></span>
+                    </div>
+                    <div class="links clearfix">
+                        <a href="./carrito.html" class="add_cart"><span class="col-xs-7 text-center btn btn-primary">Añadir al carrito</span></a>
+                        <a href="./producto.html" class="more"><span class="col-xs-offset-1 col-xs-4 text-center btn btn-default">Más</span></a>
+                    </div>
                 </div>
             </div>
         </div>
 
-    </div>
-</article>
-<footer>
-    <div>
-        <section id="footer1">
-            <div id="newsletter"><h4>Newsletter</h4>
-            <form action="#">
-                <input type="text" name="email" size="18" placeholder="Introduce tu email" />
-                <button type="submit"></button>
-            </form>
-            </div>
-            <div id="social">
-                <h4>Siguenos</h4>
+    </article>
+    <footer class="row">
+        <div>
+            <section id="footer1">
+                <div id="newsletter" class="hidden-xs col-sm-6 col-lg-6">
+                    <h4 class="col-xs-4 col-sm-4 col-lg-4">Newsletter</h4>
+                    <form action="#" class="col-xs-8 col-sm-8 col-lg-8">
+                        <input type="text" name="email" size="18" placeholder="Introduce tu email"/>
+                        <button type="submit"></button>
+                    </form>
+                </div>
+                <div id="social" class="col-xs-12 col-sm-6 col-lg-6 text-center">
+                    <h4 class="col-xs-5 col-xs-offset-2">Siguenos</h4>
 
-                <div class="facebook">
-                    <a target="_blank" href="http://www.facebook.com"><span>Facebook</span></a>
+                    <div class="facebook col-xs-1">
+                        <a target="_blank" href="http://www.facebook.com"><span>Facebook</span></a>
+                    </div>
+                    <div class="twitter col-xs-1">
+                        <a target="_blank" href="http://www.twitter.com"><span>twitter</span></a>
+                    </div>
+                    <div class="googleplus col-xs-1">
+                        <a target="_blank" href="https://plus.google.com/"><span>Google+</span></a>
+                    </div>
                 </div>
-                <div class="twitter">
-                    <a target="_blank" href="http://www.twitter.com"><span>twitter</span></a>
-                </div>
-                <div class="googleplus">
-                    <a target="_blank" href="https://plus.google.com/"><span>Google+</span></a>
-                </div>
-            </div>
-        </section>
-        <section id="empresa">
-            <h4>Información sobre la tienda</h4>
-            <a target="_blank" href="https://www.google.es/maps/@38.9600699,-0.1820763,3a,75y,197.41h,84.68t/data=!3m6!1e1!3m4!1se8MWKtPzz_YJQOhTDFEq0g!2e0!7i13312!8i6656!6m1!1e1"><div class="direccion">C/ Desengaño, 69<br>Gandia Valencia</div></a>
-            <div class="telefono">Llámanos ahora: <span>555-698784</span></div>
-            <div class="email">Email: <a href="mailto:test@test.com"><span>test@test.com</span></a></div>
-        </section>
-    </div>
-</footer>
+                <div class="clearfix"></div>
+            </section>
+            <section id="empresa" class="hidden-xs">
+                <h4 class="col-xs-3">Información sobre la tienda</h4>
+                <a target="_blank"
+                   href="https://www.google.es/maps/@38.9600699,-0.1820763,3a,75y,197.41h,84.68t/data=!3m6!1e1!3m4!1se8MWKtPzz_YJQOhTDFEq0g!2e0!7i13312!8i6656!6m1!1e1">
+                    <div class="direccion col-xs-3">C/ Desengaño, 69<br>Gandia Valencia</div>
+                </a>
+                <div class="telefono col-xs-3">Llámanos ahora:<br class="hidden-lg"> <span>555-698784</span></div>
+                <div class="email col-xs-3">Email: <a href="mailto:test@test.com"><span>test@test.com</span></a></div>
+            </section>
+        </div>
+    </footer>
 </div>
 </body>
 </html>

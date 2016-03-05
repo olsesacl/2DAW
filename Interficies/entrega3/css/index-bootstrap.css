@@ -114,12 +114,12 @@ a,a:hover{
     background: #484848;
     /*width: 250px;*/
     position: absolute;
-    /*visibility: hidden;*/
+    visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.8s linear;
     transition-delay: 2s;
     box-sizing: border-box;
-    z-index: 999;
+    z-index: 1001;
 }
 #carrito_extendido > * > * > *{
     padding-left: 15px;
@@ -156,7 +156,6 @@ a,a:hover{
 }
 .eliminar_producto{
     height: 18px;
-    text-align: right;
 }
 .eliminar_producto:before{
     display: inline-block;
@@ -206,7 +205,7 @@ a,a:hover{
 
 #slideshow-inner {
     width: 100%;
-    height: 300px;
+    height: 290px;
     background-color: rgb(0,0,0);
     overflow: hidden;
     position: relative;
@@ -229,7 +228,7 @@ a,a:hover{
 
 #slideshow-inner>ul>li {
     width: 20%;
-    height: 300px;
+    height: 290px;
     float: left;
     position: relative;
 }
@@ -409,16 +408,251 @@ a,a:hover{
     transition: opacity .8s;
 }
 
+
+/*PRODUCTOS*/
+.producto{
+    margin-bottom: 35px;
+}
+.producto:hover{
+    -moz-box-shadow: rgba(0, 0, 0, 0.17) 0 0 13px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.17) 0 0 13px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0 0 13px;
+}
+.producto .imagen{
+    border: 1px solid #d6d4d4;
+    margin-bottom: 13px;
+    position: relative;
+    padding: 0 10px;
+    -webkit-transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+    background: #fff;
+}
+.producto .efecto{
+    font: 700 13px/16px Arial, Helvetica, sans-serif;
+    color: #3F3F3F;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    margin: -21px 0 0 -41px;
+    padding: 5px 0 0;
+    background: rgba(255, 255, 255, 0.82);
+    width: 73px;
+    height: 24px;
+    text-align: center;
+    -moz-box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
+    z-index:5;
+}
+.producto .efecto:focus ~  .imagen{
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    filter: sepia(100%);
+    -webkit-filter: sepia(100%);
+    background: red;
+    color:red;
+}
+
+.producto .imagen .price{
+    background-color: rgba(47, 47, 47, 0.9);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display:none;
+}
+.producto:hover .imagen .price{
+    display:block;
+}
+.producto .imagen .price .product-price{
+    color: #fff;
+}
+.producto .price .product-price{
+    font: 600 21px/26px "Open Sans", sans-serif;
+    color: #333;
+}
+.producto .price .old-price{
+    font-size: 17px;
+    color: #6f6f6f;
+    text-decoration: line-through;
+}
+.producto .price .price-percent-reduction{
+    border-radius: 4px;
+    background: #f13340;
+    border: 1px solid #d02a2c;
+    font: 600 21px/24px "Open Sans", sans-serif;
+    color: #fff;
+    padding: 0 5px 0 3px;
+}
+#productos .producto .price{
+
+    padding: 4px 0 ;
+}
+#productos .producto .datos .price{
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+#productos .producto:hover .datos .price{
+    display:none;
+}
+
+#productos .producto .datos .links{
+    display: none;
+}
+#productos .producto:hover .datos .links{
+    display:block
+}
+
+#productos .producto .datos .add_cart span{
+    font: 700 17px/21px Arial, Helvetica, sans-serif;
+    color: #fff;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+
+}
+
+#productos .producto .datos .add_cart span:active{
+    top: 1px;
+    position: relative;
+}
+#productos .producto .datos .more span{
+    font: 700 17px/21px Arial, Helvetica, sans-serif;
+    color: #333;
+    text-shadow: 1px 1px white;
+    border: 1px solid;
+    background: rgb(247, 247, 247);
+    gradient-vertical(rgba(247, 247, 247, 1), rgba(237, 237, 237, 1));
+
+}
+#productos .producto .datos .more span:hover{
+    background: linear-gradient(to bottom, #ededed 0%, #f7f7f7 100%) repeat-x;
+    border-color: #9e9e9e #9e9e9e #c8c8c8 #9e9e9e;
+}
+#productos .producto .datos .more span:active{
+    top: 1px;
+    position: relative;
+}
+.producto .datos h5{
+    font-size: 17px;
+    color: #3a3939;
+    font-family: sans-serif;
+    font-weight: 500;
+    margin-bottom: 9px;
+    margin-top: 26px;
+}
+
+/*FOOTER*/
+footer{
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #333;
+}
+#newsletter input{
+    height: 45px;
+    max-width: 267px;
+    background: #3C3C3C;
+    border: #515151 1px solid;
+    color: #fff;
+    padding: 0 43px 0 12px;
+    /*display: inline-block;*/
+    float: left;
+}
+#newsletter button{
+    margin-left: -43px;
+    border: none;
+    background: none;
+    text-align: center;
+    color: #908f8f;
+    padding: 8px;
+}
+#newsletter button:hover{
+    color: #ffffff;
+}
+#newsletter button:before{
+    content: "\f138";
+    font-family: "FontAwesome", Helvetica, sans-serif;
+    font-size: 28px;
+    line-height: 28px;
+}
+footer h4{
+    background: none;
+    padding: 7px 16px 5px 0;
+    text-transform: none;
+    border: none;
+    font: 600 18px/22px "Open Sans", sans-serif;
+    color: #fff;
+    margin: 0 0 13px 0;
+    cursor: pointer;
+}
+#footer1{
+    padding-top:5px;
+    background-color: #3F3F3F;
+}
+#social .facebook a:before{
+    content: "\f09a";
+}
+#social .twitter a:before{
+    content: "\f099";
+}
+#social .googleplus a:before{
+    content: "\f0d5";
+}
+#social div span{
+    display: none;
+}
+#social , #social a{
+    font-family: "FontAwesome";
+    font-size: 28px;
+    color: #908f8f;
+}
+#social a:hover, #empresa a:hover{
+    color: #fff;
+}
+#empresa{
+    color: #777777;
+    padding: 10px;
+}
+#empresa span{
+    color: #fff;
+}
+#empresa a{
+    color: #777777;
+}
+#empresa .direccion:before{
+    content: "";
+}
+#empresa .telefono:before{
+    content: "";
+}
+#empresa .direccion:before, #empresa .telefono:before, #empresa .email:before{
+    font-family: "FontAwesome", Helvetica, sans-serif;
+    font-size: 25px;
+    padding-right: 5px;
+    vertical-align: middle;
+}
+#empresa .email:before{
+    content: "";
+}
+
 @media (max-width: 1200px) {
     #carrito, #carrito_extendido {
         width: 100%;
     }
 
 }
-@media (max-width:768px){
+@media (max-width:768px) {
     #carrito {
         padding-top: 0;
     }
+
+    #carrito > a > span:first-child:after {
+        content: "";
+    }
 }
-
-
